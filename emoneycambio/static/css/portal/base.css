@@ -124,4 +124,42 @@ header>.logo{
   align-items: center;
 }
 
-/* END HEADER STYLE */
+/* CONTENT STYLE */
+
+.content {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+.bullet-coins {
+  font-size: 12px;
+  font-weight: 300;
+  border-radius: 5px 5px 5px;
+  width: 50%;
+}
+
+.bullet-coins>ul {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  list-style-type: none;
+
+}
+
+.bullet-coins>ul>li {
+  color: white;
+  padding: 5px;
+}
+
+.bullet-coins>ul>li>.coin-gold {
+  color: #FFDE59;
+}
+
+
+/* END CONTENT STYLE */
+
