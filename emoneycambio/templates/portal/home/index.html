@@ -1,1 +1,47 @@
 {% extends "portal/base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/home/style.css') }}">
+{% endblock %}
+{% block content %}
+
+
+<span class="title-font-style title-form-price"> Faça sua cotação</span>
+<form class="form-price" action="">
+
+    <div>
+
+        <div onclick="showOptions(event)">
+            <div class="menu-option-form-price">
+                <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" /> 
+                <input style='width: 70%;text-align: center;border-radius: 25px; background-color: inherit; padding: 10px 4px;' placeholder="Moeda"/>
+                <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
+            </div>
+            <ul class="custom-options" style="display: none;">
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </div>
+
+
+        <div onclick="showOptions(event)">
+            <div class="menu-option-form-price">
+                <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Localização" width="24" /> 
+                <input style='width: 70%;text-align: center;border-radius: 25px; background-color: inherit; padding: 10px 4px;' placeholder="Local"/>
+                <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
+            </div>
+            <ul class="custom-options" style="display: none;">
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
+            </ul>
+        </div>
+        <!-- <span>Local</span> -->
+    
+
+    </div>
+
+    <input class="button" type="button" value="Buscar">
+</form>
+<script src="{{ url_for('static', filename='js/portal/home/index.js') }}"></script>
+{% endblock %}
