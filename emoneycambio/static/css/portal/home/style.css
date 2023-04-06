@@ -37,18 +37,36 @@
     padding: 0px 36px;
     text-align: center;
     border-radius: 10px;
-    max-height: 50px;
+    max-height: 100px;
     overflow-x: auto;
+    font-size: 16px;
+    color: black;
+    font-weight: 300;
 }
+
 .custom-options>li:hover {
     transition: 0.3s;
-    /* box-shadow: 5px 5px 5px rgb(0 0 0 / 50%); */
-    /* border-bottom: 1px solid; */
-    font-size: 16px;
+    font-weight: 500;
 }
 .menu-option-form-price{
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+
+.search-location,
+.search-coin {
+    width: 70%;
+    text-align: center;
+    border-radius: 25px;
+    background-color: inherit;
+    padding: 4px 4px;
+    font-size: 16px;
+}
+.search-location:focus,
+.search-coin:focus {
+    outline: none; 
+    background: white;
 }

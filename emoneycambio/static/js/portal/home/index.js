@@ -1,20 +1,34 @@
-function showOptions (e) {
-    console.log(e.currentTarget)
+function showOptionsFormPrice (e) {
+
     let curTarget = e.currentTarget
-    // curTarget.classList.toggle('shadow')
+
+    clearFeatsFormPrice()
+    
     curTarget.classList.add('shadow')
 
-    // console.log(curTarget.children)
     for (const child of curTarget.children) {
-        console.log(child.tagName);
         if (child.tagName == 'UL') {
-            console.log(child)
             child.style.display = "block";
- 
-            // if (child.style.display === "none") {
-            // } else {
-            //     child.style.display = "none";
-            // }
         }
-      }
+    }
+    
+}
+
+function selectValueFromUl(e) {
+    console.log(e.target)
+}
+
+function clearFeatsFormPrice() {
+
+    let coinSelect = document.getElementById("coin-select")
+    let locationSelect = document.getElementById("location-select")
+    let customOptions = document.querySelectorAll("#custom-options")
+
+    for (const option of customOptions) {
+        option.style.display="none"
+    }
+
+    locationSelect.classList.remove("shadow")
+    coinSelect.classList.remove("shadow")
+
 }

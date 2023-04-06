@@ -10,13 +10,16 @@
 
     <div>
 
-        <div onclick="showOptions(event)">
+        <div tabindex="0" id="coin-select" onclick="showOptionsFormPrice(event)">
             <div class="menu-option-form-price">
                 <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" /> 
-                <input style='width: 70%;text-align: center;border-radius: 25px; background-color: inherit; padding: 10px 4px;' placeholder="Moeda"/>
+                <input class='search-coin' placeholder="Moeda"/>
                 <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
             </div>
-            <ul class="custom-options" style="display: none;">
+            <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
                 <li>a</li>
                 <li>b</li>
                 <li>c</li>
@@ -24,13 +27,16 @@
         </div>
 
 
-        <div onclick="showOptions(event)">
+        <div tabindex="0" id="location-select" onclick="showOptionsFormPrice(event)">
             <div class="menu-option-form-price">
                 <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Localização" width="24" /> 
-                <input style='width: 70%;text-align: center;border-radius: 25px; background-color: inherit; padding: 10px 4px;' placeholder="Local"/>
+                <input class='search-location' placeholder="Cidade"/>
                 <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
             </div>
-            <ul class="custom-options" style="display: none;">
+            <ul id="custom-options" class="custom-options" style="display: none;">
+                <li>a</li>
+                <li>b</li>
+                <li>c</li>
                 <li>a</li>
                 <li>b</li>
                 <li>c</li>
