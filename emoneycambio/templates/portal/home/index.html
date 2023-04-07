@@ -4,50 +4,52 @@
 {% endblock %}
 {% block content %}
 
+<div class="home-page">
 
-<span class="title-font-style title-form-price"> Faça sua cotação</span>
-<form class="form-price" action="">
-
-    <div>
-
-        <div tabindex="0" id="coin-select" onclick="showOptionsFormPrice(event)">
-            <div class="menu-option-form-price">
-                <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" /> 
-                <input class='search-coin' placeholder="Moeda"/>
-                <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
-            </div>
-            <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
-            </ul>
-        </div>
-
-
-        <div tabindex="0" id="location-select" onclick="showOptionsFormPrice(event)">
-            <div class="menu-option-form-price">
-                <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Localização" width="24" /> 
-                <input class='search-location' placeholder="Cidade"/>
-                <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
-            </div>
-            <ul id="custom-options" class="custom-options" style="display: none;">
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
-                <li>a</li>
-                <li>b</li>
-                <li>c</li>
-            </ul>
-        </div>
-        <!-- <span>Local</span> -->
+    <form class="form-price" action="">
+        <span class="title-font-style title-form-price"> Faça sua cotação</span>
     
-
-    </div>
-
-    <input class="button" type="button" value="Buscar">
-</form>
-<script src="{{ url_for('static', filename='js/portal/home/index.js') }}"></script>
+        <div>
+    
+            <div tabindex="0" id="coin-select" onclick="showOptionsFormPrice(event)">
+                <div class="menu-option-form-price">
+                    <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" /> 
+                    <input id='search-coin' class='search-coin' placeholder="Moeda"/>
+                    <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
+                </div>
+                <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
+                    <li>a</li>
+                    <li>b</li>
+                    <li>c</li>
+                    <li>a</li>
+                    <li>b</li>
+                    <li>c</li>
+                </ul>
+            </div>
+    
+    
+            <div tabindex="0" id="location-select" onclick="showOptionsFormPrice(event)">
+                <div class="menu-option-form-price">
+                    <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Localização" width="24" /> 
+                    <input onkeyup="filter(event)" id='search-location' class='search-location' placeholder="Cidade"/>
+                    <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
+                </div>
+                <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
+                    <li>a</li>
+                    <li>b</li>
+                    <li>c</li>
+                    <li>a</li>
+                    <li>b</li>
+                    <li>c</li>
+                </ul>
+            </div>
+            <!-- <span>Local</span> -->
+        
+    
+        </div>
+    
+        <input class="button" type="button" value="Buscar">
+    </form>
+    <script src="{{ url_for('static', filename='js/portal/home/index.js') }}"></script>
+</div>
 {% endblock %}

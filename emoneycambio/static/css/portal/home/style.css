@@ -1,10 +1,14 @@
+.home-page {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 .form-price {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 20px;
     display: flex;
     align-items: center;
-    
 
 }
 .form-price>div {
@@ -69,4 +73,8 @@
 .search-coin:focus {
     outline: none; 
     background: white;
+}
+
+.focus-input-search{
+    background-color: white;
 }
