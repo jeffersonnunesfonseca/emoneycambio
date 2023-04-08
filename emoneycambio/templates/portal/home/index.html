@@ -6,7 +6,7 @@
 
 <div class="home-page">
 
-    <form class="form-price" action="">
+    <form id="form-price" class="form-price" action="" method="GET">
         <span class="title-font-style title-form-price"> Faça sua cotação</span>
     
         <div>
@@ -14,16 +14,13 @@
             <div tabindex="0" id="coin-select" onclick="showOptionsFormPrice(event)">
                 <div class="menu-option-form-price">
                     <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" /> 
-                    <input id='search-coin' class='search-coin' placeholder="Moeda"/>
+                    <input onkeyup="filterInUl(event)" id='search-coin' class='search-coin' placeholder="Moeda" value=""/>
                     <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
                 </div>
                 <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
-                    <li>a</li>
-                    <li>b</li>
-                    <li>c</li>
-                    <li>a</li>
-                    <li>b</li>
-                    <li>c</li>
+                    <li>DÓLAR</li>
+                    <li>EURO</li>
+                    <li>LIBRA</li>
                 </ul>
             </div>
     
@@ -31,24 +28,18 @@
             <div tabindex="0" id="location-select" onclick="showOptionsFormPrice(event)">
                 <div class="menu-option-form-price">
                     <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Localização" width="24" /> 
-                    <input onkeyup="filter(event)" id='search-location' class='search-location' placeholder="Cidade"/>
+                    <input onkeyup="filterInUl(event)" id='search-location' class='search-location' placeholder="Cidade" value=""/>
                     <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
                 </div>
                 <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
-                    <li>a</li>
-                    <li>b</li>
-                    <li>c</li>
-                    <li>a</li>
-                    <li>b</li>
-                    <li>c</li>
+                    <li>SÃO PAULO (SP)</li>
+                    <li>RIO DE JANEIRO (RJ)</li>
+                    <li>CURITIBA (PR)</li>
                 </ul>
             </div>
-            <!-- <span>Local</span> -->
-        
-    
         </div>
     
-        <input class="button" type="button" value="Buscar">
+        <input class="button" type="button" value="Buscar" onclick="sendFormPrice(event)">
     </form>
     <script src="{{ url_for('static', filename='js/portal/home/index.js') }}"></script>
 </div>

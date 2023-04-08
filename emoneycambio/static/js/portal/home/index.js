@@ -69,7 +69,7 @@ function clearFeatsFormPrice() {
 
 }
 
-function filter(e) {
+function filterInUl(e) {
     var input = e.currentTarget
     let ulElement = false
 
@@ -79,20 +79,48 @@ function filter(e) {
             ulElement=child
             break
         }
-        
     }
 
     var filter = input.value.toUpperCase();
+    filter = clearAccentuation(filter)
     var lis = ulElement.children;
     console.log(lis)
     console.log(ulElement)
     for (var i = 0; i < lis.length; i++) {
         console.log(lis[i].innerText)
-        // var name = lis[i].getElementsByClassName('name')[0].innerHTML;
-        if (lis[i].innerText.toUpperCase().indexOf(filter) == 0) 
+        let litext = clearAccentuation(lis[i].innerText)
+        if (litext.toUpperCase().indexOf(filter) == 0) 
             lis[i].style.display = 'list-item';
         else
             lis[i].style.display = 'none';
     }
 
+}
+
+function sendFormPrice(e) {
+    e.preventDefault();
+    let searchCoin = document.getElementById("search-coin").value
+    let searchLocation = document.getElementById("search-location").value
+ 
+    searchCoin = clearAccentuation(searchCoin.replace(/ +/g, " "))
+    searchLocation = clearAccentuation(searchLocation.replace(/ +/g, " "))
+
+    searchCoin = searchCoin.replace(/[^a-zA-Z]/g, " ")
+    searchLocation = searchLocation.replace(/[^a-zA-Z]/g, " ")
+
+    searchCoin = clearAccentuation(searchCoin.replace(/ +/g, "-"))
+    searchLocation = clearAccentuation(searchLocation.replace(/ +/g, "-"))
+
+    searchCoin = searchCoin.toLowerCase().replace(/-$/, '');
+    searchLocation = searchLocation.toLowerCase().replace(/-$/, '');
+
+    console.log(searchCoin)
+    console.log(searchLocation)
+    
+    return window.location = `/cotacao/${searchCoin}/${searchLocation}`
+    // let form = document.getElementById('form-price')
+    // console.log(form)
+    // const formData = new FormData(form);
+    // const formProps = Object.fromEntries(formData);
+    // console.log(formProps)
 }

@@ -16,6 +16,9 @@ def index():
     
     return render_template('portal/home/index.html', data=data)
 
-# @app.route('/quero-anunciar', methods = ['GET'])
-# def contact_form():
-#     return render_template('home/forms/quero-anunciar.html')
+@app.route('/cotacao/<coin>/<location>', methods = ['GET'])
+def casas_cambio(coin: str, location: str):
+    # print(coin)
+    # print(location)
+    # return
+    return render_template('home/forms/quero-anunciar.html')
