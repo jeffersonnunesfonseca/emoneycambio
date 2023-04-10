@@ -63,8 +63,6 @@ function nextStepForm(e) {
         }
     }
 
-
-
     let newUrl = `${currentUrlPath}?step=${data['nextstep']}`
 
     console.log(data, newUrl)

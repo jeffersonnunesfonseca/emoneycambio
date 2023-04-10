@@ -14,9 +14,14 @@
         <header>
             <div class="logo">
                 <div>
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="facebook" width="100" />
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="facebook" width="100" />
+                    </a>
                 </div>
-                <span class="subtitle-font-style">E-Money Câmbio</span>
+                <a href="/">
+
+                    <span class="subtitle-font-style">E-Money Câmbio</span>
+                </a>
             </div>
             <ul>
                 <li>
@@ -49,7 +54,10 @@
             {% block content %}{% endblock %}
             <footer>
                 <div>
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="facebook" width="120" />
+                    <a href="/">
+
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="facebook" width="120" />
+                    </a>
                 </div>
         
                 <div>

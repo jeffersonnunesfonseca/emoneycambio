@@ -35,7 +35,8 @@
     /* font-weight: 300; */
     padding: 25px;
     border-radius: 30px;
-    width: 60%;
+    width: 50%;
+    box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
 }
 
 .company-contacts-header {
@@ -49,6 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.3s;
 }
 
 .form-step {
