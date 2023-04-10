@@ -140,3 +140,7 @@ label {
     font-weight: 300 !important;
     text-align: center;
 }
+
+footer {
+    position: relative; 
+}
