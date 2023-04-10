@@ -101,6 +101,10 @@ function sendFormPrice(e) {
     e.preventDefault();
     let searchCoin = document.getElementById("search-coin").value
     let searchLocation = document.getElementById("search-location").value
+
+    if (forceValidation(['search-coin', 'search-location']) == "stop") {
+        return
+    }
  
     searchCoin = clearAccentuation(searchCoin.replace(/ +/g, " "))
     searchLocation = clearAccentuation(searchLocation.replace(/ +/g, " "))
@@ -118,9 +122,4 @@ function sendFormPrice(e) {
     console.log(searchLocation)
     
     return window.location = `/cotacao/${searchCoin}/${searchLocation}`
-    // let form = document.getElementById('form-price')
-    // console.log(form)
-    // const formData = new FormData(form);
-    // const formProps = Object.fromEntries(formData);
-    // console.log(formProps)
 }

@@ -1,0 +1,41 @@
+{% extends "portal/base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/portal/negotiation-tourism/style.css') }}">
+{% endblock %}
+{% block content %}
+
+<div class="home-page">
+    <span class="title title-font-style">{{data.filters.modality}} <b>{{data.filters.coin.name}}</b> em <b>{{data.filters.city.name}}</b> com <b>{{data.company.name}}</b></span>
+    <div class="results third-bg-color">
+
+        <div class="company-contacts-header">
+            <img src="{{ url_for('static', filename=data.company.logo) }}" width="70" />
+            {% if data.company.principal_phone.is_whatsapp %}
+            <a target="_blank" rel="noreferrer nofollow" href="https://api.whatsapp.com/send/?phone={{data.company.principal_phone.full_number}}&text=Olá, te encontrei atrvés do Portal E-Money Câmbio e gostaria de realizar uma negociação.">
+                <img src="{{ url_for('static', filename='icons/whatsapp.png') }}" width="24" />
+            </a>
+            {% else %}
+            <a href="tel:{{data.company.principal_phone.full_number}}">
+                <img src="{{ url_for('static', filename='icons/phone.png') }}" width="24">
+            </a>
+            {% endif %}
+            <a target="_blank" rel="noreferrer nofollow" href="{{data.company.site}}?origin=emoneycambio">
+                <img src="{{ url_for('static', filename='icons/web-domain.png') }}" width="24" />
+            </a>
+        </div>
+
+        <div id="steps">
+            {% if step == '3' %}
+            {% include 'portal/negotiation-tourism/forms/step-3.html' %}
+            {% elif step == '2' %}
+            {% include 'portal/negotiation-tourism/forms/step-2.html' %}
+            {% else %}
+            {% include 'portal/negotiation-tourism/forms/step-1.html' %}
+            {% endif %}
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

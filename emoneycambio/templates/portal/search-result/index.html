@@ -1,0 +1,42 @@
+{% extends "portal/base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/portal/search-result/style.css') }}">
+{% endblock %}
+{% block content %}
+<div class="home-page">
+    <div class="results">
+        <span class="title title-font-style">Negociar <b>{{data['filters']['coin']['name']}}</b> em <b>{{data['filters']['city']['name']}}</b></span>
+        {% for result in data['companies'] %}
+            <div class="card-result third-bg-color">
+                <div class="company-data">
+                    <span class="text-font-style">{{result['name']}}</span>
+                    <img src="{{ url_for('static', filename=result['logo']) }}" width="70" />
+                </div>
+                <div class="company-contacts">
+                    {% if result.principal_phone.is_whatsapp %}
+                    <a target="_blank" rel="noreferrer nofollow" href="https://api.whatsapp.com/send/?phone={{result.principal_phone.full_number}}&text=Olá, te encontrei atrvés do Portal E-Money Câmbio e gostaria de realizar uma negociação.">
+                        <img src="{{ url_for('static', filename='icons/whatsapp.png') }}" width="24" />
+                    </a>
+                    {% else %}
+                    <a href="tel:{{result.principal_phone.full_number}}">
+                        <img src="{{ url_for('static', filename='icons/phone.png') }}" width="24">
+                    </a>
+                    {% endif %}
+                    <a target="_blank" rel="noreferrer nofollow" href="{{result.site}}?origin=emoneycambio">
+                        <img src="{{ url_for('static', filename='icons/web-domain.png') }}" width="24" />
+                    </a>
+                </div>
+                <div class="company-buttons">
+                    <input class="button buy-button" type="button" value="Comprar" onclick="goToNegotiation(event,'comprar', {{result['id']}}, 'papel-moeda')">
+                    {% if result.coin.sell_tourism_vet %}
+                    <input class="button sell-button" type="button" value="Vender" onclick="goToNegotiation(event, 'vender', {{result['id']}}, 'papel-moeda')">
+                    {% endif %}
+                </div>
+            </div>
+        
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

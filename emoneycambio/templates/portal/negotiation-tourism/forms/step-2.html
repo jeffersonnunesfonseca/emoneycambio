@@ -1,0 +1,53 @@
+<form id='form-step' class='form-step' action="">
+    <span class="breadcumb">
+        <a href="?step=1" rel="noopener noreferrer">Oferta</a> > <a href="?step=2" rel="noopener noreferrer">Contato</a>
+    </span>
+    <input class="input-form-negotiation" type="hidden" name="nextstep" id="nextstep" value="3">
+    <div class="item-step">
+        <label for="cpf-cnpj">CPF/CNPJ</label>
+        <input class="input-form-negotiation" type="text" name="cpfcnpj" id='cpfcnpj' placeholder="CPF/CNPJ">
+    </div>
+
+    <div class="item-step">
+        <label for="nome-razao-social">Nome/Razão Social</label>
+        <input class="input-form-negotiation" type="text" name="nome_razao_social" id="nome_razao_social" placeholder="Nome/Razão Social">
+    </div>
+
+    <div class="item-step">
+        <label for="email">Melhor E-mail</label>
+        <input class="input-form-negotiation" type="email" name="email" id ="email" placeholder="xx@xx.com">
+    </div>
+
+    <label for="phone">Melhor Telefone</label>
+    <div class="item-step item-phone-step">
+         <select class="input-form-negotiation" name="ddi" id="ddi">
+            <option value="55">55</option>
+        </select>
+        <input style="width: 160px;" class="input-form-negotiation" type="text" name="phone" id="phone" placeholder="(xx) xxxxx-xxxx">
+        <div class="checkbox-whatsapp">
+            <img src="{{ url_for('static', filename='icons/whatsapp.png') }}" width="24" />
+            <input class="input-form-negotiation" type="checkbox" name="is_whatsapp" id="is_whatsapp" class="is_whatsapp" checked>
+        </div>
+    </div>
+    <div class="item-step item-radio-step">
+        <label for="loja">Retirar na loja</label>
+        <input class="input-form-negotiation" type="radio" name="delivery" id="delivery" value="loja" checked>
+
+        <label for="delivery">Delivery</label>
+        <input class="input-form-negotiation" type="radio" name="delivery" id="delivery" value="delivery">
+
+
+    </div>
+
+    <input class="button" type="button" value="Finalizar" onclick="nextStepForm(event)">
+
+    <p class="text-font-style" style="text-align: center;font-size: 12px">
+        Ao finalizar você esta aceitando nossos 
+        <b><a href="http://" target="_blank" rel="noopener noreferrer">Termos de uso</a></b> 
+        e 
+        <b><a href="http://" target="_blank" rel="noopener noreferrer">Políticas de privacidade</a></b>
+    </p>
+    
+    
+
+</form>
