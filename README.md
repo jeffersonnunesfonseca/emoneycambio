@@ -25,3 +25,16 @@ python -m venv venv
 ```
 .\venv\Scripts\Activate.ps1
 ```
+
+# Docker
+python 3.9
+
+
+# Gerar imagem
+docker build -t 'emoneycambio' .
+
+# rodar imagem
+docker run -d -p 5656:5656 --name emoneycambio emoneycambio:latest
+
+# dica pegar imagem google driver
+- https://drive.google.com/u/0/uc?id=1LpuQ1RprZ4Do_WstWAIjeaFq_NQzc3Ai&export=download
