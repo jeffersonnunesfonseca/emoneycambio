@@ -1,9 +1,12 @@
 <div id="form-step" class="form-step success-step">
+    <span class="breadcumb">
+        <a href="?step=1" rel="noopener noreferrer">Oferta</a> > <a href="?step=2" rel="noopener noreferrer">Contato</a> > <a href="?step=3" rel="noopener noreferrer"><b>Finalizado</b></a>
+    </span>
 
     <p class="title-font-style" style="max-width: 85%;">Em breve seu personal câmbio entrará em contato com você! </p>    
     <div style="width: 170px;height: 170px;transition: 0.3s;">
         <img src="{{ url_for('static', filename='images/success-form.jpg') }}" width="170"/>
     </div>
-    <span class="text-font-style" style="color: gray;"> Ecaminhamos sua proposta para a Frente Corretora e também para outros parceiros para que você possa ter a melhor oferta possivel.</span>
+    <span class="text-font-style" style="color: gray;"> Ecaminhamos sua proposta para a <b>{{data.company.name}}</b> e também para outros parceiros para que você possa ter a melhor oferta possivel.</span>
     <a href="/" class="subtile-font-style button" style="margin-bottom: 20px;">Realizar nova cotação</a>
 </div>

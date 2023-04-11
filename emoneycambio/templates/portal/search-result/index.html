@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/search-result/style.css') }}">
 {% endblock %}
 {% block content %}
-<div class="home-page">
+<!-- <div class="home-page"> -->
     <div class="results">
         <span class="title title-font-style">Negociar <b>{{data['filters']['coin']['name']}}</b> em <b>{{data['filters']['city']['name']}}</b></span>
         {% for result in data['companies'] %}
@@ -37,6 +37,6 @@
         {% endfor %}
     </div>
 
-</div>
+<!-- </div> -->
 
 {% endblock %}

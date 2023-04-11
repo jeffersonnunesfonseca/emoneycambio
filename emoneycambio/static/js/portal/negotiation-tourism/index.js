@@ -41,7 +41,13 @@ function nextStepForm(e) {
     let keys = []
     $(formdata ).each(function(index, obj){
         data[obj.name] = obj.value;
-        keys.push(obj.name)
+        if (obj.name =='pfpj' || obj.name == 'delivery'){
+
+        }else{
+
+            keys.push(obj.name)
+        }
+
     });
     
 

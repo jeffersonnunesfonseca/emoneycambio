@@ -72,5 +72,7 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
         
     return render_template(path_to_template, data=data, step=step)
     
+@app.route('/remessa-internacional', methods = ['GET'])
+def remessa_internacional():
     
-
+    return render_template('portal/negotiation-international-shipment/index.html')

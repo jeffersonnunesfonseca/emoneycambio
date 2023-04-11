@@ -1,3 +1,6 @@
+body {
+    display: flow-root;
+}
 .breadcumb {
     display: flex;
     align-items: flex-start;
@@ -10,7 +13,7 @@
     box-shadow: 0px 5px 5px #ddd;
     border-radius: 5px 5px 5px;
 }
-.home-page {
+/* .home-page {
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
@@ -18,7 +21,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
+} */
 
 .title {
     font-weight: 300;
@@ -27,6 +30,8 @@
 }
 
 .results {
+    margin-top: 25px;
+    margin-bottom: 25px;
     display: flex;
     gap: 20px;
     flex-direction: column;
@@ -35,7 +40,7 @@
     /* font-weight: 300; */
     padding: 25px;
     border-radius: 30px;
-    width: 50%;
+    width: 30%;
     box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
 }
 
@@ -58,7 +63,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .items-step-cols {
@@ -66,6 +71,7 @@
     flex-direction: row;
     width: 100%;
 }
+
 
 .item-step {
     display: flex;
@@ -114,15 +120,32 @@ label {
 
 }
 
-.item-radio-step {
-    display: flex;
-    flex-direction: revert;
-    justify-content: center;
-    align-items: center;
+/* estilo botões radio */
+
+.radio-toolbar input[type="radio"] {
+    display: none;
 }
 
-.item-radio-step>input {
-    background-color: white;
+.radio-toolbar label {
+    display: inline-block;
+    background-color: rgb(0 0 0 / 20%);
+    color: gray;
+    padding: 4px 11px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    width: 100px;
+    text-align: center;
+}
+  
+.radio-toolbar input[type="radio"]:checked+label {
+    background-color: #03045E;
+    color: white;
+}
+
+.item-step-radio {
+    display: flex;
+    gap: 15px;
 }
 
 .success-step {
@@ -132,15 +155,11 @@ label {
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: 80%;
+    /* width: 80%; */
     border-radius: 25px;
     padding: 10px;
 }
 .success-step>p {
     font-weight: 300 !important;
     text-align: center;
-}
-
-footer {
-    position: relative; 
 }

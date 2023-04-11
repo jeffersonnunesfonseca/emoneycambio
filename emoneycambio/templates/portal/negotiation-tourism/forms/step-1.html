@@ -1,8 +1,10 @@
 <form id='form-step' class='form-step' action="">
-    <span class="breadcumb">
-        <a href="?step=1" rel="noopener noreferrer">Oferta</a>
-    </span>
     <input type="hidden" name="nextstep" id="nextstep" value="2">
+
+    <span class="breadcumb">
+        <a href="?step=1" rel="noopener noreferrer"><b>Oferta</b></a>
+    </span>
+    
     <div class="items-step-cols">
         <div class="item-step">
             <span class="text-buy-sell subtitle-font-style">
@@ -13,20 +15,23 @@
 
         </div>
     
-        <div class="item-step">
+        <!-- <div class="item-step">
             <span class="text-fee subtitle-font-style">
                 Valor com taxas
                 <br>
                 <i style="font-size: 8px; color:red">Valores podem estar desatualizados</i>
             </span>
             <span class="text-font-style input-form-negotiation" style="color: gray;">R$5,50</span>
-        </div>
+        </div> -->
     
     </div>
     <div class="item-step">
-        <div class="text-font-style" style="color: #03045E;"><i> Total em <b>REAIS</b> à pagar: <span class="value-text total-pay" id="total-pay">R$1000,00</span> </i></div>
+        <span class="text-font-style">Taxa total: <i class="total-fee">R$ 5,51</i></span>
+
+        <span class="text-font-style">Total à pagar: <i class="total-value">R$ 200,00</i> </span>
     </div>
 
+    <br>
     <input class="button" type="button" value="Continuar" onclick="nextStepForm(event)">
 
 

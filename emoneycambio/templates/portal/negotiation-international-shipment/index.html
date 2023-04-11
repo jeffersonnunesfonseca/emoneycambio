@@ -1,0 +1,57 @@
+{% extends "portal/base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/portal/negotiation-international-shipment/style.css') }}">
+{% endblock %}
+{% block content %}
+
+<h1 class="title-font-style">Remessa Internacional</h1>
+
+<form class="form-step-1" action="">
+    <div class="container-coin">
+        <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" />
+        <select name="coin" id="coin" class="coin">
+            <option value="" disabled selected>Moeda</option>
+            <option value="dolar">DÓLAR</option>
+            <option value="euro">EURO</option>
+            <option value="libra">LIBRA</option>
+        </select>
+    </div>
+
+    <div class="radio-toolbar">
+        <input type="radio" name="person_type" id="person_type_pf" value="PF" checked>
+        <label for="person_type_pf">PF</label>
+
+        <input type="radio" name="person_type" id="person_type_pj" value="PJ">
+        <label for="person_type_pj">PJ</label>
+    </div>
+
+    <div class="radio-toolbar">
+        <input type="radio" name="transaction" id="transaction_send" value="enviar" checked>
+        <label for="transaction_send">Enviar</label>
+
+        <input type="radio" name="transaction" id="transaction_receive" value="receber">
+        <label for="transaction_receive">Receber</label>
+    </div>
+
+    <div class="container-input-value">
+
+        <div class="input-value">
+            <label for="value" id="value"> Quantos REAIS quer enviar ?</label>
+            <input type="text" name="value" id="value">
+        </div>
+
+        <div class="display-fee">
+            <span class="">Valor com taxas</span>
+            <i style="font-size: 8px; color:red">Valores podem estar desatualizados</i>
+            <span class="fee">R$ 50,00</span>
+        </div>
+
+        <i class="msg-calc">Total à receber em Dólar: $ 200,00</i>
+
+    </div>
+    <input class="button" type="button" value="Continuar" onclick="nextStepForm(event)">
+</form>
+
+
+
+{% endblock %}
