@@ -9,36 +9,25 @@
 <form id="form-price" class="form-price" action="" method="GET">
     <span class="title-font-style title-form-price"> Faça sua cotação</span>
 
-    <div>
-
-        <div tabindex="0" id="coin-select" onclick="showOptionsFormPrice(event)">
-            <div class="menu-option-form-price">
-                <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" /> 
-                <input onkeyup="filterInUl(event)" id='search-coin' name="search-coin" class='search-coin' placeholder="Moeda" value=""/>
-                <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
-            </div>
-            <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
-                <li>DÓLAR</li>
-                <li>EURO</li>
-                <li>LIBRA</li>
-            </ul>
+    <div class="container-filter">
+        <div class="container-coin">
+            <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
+            <select name="coin" id="search-coin" class="filter-select">
+                <option value="dolar">Dólar</option>
+                <option value="euro">Euro</option>
+                <option value="libra">Libra</option>
+            </select>
         </div>
 
-
-        <div tabindex="0" id="location-select" onclick="showOptionsFormPrice(event)">
-            <div class="menu-option-form-price">
-                <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Localização" width="24" /> 
-                <input onkeyup="filterInUl(event)" id='search-location' name="search-location" class='search-location' placeholder="Cidade" value=""/>
-                <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
-            </div>
-            <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
-                <li>SÃO PAULO (SP)</li>
-                <li>RIO DE JANEIRO (RJ)</li>
-                <li>CURITIBA (PR)</li>
-            </ul>
+        <div class="container-location">
+            <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Moeda" width="24" height="24"/>
+            <select name="location" id="search-location" class="filter-select">
+                <option value="sao-paulo-sp">São Paulo - SP</option>
+                <option value="rio-de-janeiro-rj">Rio de Janeiro - RJ</option>
+                <option value="curitiba-pr">Curitiba - PR</option>
+            </select>
         </div>
     </div>
-
     <input class="button" type="button" value="Buscar" onclick="sendFormPrice(event)">
 </form>
 <script src="{{ url_for('static', filename='js/portal/home/index.js') }}"></script>
