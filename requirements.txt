@@ -1,4 +1,4 @@
 flask
-gunicorn==19.9.0
+gunicorn
 eventlet==0.30.0
 python-dotenv

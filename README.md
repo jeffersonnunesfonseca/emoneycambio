@@ -38,3 +38,20 @@ docker run -d -p 5656:5656 --name emoneycambio emoneycambio:latest
 
 # dica pegar imagem google driver
 - https://drive.google.com/u/0/uc?id=1LpuQ1RprZ4Do_WstWAIjeaFq_NQzc3Ai&export=download
+
+# Docker installation
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-22-04
+
+# Configurando o docker hub
+`docker login`
+jefonseca
+personal toke
+
+
+`export DOCKER_USERNAME=jefonseca`
+
+# gera imagem e manda para o docker hub
+`sh push.sh sum`
+
+# baixa imagem do docker hub
+docker pull jefonseca/sum
