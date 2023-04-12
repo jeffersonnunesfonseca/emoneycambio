@@ -1,0 +1,52 @@
+<form id='form-step' class='form-step' action="">
+    
+    <input type="hidden" name="nextstep" id="nextstep" value="3">
+    <span class="breadcumb">
+        <a href="/remessa-internacional" rel="noopener noreferrer">Filtro</a>
+        >
+        <a href="?step=1" rel="noopener noreferrer">Motivos</a>
+        >
+        <a href="?step=2" rel="noopener noreferrer"><b>Dados</b></a>
+    </span>
+
+    <input type="hidden" name="pfpj" id="pfpj" value="pf">
+
+    <div class="item-step">
+        <label for="cpf-cnpj">CPF</label>
+        <input onkeydown="documentMask(event,'pf')" class="input-form-negotiation" type="text" name="cpfcnpj" id='cpfcnpj' placeholder="CPF">
+    </div>
+
+    <div class="item-step">
+        <label for="nome-razao-social">Nome/Razão Social</label>
+        <input class="input-form-negotiation" type="text" name="nome_razao_social" id="nome_razao_social" placeholder="Nome">
+    </div>
+
+    <div class="item-step">
+        <label for="email">Melhor E-mail</label>
+        <input class="input-form-negotiation" type="email" name="email" id ="email" placeholder="xx@xx.com">
+    </div>
+
+    <label for="phone">Melhor Telefone</label>
+    <div class="item-step item-phone-step">
+         <select style="background-color: #D7DEED !important;" class="input-form-negotiation" name="ddi" id="ddi">
+            <option value="55">55</option>
+        </select>
+        <input style="width: 160px;" class="input-form-negotiation" type="text" name="phone" id="phone" placeholder="(xx) xxxxx-xxxx">
+        <div class="checkbox-whatsapp">
+            <img src="{{ url_for('static', filename='icons/whatsapp.png') }}" width="24" />
+            <input class="input-form-negotiation" type="checkbox" name="is_whatsapp" id="is_whatsapp" class="is_whatsapp" checked>
+        </div>
+    </div>
+
+    <input class="button" type="button" value="Finalizar" onclick="nextStepForm(event)">
+
+    <p class="text-font-style" style="text-align: center;font-size:8px;width: 50%;">
+        Ao finalizar você esta aceitando nossos 
+        <b><a href="http://" target="_blank" rel="noopener noreferrer">Termos de uso</a></b> 
+        e 
+        <b><a href="http://" target="_blank" rel="noopener noreferrer">Políticas de privacidade</a></b>
+    </p>
+    
+
+
+</form>

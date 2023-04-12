@@ -21,6 +21,7 @@ def filtered_companies(coin: str=None, location: str=None):
     from emoneycambio.services.company import Company
     if not coin or not location:
         return jsonify({"coin": coin, "location": location}), 400
+    
     company = Company()
     results = company.get_companies_by_coin_and_location(coin, company)
     if not results:
@@ -32,17 +33,16 @@ def filtered_companies(coin: str=None, location: str=None):
 def negotiation_company(modality:str=None, coin: str=None, location: str=None, type: str=None, companyid: str=None):
     from emoneycambio.services.company import Company
     args = request.args
-    json = request.get_json(silent=True)
-    print(json)
         
     values = {
-        "modality": modality,
-        "type": type, 
-        "coin": coin, 
-        "location": location, 
-        "companyid": companyid
+        "modality": modality, # compra / venda
+        "type": type,  # papel-moeda / remessa
+        "coin": coin, # moeda 
+        "location": location, # local
+        "companyid": companyid # idempresa
     }
-    
+    print(values)
+    # import ipdb; ipdb.set_trace()
     if not modality or not type or not coin or not location or not companyid:
         return jsonify(values), 400
     
@@ -71,8 +71,42 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
         
         
     return render_template(path_to_template, data=data, step=step)
+
+@app.route('/remessa-internacional/', methods = ['GET'])    
+@app.route('/remessa-internacional/<coin>/<person_type>/<transaction>/<value>/<fee>', methods = ['GET','POST'])
+@app.route('/remessa-internacional/<coin>/<person_type>/<transaction>/<value>/<fee>/<reason>', methods = ['GET','POST'])
+def remessa_internacional(coin=None, person_type=None, transaction=None, value=None, fee=None, reason=None):
+    from emoneycambio.services.company import Company
+    args = request.args
     
-@app.route('/remessa-internacional', methods = ['GET'])
-def remessa_internacional():
+    data = {}
+    request_xhr_key = request.headers.get('X-Requested-With')
+    path_to_template_base = 'portal/negotiation-international-shipment/index.html'
+    path_to_template= ""
+
+    step = args.get('step', 'initial')
+    if reason and not step:
+        step = '2'                
+    elif value and fee and not step:
+        step = '1'
     
-    return render_template('portal/negotiation-international-shipment/index.html')
+    data = {
+        "coin": coin,
+        "person_type": person_type,
+        "transaction": transaction,
+        "value": value,
+        "fee": fee
+    }
+        
+    person_type = str(data.get('person_type')).lower()
+    transaction = str(data.get('transaction')).lower()
+        
+    if step != 'initial':
+        path_to_template = f'portal/negotiation-international-shipment/forms/{person_type}/{transaction}/step-{step}.html'
+    
+    data['path_to_template']=path_to_template
+    
+    if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
+        return render_template(path_to_template, step=step, data=data)    
+    
+    return render_template(path_to_template_base, step=step, data=data)

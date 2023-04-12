@@ -7,13 +7,16 @@
 <h1 class="title-font-style">Remessa Internacional</h1>
 
 <div id="steps">
-    {% if step == '3' %}
-    {% include 'portal/negotiation-tourism/forms/step-3.html' %}
-    {% elif step == '2' %}
-    {% include 'portal/negotiation-tourism/forms/step-2.html' %}
-    {% else %}
-    {% include 'portal/negotiation-international-shipment/forms/index.html' %}
-    {% endif %}
+
+
+{% if step == 'initial'%}
+{% set template='portal/negotiation-international-shipment/forms/index.html' %}
+{% else %}
+{% set template = data.path_to_template %}
+{% endif %}
+{% include template %}
+
+
 </div>
 
 

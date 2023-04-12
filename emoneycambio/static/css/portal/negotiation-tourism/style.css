@@ -9,7 +9,6 @@
 }
 
 .results {
-
     margin-bottom: 25px;
     display: flex;
     flex-direction: column;
@@ -28,6 +27,7 @@
     justify-content: space-evenly;
     width: 100%;
 }
+
 #steps {
     display: flex;
     align-items: center;
@@ -69,6 +69,7 @@ label {
 .button {
     margin-top: 3px;
 }
+
 .input-form-negotiation {
     border-radius: 25px;
     border: none;
@@ -92,8 +93,6 @@ label {
     border-radius: 0px;
     padding: 0px;
     background-color: white;
-    
-
 }
 
 .success-step {

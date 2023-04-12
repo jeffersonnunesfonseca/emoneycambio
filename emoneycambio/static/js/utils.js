@@ -54,7 +54,7 @@ function forceValidation(names) {
         for (const element of elements){
 
             element.classList.remove('check-value')
-            if (!element.value) {
+            if (!element.value || element.value == '') {
                 element.classList.add('check-value')
                 return "stop"
             }
@@ -63,12 +63,12 @@ function forceValidation(names) {
     }
 }
 
-function documentMask(event) {
+function documentMask(event, type=null) {
     if (event.keyCode == 8 || event.keyCode == 46){
         return
     }
 
-    let personType = $('input[name="pfpj"]:checked').val();
+    let personType = type || $('input[name="pfpj"]:checked').val();
     if (personType == "pf") {
         $("#cpfcnpj").mask("999.999.999-99");
     }else {

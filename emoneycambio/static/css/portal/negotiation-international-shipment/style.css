@@ -1,4 +1,11 @@
 
+#steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
 
 /* estilo form */
 .form-step {
@@ -11,7 +18,7 @@
     margin-bottom: 25px;
     padding: 25px;
     border-radius: 30px;
-    /* width: 50%; */
+    width: 100%;
     box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
 }
 
@@ -26,7 +33,9 @@
     border-radius: 45px;
     
 }
-.container-coin>select, .select2-container--default .select2-selection--single {
+/* force background style lib select2 */
+.container-coin>select, 
+.select2-container--default .select2-selection--single {
     background-color: initial !important;
     border-radius: 25px;
     border: none;
@@ -45,6 +54,7 @@
     flex-direction: column;
     gap: 20px;
 }
+
 .input-step {
     display: flex;
     flex-direction: column;
@@ -86,4 +96,81 @@
 .info-fee:hover .tooltiptext {
     visibility: visible;
     box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
+}
+
+.item-step-radio.reason {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.item-step-radio.reason>label {
+    width: 100%;
+    padding: 10px 20px;
+}
+
+.item-step-radio.reason>label:hover {
+    box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
+}
+
+.item-step {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+}
+
+label {
+    font-size: 12px;
+    
+}
+
+.button {
+    margin-top: 3px;
+}
+
+.input-form-negotiation {
+    border-radius: 25px;
+    border: none;
+    background-color: #D7DEED;
+    text-align: center;
+    padding: 10px
+}
+
+
+.item-phone-step {
+    display: flex;
+    flex-direction: row;
+}
+
+.checkbox-whatsapp {
+    display: flex;
+    flex-direction: row;
+}
+.checkbox-whatsapp>input {
+    margin-left: 5px;
+    border-radius: 0px;
+    padding: 0px;
+    background-color: white;
+}
+
+
+
+.success-step {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50%;
+    border-radius: 25px;
+    padding: 10px;
+}
+
+.success-step>p {
+    font-weight: 300 !important;
+    text-align: center;
 }

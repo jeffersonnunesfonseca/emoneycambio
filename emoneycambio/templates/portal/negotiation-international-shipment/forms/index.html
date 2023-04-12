@@ -1,11 +1,13 @@
-<form class="form-step" action="">
+<form id="form-step" class="form-step" action="">
+    <input type="hidden" name="nextstep" id="nextstep" value="1">
+
     <span class="breadcumb">
-        <a href="?step=1" rel="noopener noreferrer"><b>Filtro</b></a>
+        <a href="/remessa-internacional" rel="noopener noreferrer"><b>Filtros</b></a>
     </span>
     
     <div class="container-coin">
         <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
-        <select name="coin" id="coin" class="coin">
+        <select name="coin" id="coin" class="filter-select coin">
             <option value="" disabled>Moeda</option>
             <option value="dolar">Dólar</option>
             <option value="euro">Euro</option>
@@ -31,7 +33,7 @@
 
     <div class="container-input-step">
         <div class="input-step">
-            <label for="value" id="value"> Quantos  <b>Reais</b> quer enviar ?</label>
+            <label class="text-font-style" for="value" id="value"> Quantos  <b>Reais</b> quer enviar ?</label>
             <input id="money" class="input-step-text" type="text" name="value" id="value">
         </div>
 
@@ -41,10 +43,11 @@
             </div>
            
             <span class="subtitle-font-style" style="font-weight: 800;">R$ 50,00</span>
+            <input type="hidden" name="fee" value="50,00">
         </div>
 
         <span class="msg-calc">Total à receber em <b>Dólar</b>: <i class="subtitle-font-style" style="font-weight: 800;"> $ 200,00</i></span>
 
     </div>
-    <input class="button" type="button" value="Continuar" onclick="nextStepForm(event)">
+    <input class="button" type="button" value="Continuar" onclick="nextStepFormCustom(event)">
 </form>

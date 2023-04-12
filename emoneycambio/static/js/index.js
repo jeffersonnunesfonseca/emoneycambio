@@ -32,7 +32,7 @@ $(document).ready(function() {
     $('#phone').mask('(00) 00000-0000');
 
       
-    $("select").select2({
+    $(".filter-select").select2({
         matcher: matchStart
     });
     
@@ -100,15 +100,11 @@ function nextStepForm(e) {
         }
     });
     
-
-    console.log(keys);
-    console.log(data)
-    
     if (forceValidation(keys) == "stop") {
         return
     }
 
-    if (data["nextstep"] == "2") {
+    if (document.getElementById("money")) {
 
         let moneyInput = document.getElementById("money")
         let moneyValue = moneyInput.value.replace("R$", "").trim()
@@ -118,11 +114,11 @@ function nextStepForm(e) {
             return
         }
     }
-
+    
     let newUrl = `${currentUrlPath}?step=${data['nextstep']}`
 
-    console.log(data, newUrl)
-    response = ajaxReplaceHtmlToResponse(newUrl,'POST', data, step, form)
+    console.log(newUrl, data, step, form)
+    response = ajaxReplaceHtmlToResponse(newUrl,'POST', null, step, form)
     window.history.pushState({},"", newUrl);
 }
 
