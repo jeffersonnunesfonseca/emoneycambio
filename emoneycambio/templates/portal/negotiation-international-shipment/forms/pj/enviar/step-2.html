@@ -9,24 +9,29 @@
         <a href="?step=2" rel="noopener noreferrer"><b>Dados</b></a>
     </span>
 
-    <input type="hidden" name="pfpj" id="pfpj" value="pf">
+    <input type="hidden" name="pfpj" id="pfpj" value="pj">
 
     <div class="item-step">
-        <label for="cpf-cnpj">CPF</label>
-        <input onkeydown="documentMask(event,'pf')" class="input-form-negotiation" type="text" name="cpfcnpj" id='cpfcnpj' placeholder="CPF">
+        <label for="cpf-cnpj">CNPJ</label>
+        <input onkeydown="documentMask(event,'pj')" class="input-form-negotiation" type="text" name="cpfcnpj" id='cpfcnpj' placeholder="CNPJ">
     </div>
 
     <div class="item-step">
-        <label for="nome-razao-social">Nome</label>
-        <input class="input-form-negotiation" type="text" name="nome_razao_social" id="nome_razao_social" placeholder="Nome">
+        <label for="nome-razao-social">Razão Social</label>
+        <input class="input-form-negotiation" type="text" name="nome_razao_social" id="nome-razao-social" placeholder="Razão Social">
     </div>
 
     <div class="item-step">
-        <label for="email">Melhor E-mail</label>
+        <label for="nome-responsavel">Nome do responsável</label>
+        <input class="input-form-negotiation" type="text" name="nome_responsavel" id="nome-responsavel" placeholder="Nome responsavel">
+    </div>
+
+    <div class="item-step">
+        <label for="email">Email do responsável</label>
         <input class="input-form-negotiation" type="email" name="email" id ="email" placeholder="xx@xx.com">
     </div>
 
-    <label for="phone">Melhor Telefone</label>
+    <label for="phone">Telefone do responsável</label>
     <div class="item-step item-phone-step">
          <select style="background-color: #D7DEED !important;" class="input-form-negotiation" name="ddi" id="ddi">
             <option value="55">55</option>

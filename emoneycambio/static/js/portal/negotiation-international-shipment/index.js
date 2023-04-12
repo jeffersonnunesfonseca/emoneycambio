@@ -31,9 +31,9 @@ function nextStepFormCustom(event) {
     }
 
     let currentUrlPath = document.location.pathname.replace(/\/$/g, '') // força retirar ultimo slash
-    if (data.hasOwnProperty("pfreason")) {
+    if (data.hasOwnProperty("pfpjreason")) {
         console.log(currentUrlPath)
-        currentUrlPath = currentUrlPath + "/" + data["pfreason"]
+        currentUrlPath = currentUrlPath + "/" + data["pfpjreason"]
     }
     else {
         currentUrlPath = `/remessa-internacional/${data['coin']}/${data['person_type']}/${data['transaction']}/${data['value']}/${data['fee']}`
