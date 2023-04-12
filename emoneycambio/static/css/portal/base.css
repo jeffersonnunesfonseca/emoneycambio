@@ -195,7 +195,7 @@ article.content {
   opacity: 0.8
 }
 
-/* validação em inputs */
+/* validação em input */
 .check-value {
   border: 2px solid red !important;
 }
@@ -227,3 +227,20 @@ article.content {
 }
 
 /*END UTILS*/
+
+/* breadcumb */
+.breadcumb {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  font-size: 12px;
+  color: gray;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.breadcumb>a:hover {
+  box-shadow: 0px 5px 5px #ddd;
+  border-radius: 5px 5px 5px;
+}
+
+/* end breadcumb */

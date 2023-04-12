@@ -44,17 +44,35 @@ function onlyNumbers(input_str) {
     return input_str.replace(/\D/g, "");
 }
 
-function forceValidation(elementsId) {
-    if (!elementsId)
+function forceValidation(names) {
+    if (!names)
         return
-    
-    for (var i = 0; i < elementsId.length; i++) {
-        let element = document.getElementById(elementsId[i])
-        element.classList.remove('check-value')
-        if (!element.value) {
-            element.classList.add('check-value')
-            return "stop"
+        
+    for (var i = 0; i < names.length; i++) {
+        
+        let elements = document.getElementsByName(names[i])
+        for (const element of elements){
+
+            element.classList.remove('check-value')
+            if (!element.value) {
+                element.classList.add('check-value')
+                return "stop"
+            }
+            break
         }
     }
+}
 
+function documentMask(event) {
+    if (event.keyCode == 8 || event.keyCode == 46){
+        return
+    }
+
+    let personType = $('input[name="pfpj"]:checked').val();
+    if (personType == "pf") {
+        $("#cpfcnpj").mask("999.999.999-99");
+    }else {
+        $("#cpfcnpj").mask("99.999.999/9999-99");
+
+    }
 }

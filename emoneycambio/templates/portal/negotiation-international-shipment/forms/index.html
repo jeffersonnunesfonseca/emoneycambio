@@ -1,0 +1,50 @@
+<form class="form-step" action="">
+    <span class="breadcumb">
+        <a href="?step=1" rel="noopener noreferrer"><b>Filtro</b></a>
+    </span>
+    
+    <div class="container-coin">
+        <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
+        <select name="coin" id="coin" class="coin">
+            <option value="" disabled>Moeda</option>
+            <option value="dolar">Dólar</option>
+            <option value="euro">Euro</option>
+            <option value="libra">Libra</option>
+        </select>
+    </div>
+
+    <div class="radio-toolbar">
+        <input type="radio" name="person_type" id="person_type_pf" value="PF" checked>
+        <label for="person_type_pf">PF</label>
+
+        <input type="radio" name="person_type" id="person_type_pj" value="PJ">
+        <label for="person_type_pj">PJ</label>
+    </div>
+
+    <div class="radio-toolbar">
+        <input type="radio" name="transaction" id="transaction_send" value="enviar" checked>
+        <label for="transaction_send">Enviar</label>
+
+        <input type="radio" name="transaction" id="transaction_receive" value="receber">
+        <label for="transaction_receive">Receber</label>
+    </div>
+
+    <div class="container-input-step">
+        <div class="input-step">
+            <label for="value" id="value"> Quantos  <b>Reais</b> quer enviar ?</label>
+            <input id="money" class="input-step-text" type="text" name="value" id="value">
+        </div>
+
+        <div class="input-step">
+            <div class="info-fee">Valor com taxas <img src="{{ url_for('static', filename='icons/info.png') }}" alt="Moeda" width="24" height="24"/>
+                <span class="tooltiptext" style="font-size: 12px; color:red">Valores podem estar desatualizados</span>
+            </div>
+           
+            <span class="subtitle-font-style" style="font-weight: 800;">R$ 50,00</span>
+        </div>
+
+        <span class="msg-calc">Total à receber em <b>Dólar</b>: <i class="subtitle-font-style" style="font-weight: 800;"> $ 200,00</i></span>
+
+    </div>
+    <input class="button" type="button" value="Continuar" onclick="nextStepForm(event)">
+</form>

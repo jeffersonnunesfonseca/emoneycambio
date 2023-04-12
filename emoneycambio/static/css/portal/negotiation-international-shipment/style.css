@@ -1,13 +1,18 @@
 
 
 /* estilo form */
-.form-step-1 {
+.form-step {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     gap: 15px;
+    margin-bottom: 25px;
+    padding: 25px;
+    border-radius: 30px;
+    /* width: 50%; */
+    box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
 }
 
 .container-coin {
@@ -33,4 +38,52 @@
     outline: none;
     -webkit-box-shadow: none;
 
+}
+
+.container-input-step {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.input-step {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+.input-step-text {
+    border-radius: 25px;
+    border: none;
+    background-color: #D7DEED;
+    text-align: center;
+    padding: 10px;
+    width: 100px;
+}
+
+.info-fee {
+    display: flex;
+    cursor: pointer;
+}
+
+.info-fee .tooltiptext {
+    visibility: hidden;
+    /* width: 120px; */
+    /* background-color: black; */
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 20px;
+  
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    margin-left: 150px;
+    margin-top: -10px;
+
+}
+
+.info-fee:hover .tooltiptext {
+    visibility: visible;
+    box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
 }

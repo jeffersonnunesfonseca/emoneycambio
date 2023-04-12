@@ -14,7 +14,7 @@
         <div tabindex="0" id="coin-select" onclick="showOptionsFormPrice(event)">
             <div class="menu-option-form-price">
                 <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" /> 
-                <input onkeyup="filterInUl(event)" id='search-coin' class='search-coin' placeholder="Moeda" value=""/>
+                <input onkeyup="filterInUl(event)" id='search-coin' name="search-coin" class='search-coin' placeholder="Moeda" value=""/>
                 <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
             </div>
             <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">
@@ -28,7 +28,7 @@
         <div tabindex="0" id="location-select" onclick="showOptionsFormPrice(event)">
             <div class="menu-option-form-price">
                 <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Localização" width="24" /> 
-                <input onkeyup="filterInUl(event)" id='search-location' class='search-location' placeholder="Cidade" value=""/>
+                <input onkeyup="filterInUl(event)" id='search-location' name="search-location" class='search-location' placeholder="Cidade" value=""/>
                 <img src="{{ url_for('static', filename='icons/triangular-arrow.png') }}" alt="arrow" width="12" /> 
             </div>
             <ul onclick="selectValueFromUl(event)" id="custom-options" class="custom-options" style="display: none;">

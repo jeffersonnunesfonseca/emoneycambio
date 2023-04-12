@@ -26,7 +26,10 @@ $(document).ready(function() {
       
         // Return `null` if the term should not be displayed
         return null;
-      }
+    }
+
+    $("#money").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: true});
+    $('#phone').mask('(00) 00000-0000');
 
       
     $("select").select2({
@@ -79,4 +82,47 @@ $(document).ready(function() {
 
 });
 
-// const mainContent = document.getElementById("#content")
+function nextStepForm(e) {
+    e.preventDefault()
+
+    let currentUrlPath = document.location.pathname
+    let step = document.getElementById('steps')
+    let form = document.getElementById("form-step")
+    var formdata = $(".form-step").serializeArray()
+    var data = {};
+    let keys = []
+    $(formdata ).each(function(index, obj){
+        data[obj.name] = obj.value;
+        if (obj.name =='pfpj' || obj.name == 'delivery'){
+
+        }else{
+            keys.push(obj.name)
+        }
+    });
+    
+
+    console.log(keys);
+    console.log(data)
+    
+    if (forceValidation(keys) == "stop") {
+        return
+    }
+
+    if (data["nextstep"] == "2") {
+
+        let moneyInput = document.getElementById("money")
+        let moneyValue = moneyInput.value.replace("R$", "").trim()
+        console.log((parseFloat(onlyNumbers(moneyValue)/100)))
+        if ((parseFloat(onlyNumbers(moneyValue))/100) < 100) {
+            moneyInput.classList.add("check-value")
+            return
+        }
+    }
+
+    let newUrl = `${currentUrlPath}?step=${data['nextstep']}`
+
+    console.log(data, newUrl)
+    response = ajaxReplaceHtmlToResponse(newUrl,'POST', data, step, form)
+    window.history.pushState({},"", newUrl);
+}
+
