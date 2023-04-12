@@ -1,36 +1,36 @@
-body {
-    display: flow-root;
-}
 
-/* estilo botões radio */
-
-.radio-toolbar input[type="radio"] {
-    display: none;
-}
-
-.radio-toolbar label {
-    display: inline-block;
-    background-color: rgb(0 0 0 / 20%);
-    color: gray;
-    padding: 4px 11px;
-    font-size: 16px;
-    cursor: pointer;
-}
-  
-.radio-toolbar input[type="radio"]:checked+label {
-    background-color: #03045E;
-    color: white;
-}
 
 /* estilo form */
 .form-step-1 {
-    margin-top: 25px;
-    margin-bottom: 25px;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     gap: 15px;
+}
+
+.container-coin {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    background-color: #80808070;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 45px;
+    
+}
+.container-coin>select, .select2-container--default .select2-selection--single {
+    background-color: initial !important;
+    border-radius: 25px;
+    border: none;
+    text-align: left;
+}
+
+.container-coin>select:focus {
+    /* background: white; */
+    outline: none;
+    -webkit-box-shadow: none;
+
 }

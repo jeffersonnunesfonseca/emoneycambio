@@ -7,13 +7,14 @@
 <h1 class="title-font-style">Remessa Internacional</h1>
 
 <form class="form-step-1" action="">
+    
     <div class="container-coin">
-        <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" />
+        <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
         <select name="coin" id="coin" class="coin">
             <option value="" disabled selected>Moeda</option>
-            <option value="dolar">DÓLAR</option>
-            <option value="euro">EURO</option>
-            <option value="libra">LIBRA</option>
+            <option value="dolar">Dólar</option>
+            <option value="euro">Euro</option>
+            <option value="libra">Libra</option>
         </select>
     </div>
 

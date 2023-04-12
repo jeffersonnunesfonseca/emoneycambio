@@ -1,4 +1,38 @@
 $(document).ready(function() {
+
+    function matchStart(params, data) {
+
+        if ($.trim(params.term) === '') {
+            return data;
+        }
+      
+        // `data.children` contains the actual options that we are matching against
+        var filteredChildren = [];
+        
+        if (clearAccentuation(data.text).toUpperCase().indexOf(clearAccentuation(params.term).toUpperCase()) == 0) {
+            filteredChildren.push(data);
+        }
+
+        // If we matched any of the timezone group's children, then set the matched children on the group
+        // and return the group object
+        if (filteredChildren.length) {
+          var modifiedData = $.extend({}, data, true);
+          modifiedData.children = filteredChildren;
+      
+          // You can return modified objects from here
+          // This includes matching the `children` how you want in nested data sets
+          return modifiedData;
+        }
+      
+        // Return `null` if the term should not be displayed
+        return null;
+      }
+
+      
+    $("select").select2({
+        matcher: matchStart
+    });
+    
     const mainContent = document.getElementById("#content")
     const footerElement = document.createElement("footer")
     footerElement.innerHTML = `<div>
