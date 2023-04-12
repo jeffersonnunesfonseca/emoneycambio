@@ -10,7 +10,7 @@
         <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" width=60 />
         <title>E-Money Câmbio</title>
     </head>
-    <body>
+    <body id="body">
         <header>
             <div class="logo">
                 <div>
@@ -33,15 +33,7 @@
                 </li>
             </ul>
         </header>
-        <article class="content">
-            <div class="bullet-coins text-font-style secondary-bg-color">
-                <ul>
-                    <li>DÓLAR <span class="coin-gold">$5,20</span></li>
-                    <li>BITCOIN <span class="coin-gold">$5,20</span></li>
-                    <li>EURO <span class="coin-gold">$5,20</span></li>
-                    <li>PESO <span class="coin-gold">$5,20</span></li>
-                </ul>
-            </div>
+        <article id="#content" class="content">
             <script src="{{ url_for('static', filename='js/utils.js') }}"></script>    
             <script src="{{ url_for('static', filename='js/flowbite.min.js') }}"></script>    
             <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>    
@@ -49,49 +41,22 @@
             <script src="{{ url_for('static', filename='js/jquery.mask.js') }}"></script>   
             <script src="{{ url_for('static', filename='js/portal/search-result/index.js') }}"></script>
             <script src="{{ url_for('static', filename='js/portal/negotiation-tourism/index.js') }}"></script>
-             
+            <script src="{{ url_for('static', filename='js/footer.js') }}"></script>    
             
-            {% block content %}{% endblock %}
+            <div class="main" id="main">
+                <div class="bullet-coins subtitle-font-style secondary-bg-color">
+                    <ul>
+                        <li>DÓLAR <span class="coin-gold">$5,20</span></li>
+                        <li>BITCOIN <span class="coin-gold">$5,20</span></li>
+                        <li>EURO <span class="coin-gold">$5,20</span></li>
+                        <li>PESO <span class="coin-gold">$5,20</span></li>
+                    </ul>
+                </div>
+                 
+                
+                {% block content %}{% endblock %}
+            </div>
         </article>        
-        <footer>
-            <div>
-                <a href="/">
-    
-                    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="facebook" width="120" />
-                </a>
-            </div>
-    
-            <div>
-                <span class="subtitle-font-style">Institucional</span>
-                <ul>
-                    <li><a href="#">Quem Somos</a></li>
-                    <li><a href="#">Termos de uso</a></li>
-                    <li><a href="#">Políticas de privacidade</a></li>
-                </ul>
-            </div>
-            <div>
-                <span class="subtitle-font-style">Serviços</span>
-                <ul>
-                    <li><a href="#">Remessas</a></li>
-                    <li><a href="#">Papel/Moeda</a></li>
-                    <li><a href="#">Anuncie Conosco</a></li>
-                </ul>
-            </div>
-            <div>
-                <span class="subtitle-font-style">Social</span>
-                <ul>
-                    <li>
-                        <a target="_blank" rel="noreferrer nofollow" href="https://www.linkedin.com/company/cwbank-brasil/">
-                            <img src="{{ url_for('static', filename='icons/logotipo-do-linkedin.png') }}" alt="facebook" width="24" />
-                        </a>
-                    </li>
-                    <li>
-                        <a target="_blank" rel="noreferrer nofollow" href="https://www.instagram.com/emoney.cambio/">                            
-                            <img src="{{ url_for('static', filename='icons/logotipo-do-instagram.png') }}" alt="instagram" width="24" />
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </footer>
+        
     </body>
 </html>
