@@ -42,10 +42,12 @@ $(document).ready(function() {
     $("#money").keyup(function(e){
         // alert()
         let currentValue = onlyNumbers($(this).val())
-        let feeValue = onlyNumbers($('#fee_value').val())
+        let feeValue = onlyNumbers($('input#fee_value').val())
         let newValue = parseFloat((currentValue/100) * (feeValue/100)).toFixed(2);
         $("#dynamic-total-value").text(newValue)
     })
+
+
     
     const mainContent = document.getElementById("#content")
     const footerElement = document.createElement("footer")

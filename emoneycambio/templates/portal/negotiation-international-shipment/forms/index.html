@@ -26,17 +26,17 @@
     </div>
 
     <div class="radio-toolbar">
-        <input type="radio" name="transaction" id="transaction_send" value="enviar" checked>
+        <input type="radio" name="transaction" id="transaction_send" value="enviar" checked onclick="changeFeeValue('enviar')">
         <label for="transaction_send">Enviar</label>
 
-        <input type="radio" name="transaction" id="transaction_receive" value="receber">
+        <input type="radio" name="transaction" id="transaction_receive" value="receber" onclick="changeFeeValue('receber')">
         <label for="transaction_receive">Receber</label>
     </div>
 
     <div class="container-input-step">
         <div class="input-step">
             <label class="text-font-style" for="value" id="value"> Quantos  <b>Reais</b> quer enviar ?</label>
-            <input id="money" class="input-step-text" type="text" name="value" id="value">
+            <input id="money" class="input-step-text" type="text" name="value">
         </div>
 
         <div class="input-step">
@@ -44,8 +44,8 @@
                 <span class="tooltiptext" style="font-size: 12px; color:red">Valores podem estar desatualizados</span>
             </div>
            
-            <span class="subtitle-font-style">R$ 50,00</span>
-            <input type="hidden" name="fee_value" id="fee_value" value="50,00">
+            <span class="subtitle-font-style" id="fee_value_tmp">$ {{allowed_company.company.coin.dispatch_international_shipment_fee}}</span>
+            <input type="hidden" name="fee_value" id="fee_value" value="{{allowed_company.company.coin.dispatch_international_shipment_fee}}">
         </div>
 
         <span class="msg-calc text-font-style">Total à receber em <span class="subtitle-font-style">Dólar</span>:<br> <i class="subtitle-font-style"> $ <span id="dynamic-total-value">0</span></i></span>
@@ -53,3 +53,24 @@
     </div>
     <input class="button" type="button" value="Continuar" onclick="nextStepFormCustom(event)">
 </form>
+<script>
+
+    function changeFeeValue(transaction) {
+        
+        var data = {{ allowed_company|tojson|safe }};
+        if (transaction == 'receber'){
+            $("span#fee_value_tmp").text("$ "+{{allowed_company.company.coin.receipt_international_shipment_fee}})
+            $("input#fee_value").val("$ "+{{allowed_company.company.coin.receipt_international_shipment_fee}})
+        }
+        else{
+            $("span#fee_value_tmp").text("$ "+{{allowed_company.company.coin.dispatch_international_shipment_fee}})
+            $("input#fee_value").val("$ "+{{allowed_company.company.coin.dispatch_international_shipment_fee}})
+        }
+
+        let currentValue = onlyNumbers($("#money").val())
+        let feeValue = onlyNumbers($('input#fee_value').val())
+        let newValue = parseFloat((currentValue/100) * (feeValue/100)).toFixed(2);
+        $("#dynamic-total-value").text(newValue)
+     }
+
+</script>

@@ -30,12 +30,14 @@ push() {
     echo "=> Pushed ${1}"
 }
 
+
 build ${1}
 error
 tag ${1}
 error
 push ${1}
 error
+ssh -i ~/.ssh/id_rsa root@$IP_SERVER docker pull jefonseca/sum && docker rm -f emoneycambio && docker run -d -p 5656:5656 --name emoneycambio jefonseca/sum:latest
 echo
 
 exit 0

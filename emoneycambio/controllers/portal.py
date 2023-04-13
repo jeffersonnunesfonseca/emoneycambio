@@ -102,7 +102,9 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
     }
         
     person_type = str(data.get('person_type')).lower()
-    transaction = str(data.get('transaction')).lower()
+    transaction = str(data.get('transaction')).lower()   
+    action = Company()
+    allowed_company = action.get_allowed_company_international_shipment() 
         
     if step != 'initial':
         path_to_template = f'portal/negotiation-international-shipment/forms/{person_type}/{transaction}/step-{step}.html'
@@ -114,6 +116,6 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
         pass
     
     if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
-        return render_template(path_to_template, step=step, data=data)    
+        return render_template(path_to_template, step=step, data=data, allowed_company=allowed_company)    
     
-    return render_template(path_to_template_base, step=step, data=data)
+    return render_template(path_to_template_base, step=step, data=data, allowed_company=allowed_company)

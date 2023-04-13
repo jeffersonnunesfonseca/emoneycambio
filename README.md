@@ -49,6 +49,7 @@ personal toke
 
 
 `export DOCKER_USERNAME=jefonseca`
+`export IP_SERVER=xxx.xxx.xx.xx`
 
 # gera imagem e manda para o docker hub
 `sh push.sh sum`

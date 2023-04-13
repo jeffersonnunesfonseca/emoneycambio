@@ -10,6 +10,9 @@ class Company:
     def get_company_to_negotiation(self, **filters):
         # print(filters)
         return self._mock_get_company_to_negotiation(filters)
+
+    def get_allowed_company_international_shipment(self):
+        return self._mock_get_allowed_company_international_shipment()
     
     def _mock_filtered_companies(self):
         
@@ -150,6 +153,47 @@ class Company:
                         "uf": "SP"
                     },
                     "companyid": filters["companyid"]
+                },
+                "company": {
+                    "id": 2,
+                    "name": "Get Money Câmbio",
+                    "url": "get-money-cambio",
+                    "logo": "images/companies/get-money-cambio/logo-get-money-cambio.png",
+                    "site": "https://www.getmoney.com.br/",
+                    "principal_phone": {
+                        "ddi": "55",
+                        "ddd": "11",
+                        "number": "30181880",
+                        "full_number": "551130181880",
+                        "is_whatsapp": True
+                    },
+                    "coin": {
+                        "name": "Dólar americano",
+                        "prefix": "US$",
+                        "buy_tourism_vet": 5.28000,
+                        "sell_tourism_vet": 4.99000,
+                        "dispatch_international_shipment_vet": 5.16000,   
+                        "receipt_international_shipment_vet": 4.94000,
+                        "buy_tourism_fee": 5.28000,
+                        "sell_tourism_fee": 4.99000,
+                        "dispatch_international_shipment_fee": 5.16000,   
+                        "receipt_international_shipment_fee": 4.94000,
+                        "last_updated": "2023-04-07T20:00:00"
+                    },
+                    "delivery": {
+                        "exists": False,
+                        "fee": None
+                    }
+                }
+            }
+        return data
+
+    def _mock_get_allowed_company_international_shipment(self):
+        data = {
+                "default_configuration": {                
+                    "tourism_iof_percentage": 0.01100,
+                    "international_shipment_iof_percentage": 0.03800,
+                    "default_utc_datetime": 0
                 },
                 "company": {
                     "id": 2,
