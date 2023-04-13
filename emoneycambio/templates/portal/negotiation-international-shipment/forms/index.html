@@ -32,10 +32,10 @@
         <input type="radio" name="transaction" id="transaction_receive" value="receber" onclick="changeFeeValue('receber')">
         <label for="transaction_receive">Receber</label>
     </div>
-
+    
     <div class="container-input-step">
         <div class="input-step">
-            <label class="text-font-style" for="value" id="value"> Quantos  <b>Reais</b> quer enviar ?</label>
+            <label class="text-font-style" for="value" id="value"> Quantos  <b id="coin-text">Reais</b> quer <b id="transaction-text">enviar</b> ?</label>
             <input id="money" class="input-step-text" type="text" name="value">
         </div>
 
@@ -48,12 +48,15 @@
             <input type="hidden" name="fee_value" id="fee_value" value="{{allowed_company.company.coin.dispatch_international_shipment_fee}}">
         </div>
 
-        <span class="msg-calc text-font-style">Total à receber em <span class="subtitle-font-style">Dólar</span>:<br> <i class="subtitle-font-style"> $ <span id="dynamic-total-value">0</span></i></span>
+        <span class="msg-calc text-font-style">Total à <b id="transaction-text">receber</b> em <span class="subtitle-font-style" id="coin-text">Dólar americano</span>:<br> <i class="subtitle-font-style"> $ <span id="dynamic-total-value">0</span></i></span>
 
     </div>
     <input class="button" type="button" value="Continuar" onclick="nextStepFormCustom(event)">
 </form>
 <script>
+    $("#coin").change(function(e){
+        console.log($(this).find('option:selected').text())
+    })
 
     function changeFeeValue(transaction) {
         
