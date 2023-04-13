@@ -54,6 +54,8 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
+    flex-wrap: wrap;
+
 }
 .container-location,
 .container-coin {

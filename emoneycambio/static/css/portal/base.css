@@ -138,7 +138,7 @@ article.content {
 }
 
 .main {
-  overflow: auto;
+  /* overflow: auto; */
   display: flex;
   gap: 30px;
   justify-content: center;
@@ -245,3 +245,12 @@ article.content {
 }
 
 /* end breadcumb */
+
+
+
+@media only screen and (max-width: 600px) {
+  .main { 
+      width: 100%;
+  }
+
+}

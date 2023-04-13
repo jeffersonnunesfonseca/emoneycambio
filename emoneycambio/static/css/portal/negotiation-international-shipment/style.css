@@ -172,3 +172,11 @@ label {
     font-weight: 300 !important;
     text-align: center;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .success-step { 
+        width: 100%;
+    }
+
+}

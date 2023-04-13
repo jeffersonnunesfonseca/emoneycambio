@@ -58,6 +58,7 @@
     justify-content: center;
     gap: 10px;
     text-align: center;
+    flex-wrap: wrap;
     flex: 1 1 0px;
 }
 
@@ -109,4 +110,12 @@ label {
 .success-step>p {
     font-weight: 300 !important;
     text-align: center;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .results { 
+        width: 100%;
+    }
+
 }
