@@ -30,9 +30,11 @@ def filtered_companies(coin: str=None, location: str=None):
     return render_template('portal/search-result/index.html', data=results)
 
 @app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companyid>', methods = ['GET', 'POST'])
-def negotiation_company(modality:str=None, coin: str=None, location: str=None, type: str=None, companyid: str=None):
+@app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companyid>/<value>/<fee>', methods = ['GET', 'POST'])
+def negotiation_company(modality:str=None, coin: str=None, location: str=None, type: str=None, companyid: str=None, value=None, fee=None):
     from emoneycambio.services.company import Company
     args = request.args
+    json = request.get_json(silent=True)
         
     values = {
         "modality": modality, # compra / venda
@@ -41,8 +43,6 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
         "location": location, # local
         "companyid": companyid # idempresa
     }
-    print(values)
-    # import ipdb; ipdb.set_trace()
     if not modality or not type or not coin or not location or not companyid:
         return jsonify(values), 400
     
@@ -59,15 +59,17 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
     if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
         if args.get('step') == '3':
             path_to_template = 'portal/negotiation-tourism/forms/step-3.html'
-            # return render_template('portal/negotiation-tourism/forms/step-3.html', data=data, step=step)
         
         elif args.get('step') == '2':
             path_to_template = 'portal/negotiation-tourism/forms/step-2.html'
-            # return render_template('portal/negotiation-tourism/forms/step-2.html', data=data, step=step)
         
         elif args.get('step') == '1':
-            path_to_template = 'portal/negotiation-tourism/forms/step-1.html'
-            # return render_template('portal/negotiation-tourism/forms/step-1.html', data=data, step=step)
+            path_to_template = 'portal/negotiation-tourism/forms/step-1.html'        
+
+    if json and "finish" in json:
+        print(f"aqui enviar para o back {json}")
+        # aqui salvar dados
+        # import ipdb; ipdb.set_trace()
         
         
     return render_template(path_to_template, data=data, step=step)
@@ -78,6 +80,7 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
 def remessa_internacional(coin=None, person_type=None, transaction=None, value=None, fee=None, reason=None):
     from emoneycambio.services.company import Company
     args = request.args
+    json = request.get_json(silent=True)
     
     data = {}
     request_xhr_key = request.headers.get('X-Requested-With')
@@ -105,6 +108,10 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
         path_to_template = f'portal/negotiation-international-shipment/forms/{person_type}/{transaction}/step-{step}.html'
     
     data['path_to_template']=path_to_template
+    
+    if json and "finish" in json:
+        print(f"aqui enviar para o back {json}")
+        pass
     
     if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
         return render_template(path_to_template, step=step, data=data)    

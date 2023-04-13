@@ -4,8 +4,6 @@
 {% endblock %}
 {% block content %}
 
-<!-- <div class="home-page"> -->
-
 <form id="form-price" class="form-price" action="" method="GET">
     <span class="title-font-style title-form-price"> Faça sua cotação</span>
 
@@ -13,9 +11,11 @@
         <div class="container-coin">
             <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
             <select name="coin" id="search-coin" class="filter-select">
-                <option value="dolar">Dólar</option>
+                <option value="dolar-americano">Dólar americano</option>
+                <option value="dolar-canadense">Dólar canadense</option>
                 <option value="euro">Euro</option>
                 <option value="libra">Libra</option>
+                <option value="outros">Outros</option>
             </select>
         </div>
 
@@ -25,11 +25,12 @@
                 <option value="sao-paulo-sp">São Paulo - SP</option>
                 <option value="rio-de-janeiro-rj">Rio de Janeiro - RJ</option>
                 <option value="curitiba-pr">Curitiba - PR</option>
+                <option value="outros">Outros</option>
             </select>
         </div>
     </div>
     <input class="button" type="button" value="Buscar" onclick="sendFormPrice(event)">
 </form>
 <script src="{{ url_for('static', filename='js/portal/home/index.js') }}"></script>
-<!-- </div> -->
+
 {% endblock %}

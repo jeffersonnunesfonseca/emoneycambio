@@ -9,9 +9,11 @@
         <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
         <select name="coin" id="coin" class="filter-select coin">
             <option value="" disabled>Moeda</option>
-            <option value="dolar">Dólar</option>
+            <option value="dolar-americano">Dólar americano</option>
+            <option value="dolar-canadense">Dólar canadense</option>
             <option value="euro">Euro</option>
             <option value="libra">Libra</option>
+            <option value="libra">Outros</option>
         </select>
     </div>
 
@@ -38,15 +40,15 @@
         </div>
 
         <div class="input-step">
-            <div class="info-fee">Valor com taxas <img src="{{ url_for('static', filename='icons/info.png') }}" alt="Moeda" width="24" height="24"/>
+            <div class="info-fee text-font-style">Valor com taxas <img src="{{ url_for('static', filename='icons/info.png') }}" alt="Moeda" width="24" height="24"/>
                 <span class="tooltiptext" style="font-size: 12px; color:red">Valores podem estar desatualizados</span>
             </div>
            
-            <span class="subtitle-font-style" style="font-weight: 800;">R$ 50,00</span>
-            <input type="hidden" name="fee" value="50,00">
+            <span class="subtitle-font-style">R$ 50,00</span>
+            <input type="hidden" name="fee_value" id="fee_value" value="50,00">
         </div>
 
-        <span class="msg-calc">Total à receber em <b>Dólar</b>: <i class="subtitle-font-style" style="font-weight: 800;"> $ 200,00</i></span>
+        <span class="msg-calc text-font-style">Total à receber em <span class="subtitle-font-style">Dólar</span>:<br> <i class="subtitle-font-style"> $ <span id="dynamic-total-value">0</span></i></span>
 
     </div>
     <input class="button" type="button" value="Continuar" onclick="nextStepFormCustom(event)">

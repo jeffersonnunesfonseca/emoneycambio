@@ -36,7 +36,7 @@ function nextStepFormCustom(event) {
         currentUrlPath = currentUrlPath + "/" + data["pfpjreason"]
     }
     else {
-        currentUrlPath = `/remessa-internacional/${data['coin']}/${data['person_type']}/${data['transaction']}/${data['value']}/${data['fee']}`
+        currentUrlPath = `/remessa-internacional/${data['coin']}/${data['person_type']}/${data['transaction']}`
     }
     
     

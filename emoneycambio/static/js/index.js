@@ -28,13 +28,24 @@ $(document).ready(function() {
         return null;
     }
 
-    $("#money").maskMoney({prefix:'R$ ', thousands:'.', decimal:',', affixesStay: true});
+    $("#money").maskMoney({prefix:'$ ', thousands:'.', decimal:',', affixesStay: true});
     $('#phone').mask('(00) 00000-0000');
-
       
     $(".filter-select").select2({
         matcher: matchStart
     });
+
+    // Realiza calculo quando preencher o campo money
+    // necessario ter o input com id `money` sera o multiplicador
+    // elemento com id `fee_value` ira ser utilizado para calculo
+    // elemento com id `dynamic-total-value` ira receber o calculo
+    $("#money").keyup(function(e){
+        // alert()
+        let currentValue = onlyNumbers($(this).val())
+        let feeValue = onlyNumbers($('#fee_value').val())
+        let newValue = parseFloat((currentValue/100) * (feeValue/100)).toFixed(2);
+        $("#dynamic-total-value").text(newValue)
+    })
     
     const mainContent = document.getElementById("#content")
     const footerElement = document.createElement("footer")
@@ -113,12 +124,19 @@ function nextStepForm(e) {
             moneyInput.classList.add("check-value")
             return
         }
+
+        if (document.getElementById("fee_value")) {
+            let value = onlyNumbers(document.getElementById("money").value)
+            let feeValue = onlyNumbers(document.getElementById("fee_value").value)
+            currentUrlPath = `${currentUrlPath}/${value}/${feeValue}`
+
+        }
     }
     
     let newUrl = `${currentUrlPath}?step=${data['nextstep']}`
 
     console.log(newUrl, data, step, form)
-    response = ajaxReplaceHtmlToResponse(newUrl,'POST', null, step, form)
+    response = ajaxReplaceHtmlToResponse(newUrl,'POST', data, step, form)
     window.history.pushState({},"", newUrl);
 }
 

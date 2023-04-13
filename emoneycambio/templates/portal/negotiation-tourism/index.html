@@ -4,35 +4,35 @@
 {% endblock %}
 {% block content %}
 
-<!-- <div class="home-page"> -->
-    <span class="title title-font-style">{{data.filters.modality}} <b>{{data.filters.coin.name}}</b> em <b>{{data.filters.city.name}}</b> com <b>{{data.company.name}}</b></span>
-    
-    <div class="results third-bg-color">
+<span class="title title-font-style">{{data.filters.modality}} <b>{{data.filters.coin.name}}</b> em <b>{{data.filters.city.name}}</b> com <b>{{data.company.name}}</b></span>
 
-        <div class="company-contacts-header">
-            {% if data.company.principal_phone.is_whatsapp %}
-            <a target="_blank" rel="noreferrer nofollow" href="https://api.whatsapp.com/send/?phone={{data.company.principal_phone.full_number}}&text=Olá, te encontrei atrvés do Portal E-Money Câmbio e gostaria de realizar uma negociação.">
-                <img src="{{ url_for('static', filename=data.company.logo) }}" width="70" />
-            </a>
-            {% else %}
-            <a href="tel:{{data.company.principal_phone.full_number}}">
-                <img src="{{ url_for('static', filename=data.company.logo) }}" width="70" />
-            </a>
-            {% endif %}
-        </div>
+<div class="results third-bg-color">
 
-        <div id="steps">
-            {% if step == '3' %}
-            {% include 'portal/negotiation-tourism/forms/step-3.html' %}
-            {% elif step == '2' %}
-            {% include 'portal/negotiation-tourism/forms/step-2.html' %}
-            {% else %}
-            {% include 'portal/negotiation-tourism/forms/step-1.html' %}
-            {% endif %}
-        </div>
-
-
+    <div class="company-contacts-header">
+        <img src="{{ url_for('static', filename=data.company.logo) }}" width="70" />
+        <!-- {% if data.company.principal_phone.is_whatsapp %}
+        <a target="_blank" rel="noreferrer nofollow" href="https://api.whatsapp.com/send/?phone={{data.company.principal_phone.full_number}}&text=Olá, te encontrei atrvés do Portal E-Money Câmbio e gostaria de realizar uma negociação.">
+            <img src="{{ url_for('static', filename=data.company.logo) }}" width="70" />
+        </a>
+        {% else %}
+        <a href="tel:{{data.company.principal_phone.full_number}}">
+            <img src="{{ url_for('static', filename=data.company.logo) }}" width="70" />
+        </a>
+        {% endif %} -->
     </div>
-<!-- </div> -->
+
+    <div id="steps">
+        {% if step == '3' %}
+        {% include 'portal/negotiation-tourism/forms/step-3.html' %}
+        {% elif step == '2' %}
+        {% include 'portal/negotiation-tourism/forms/step-2.html' %}
+        {% else %}
+        {% include 'portal/negotiation-tourism/forms/step-1.html' %}
+        {% endif %}
+    </div>
+
+
+</div>
+
 
 {% endblock %}
