@@ -19,6 +19,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    box-shadow: 0px 10px 15px rgb(0 0 0 / 20%);
+    
     gap: 10px;
 }
 
@@ -41,9 +43,10 @@
     margin-top: 0
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (max-width: 600px) {
     .card-result { 
-        width: 500px;
+        width: 85%;
+        
     }
 
 }
