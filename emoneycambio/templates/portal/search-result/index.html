@@ -31,13 +31,13 @@
                 
                 <div  class="company-buttons">
                     <img src="{{ url_for('static', filename='icons/buy.png') }}" width="24" />
-                    <span style="padding: 10px;">{{result['coin']['buy_tourism_vet']}}</span>
+                    <span style="display: flex; flex-direction: row; align-items: center; justify-content: center; padding: 10px;" class="text-font-style"><span>R$</span>&nbsp<b>{{result['coin']['buy_tourism_vet']}}</b></span>
                     <input class="button buy-button" type="button" value="Comprar" onclick="goToNegotiation(event,'comprar', {{result['id']}}, 'papel-moeda')">
                 </div>
                 {% if result.coin.sell_tourism_vet %}
                 <div  class="company-buttons">
                     <img src="{{ url_for('static', filename='icons/sell.png') }}" width="24" />
-                    <span style="padding: 10px;" >{{result['coin']['sell_tourism_vet']}}</span>
+                    <span style="display: flex; flex-direction: row; align-items: center; justify-content: center;padding: 10px;" class="text-font-style"><span>R$</span>&nbsp<b>{{result['coin']['sell_tourism_vet']}}</b></span>
                     <input class="button sell-button" type="button" value="Vender" onclick="goToNegotiation(event, 'vender', {{result['id']}}, 'papel-moeda')">
                 </div>
                 {% endif %}
