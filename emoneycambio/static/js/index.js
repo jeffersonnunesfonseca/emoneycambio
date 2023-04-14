@@ -146,7 +146,7 @@ const toogleMenuHeader = (event) => {
     let menu = document.getElementById("menu-header").style.height
     if (!menu || menu=="0px"){
         document.getElementById("menu-header").style.display = "flex"
-        document.getElementById("menu-header").style.height = "16%"
+        document.getElementById("menu-header").style.height = "20%"
     }
     else{
        document.getElementById("menu-header").style.height = "0"
