@@ -314,5 +314,10 @@ article.content {
     box-shadow: none;
     border-radius: none;
   }
+  .button {
+    padding: 5px 10px;
+    min-width: 100px;
+    
+  }
 
 }
