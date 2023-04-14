@@ -48,6 +48,9 @@ body {
 }
 
 /* HEADER STYLE */
+.icon-burguer {
+  display: none;
+}
 header {
   width: 100vw;
   height: 70px;
@@ -254,5 +257,58 @@ article.content {
   .main { 
       width: 100vw;
   }
+  .bullet-coins {
+    width: 80%;
+  }
 
+  .title-font-style {
+    font-size: 18px;
+  }
+  
+  .subtitle-font-style {
+    font-size: 16px;
+  }
+  
+  .text-font-style {
+    font-size: 12px;
+  }
+  
+  footer>div>ul>li>a {
+    font-size: 12px;
+  }
+
+  footer>div>a>img {
+    display: none;
+  }
+  .icon-burguer {
+    display: block !important;
+    cursor: pointer;
+    
+  }
+
+  .menu {
+    /* height: 16%;
+    display: flex; */
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 70px;
+    background-color: #0077B6;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 8px;
+    transition: 0.3s;
+    box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
+    border-radius: 0px 0px 35px 35px;
+  }
+  .menu>li>a{
+    color: white;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .menu>li>a:hover{
+    font-weight: 800;
+  }
 }

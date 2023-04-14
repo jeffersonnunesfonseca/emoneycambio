@@ -11,11 +11,11 @@
         <div class="container-coin">
             <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
             <select name="coin" id="search-coin" class="filter-select">
-                <option value="dolar-americano">Dólar americano</option>
-                <option value="dolar-canadense">Dólar canadense</option>
-                <option value="euro">Euro</option>
-                <option value="libra">Libra</option>
-                <option value="outros">Outros</option>
+                <option value="" disabled>Moeda</option>
+                <option value="dolar-americano" attr-symbol="US$">Dólar americano</option>
+                <option value="dolar-canadense" attr-symbol="C$">Dólar canadense</option>
+                <option value="euro" attr-symbol="€" >Euro</option>
+                <option value="libra-esterlina" attr-symbol="£">Libra esterlina</option>
             </select>
         </div>
 

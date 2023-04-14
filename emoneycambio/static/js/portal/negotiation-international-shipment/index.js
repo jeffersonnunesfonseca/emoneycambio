@@ -1,5 +1,57 @@
+$(document).ready(function() {
+
+    updateTextValues()
+
+    $("#coin").change(function(e){
+        updateTextValues()
+    })
+
+    $("input[name='transaction']").click(function(e){
+        updateTextValues()
+    })
+
+    $("#money").keyup(function(e){
+        // alert()
+        let currentValue = onlyNumbers($(this).val())
+        let feeValue = onlyNumbers($('input#fee_value').val())
+        let newValue = parseFloat((currentValue/100) * (feeValue/100)).toFixed(2);
+        console.log(currentValue)
+        console.log(feeValue)
+        console.log(newValue)
+        $("#dynamic-total-value-enviar").text(newValue)
+        $("#dynamic-total-value-receber").text(newValue)
+    })
+});
+
+function updateTextValues() {
+
+    let coinText = $("#coin").find('option:selected')
+    let transactionText = $('input[name="transaction"]:checked')
+
+    console.log(coinText.text())
+    console.log(coinText.attr('attr-symbol'))
+    console.log(transactionText.val())
+
+    $("#money").maskMoney({prefix: `${coinText.attr('attr-symbol')} `, thousands:'.', decimal:',', affixesStay: true});
+
+    $("#coin-text").text(coinText.text())
+    
+    $("#transaction-text").text(transactionText.val())
+
+    if (transactionText.val() == "enviar") {
+        $(".msg-calc-enviar").css("display", "block")
+        $(".msg-calc-receber").css("display", "none")
+
+    } else {
+        $(".msg-calc-enviar").css("display", "none")
+        $(".msg-calc-receber").css("display", "block")
+    }
+
+}
+
 function nextStepFormCustom(event) {
     // http://localhost:5656/remessa-internacional/dolar/pf/enviar/10000/111
+    event.preventDefault()
 
     var formdata = $(".form-step").serializeArray()
     let keys = []

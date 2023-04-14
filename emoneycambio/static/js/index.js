@@ -29,7 +29,6 @@ $(document).ready(function() {
         return null;
     }
 
-    $("#money").maskMoney({prefix:'$ ', thousands:'.', decimal:',', affixesStay: true});
     $('#phone').mask('(00) 00000-0000');
       
     $(".filter-select").select2({
@@ -40,13 +39,13 @@ $(document).ready(function() {
     // necessario ter o input com id `money` sera o multiplicador
     // elemento com id `fee_value` ira ser utilizado para calculo
     // elemento com id `dynamic-total-value` ira receber o calculo
-    $("#money").keyup(function(e){
-        // alert()
-        let currentValue = onlyNumbers($(this).val())
-        let feeValue = onlyNumbers($('input#fee_value').val())
-        let newValue = parseFloat((currentValue/100) * (feeValue/100)).toFixed(2);
-        $("#dynamic-total-value").text(newValue)
-    })
+    // $("#money").keyup(function(e){
+    //     // alert()
+    //     let currentValue = onlyNumbers($(this).val())
+    //     let feeValue = onlyNumbers($('input#fee_value').val())
+    //     let newValue = parseFloat((currentValue/100) * (feeValue/100)).toFixed(2);
+    //     $("#dynamic-total-value").text(newValue)
+    // })
 
 
     
@@ -118,9 +117,9 @@ function nextStepForm(e) {
         return
     }
 
-    if (document.getElementById("money")) {
+    if (document.getElementById("money-tourism") || document.getElementById("money")) {
 
-        let moneyInput = document.getElementById("money")
+        let moneyInput = document.getElementById("money-tourism") || document.getElementById("money")
         let moneyValue = moneyInput.value.replace("R$", "").trim()
         console.log((parseFloat(onlyNumbers(moneyValue)/100)))
         if ((parseFloat(onlyNumbers(moneyValue))/100) < 100) {
@@ -129,7 +128,7 @@ function nextStepForm(e) {
         }
 
         if (document.getElementById("fee_value")) {
-            let value = onlyNumbers(document.getElementById("money").value)
+            let value = onlyNumbers(moneyInput.value)
             let feeValue = onlyNumbers(document.getElementById("fee_value").value)
             currentUrlPath = `${currentUrlPath}/${value}/${feeValue}`
 
@@ -143,3 +142,14 @@ function nextStepForm(e) {
     window.history.pushState({},"", newUrl);
 }
 
+const toogleMenuHeader = (event) => {
+    let menu = document.getElementById("menu-header").style.height
+    if (!menu || menu=="0px"){
+        document.getElementById("menu-header").style.display = "flex"
+        document.getElementById("menu-header").style.height = "16%"
+    }
+    else{
+       document.getElementById("menu-header").style.height = "0"
+       document.getElementById("menu-header").style.display = "none"
+    }
+ }

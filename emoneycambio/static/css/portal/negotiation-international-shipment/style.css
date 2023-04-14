@@ -1,3 +1,7 @@
+.msg-calc {
+    text-align: center;
+    width: 160px;
+}
 
 #steps {
     display: flex;
@@ -53,7 +57,8 @@
 .container-input-step {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
 }
 
 .input-step {
@@ -63,42 +68,51 @@
     justify-content: center;
     align-items: center;
 }
+
 .input-step-text {
     border-radius: 25px;
     border: none;
     background-color: #D7DEED;
     text-align: center;
     padding: 10px;
-    width: 100px;
+    width: 50%;
 }
+
 
 .info-fee {
     display: flex;
+    position: relative;
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    /* font-size: 12px; */
+    gap: 10px;
 }
 
-.info-fee .tooltiptext {
-    visibility: hidden;
+.tooltiptext {
+    display: none;
+    /* visibility: hidden; */
     /* width: 120px; */
     /* background-color: black; */
     color: #fff;
     text-align: center;
     border-radius: 6px;
     padding: 5px 20px;
-  
+    position: absolute;
+    width: 200px;
     /* Position the tooltip */
-    position: relative;
+    /* position: absolute; */
     z-index: 1;
-    margin-left: 150px;
-    margin-top: -10px;
+    font-size: 12px;
+    color: red;
+    left: 100px;
 
 }
 
 .info-fee:hover .tooltiptext {
-    visibility: visible;
+    /* visibility: visible; */
+    display: block;
     box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
 }
 

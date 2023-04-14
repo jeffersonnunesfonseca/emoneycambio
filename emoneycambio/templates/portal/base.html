@@ -25,7 +25,7 @@
                 </a>
             </div>
 
-            <ul>
+            <ul class="menu" id="menu-header">
                 <li>
                     <a href="/">Cotação Turismo</a>
                 </li>
@@ -34,6 +34,7 @@
                     
                 </li>
             </ul>
+            <img onclick="toogleMenuHeader(this)" class='icon-burguer' id="menu-header" src="{{ url_for('static', filename='icons/icon_menu_hamburguer.png') }}" width="36" />
         </header>
         <article id="#content" class="content">
             <script src="{{ url_for('static', filename='js/flowbite.min.js') }}"></script>    
