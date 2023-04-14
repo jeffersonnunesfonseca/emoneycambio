@@ -308,7 +308,5 @@ article.content {
     font-size: 16px;
     font-weight: 400;
   }
-  .menu>li>a:hover{
-    font-weight: 800;
-  }
+
 }
