@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect, request
 from emoneycambio import config
 
 
@@ -18,5 +18,12 @@ def create_app():
     app.url_map.strict_slashes = False
     # app.config.from_object(config)
     app.register_blueprint(portal.app)
+    
+    @app.errorhandler(404)
+    def page_not_found(e):
+        if "remessa" in request.url:
+            return redirect("/remessa-internacional", code=302)  
+                 
+        return redirect("/", code=302)
     
     return app
