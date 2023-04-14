@@ -27,10 +27,19 @@
                     <img src="{{ url_for('static', filename='icons/web-domain.png') }}" width="24" />
                 </a>
             </div> -->
-            <div class="company-buttons">
-                <input class="button buy-button" type="button" value="Comprar" onclick="goToNegotiation(event,'comprar', {{result['id']}}, 'papel-moeda')">
+            <div>
+                
+                <div  class="company-buttons">
+                    <img src="{{ url_for('static', filename='icons/buy.png') }}" width="24" />
+                    <span>{{result['coin']['buy_tourism_vet']}}</span>
+                    <input class="button buy-button" type="button" value="Comprar" onclick="goToNegotiation(event,'comprar', {{result['id']}}, 'papel-moeda')">
+                </div>
                 {% if result.coin.sell_tourism_vet %}
-                <input class="button sell-button" type="button" value="Vender" onclick="goToNegotiation(event, 'vender', {{result['id']}}, 'papel-moeda')">
+                <div  class="company-buttons">
+                    <img src="{{ url_for('static', filename='icons/sell.png') }}" width="24" />
+                    <span>{{result['coin']['sell_tourism_vet']}}</span>
+                    <input class="button sell-button" type="button" value="Vender" onclick="goToNegotiation(event, 'vender', {{result['id']}}, 'papel-moeda')">
+                </div>
                 {% endif %}
             </div>
         </div>

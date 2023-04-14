@@ -192,6 +192,7 @@ article.content {
   cursor: pointer;
   border-radius: 25px 25px 25px;
   margin-top: 50px;
+  min-width: 140px;
 
 }
 

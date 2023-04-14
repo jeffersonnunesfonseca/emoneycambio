@@ -42,6 +42,13 @@
 .button {
     margin-top: 0
 }
+.company-buttons {
+    flex-direction: row !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 110%;
+}
 
 @media only screen and (max-width: 600px) {
     .card-result { 
