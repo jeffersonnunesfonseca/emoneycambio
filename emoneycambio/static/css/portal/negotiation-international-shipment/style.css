@@ -196,5 +196,8 @@ label {
     .success-step { 
         width: 100%;
     }
+    .form-step {
+        width: 80%;
+    }
 
 }
