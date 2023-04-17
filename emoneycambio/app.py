@@ -10,15 +10,24 @@ console = logging.StreamHandler(stream=sys.stdout)
 logger_level = logging.INFO if config.LOGGER_TYPE == 'INFO' else logging.DEBUG
 logging.basicConfig(format='[%(asctime)s] %(name)s %(levelname)s: %(message)s', level=logger_level, handlers=[console])
 
+LOGGER = logging.getLogger(__name__)
 def create_app():
     from emoneycambio.controllers import portal
-
+    from emoneycambio.resources.database import db
+    
 
     app = Flask(__name__)
     app.url_map.strict_slashes = False
-    # app.config.from_object(config)
+    
+    LOGGER.info("carregando configs")
+    app.config.from_object(config)
+    
+    LOGGER.info("carregando blueprints")
     app.register_blueprint(portal.app)
     
+    LOGGER.info("carregando banco")
+    db.init_app(app)
+
     @app.errorhandler(404)
     def page_not_found(e):
         if "remessa" in request.url:
