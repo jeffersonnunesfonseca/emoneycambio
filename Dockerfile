@@ -9,9 +9,11 @@ WORKDIR /emoneycambio
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# COPY ./docker-entrypoint.sh /
-# RUN chmod +x /docker-entrypoint.sh
-# ENTRYPOINT ["/docker-entrypoint.sh"]
+RUN apt-get install python3-pymysql
+
+COPY ./docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 # EXPOSE 5656
 
