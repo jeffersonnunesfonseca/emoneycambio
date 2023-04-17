@@ -37,7 +37,7 @@ tag ${1}
 error
 push ${1}
 error
-ssh -i ~/.ssh/id_rsa root@$IP_SERVER "service nginx restart && docker pull jefonseca/sum && docker rm -f emoneycambio && docker run -d -p 5656:5656 --name emoneycambio jefonseca/sum:latest"
+ssh -i ~/.ssh/id_rsa root@$IP_SERVER "service nginx restart && docker pull jefonseca/sum && docker rm -f emoneycambio && docker run -d -p 5656:5656 --name emoneycambio -v /run/secrets/env_vars:/run/secrets/env_vars jefonseca/sum:latest"
 echo
 
 exit 0
