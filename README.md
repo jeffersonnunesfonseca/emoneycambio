@@ -56,3 +56,9 @@ personal toke
 
 # baixa imagem do docker hub
 docker pull jefonseca/sum
+
+
+# tarefas cron
+
+- atualiza moeda comercial
+*/10 * * * * docker exec emoneycambio python tools.py update_exchange_commercial_coin
