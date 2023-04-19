@@ -128,11 +128,11 @@ class SeedDB:
 
     def make_commercial_coins(self):
         sqls = [
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`) VALUES ('Dólar Americano', 'US$', '4.97')",
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`) VALUES ('Dólar Canadense', 'C$', '3.71')",
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`) VALUES ('Bitcoin', 'B$', '150.264,20')",
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`) VALUES ('Euro', '€', '5.45')",
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`) VALUES ('Libra esterlina', '£', '6.17')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Dólar Americano', 'US$', '4.97', 'USDBRL')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Dólar Canadense', 'C$', '3.71', 'CADBRL')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Bitcoin', 'B$', '150.264,20', 'BTCBRL')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Euro', '€', '5.45', 'EURBRL')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Libra esterlina', '£', '6.17', 'GBPBRL')",
 
         ]
         for sql in sqls:

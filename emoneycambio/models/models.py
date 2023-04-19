@@ -45,3 +45,25 @@ class ExchangeProposalModel(db.Model):
     headers = sa.Column(sa.Text(), nullable=False)  
     created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
     
+class ExchangeCommercialCoinModel(db.Model):
+    
+    __tablename__ = 'exchange_commercial_coin'
+    
+    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
+    name = sa.Column(sa.String(length=150), nullable=False)   
+    key = sa.Column(sa.String(length=150), nullable=False)    
+    prefix = sa.Column(sa.String(length=10), nullable=False)    
+    value = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+    updated_at = sa.Column('updated_at', sa.DateTime())
+
+class ExchangeCommercialCoinHistoryModel(db.Model):
+     
+    __tablename__ = 'exchange_commercial_coin_history'
+    
+    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
+    exchange_commercial_coin_id = sa.Column(sa.Integer(), nullable=False)   
+    value = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+
+ 

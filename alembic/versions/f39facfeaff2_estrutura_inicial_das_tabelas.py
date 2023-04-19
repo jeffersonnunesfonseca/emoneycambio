@@ -183,13 +183,15 @@ def exchange_commercial_coin():
     CREATE TABLE IF NOT EXISTS `exchange_commercial_coin` (
     `id` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(150) NOT NULL,
+    `key` VARCHAR(150) NOT NULL,
     `prefix` VARCHAR(10) NULL,
     `value` DECIMAL(17,5) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT now(),
     `updated_at` DATETIME NULL,
     PRIMARY KEY (`id`),
-    INDEX `idx_exchange_commercial_coin_created_at_status` (`created_at` ASC),
-    INDEX `idx_exchange_commercial_coin_updated_at_status` (`updated_at` ASC),
+    INDEX `idx_exchange_commercial_coin_created_at` (`created_at` ASC),
+    INDEX `idx_exchange_commercial_coin_updated_at` (`updated_at` ASC),
+    INDEX `idx_exchange_commercial_coin_key` (`key` ASC),
     INDEX `idx_exchange_commercial_coin_prefix` (`prefix` ASC))"""
     op.execute(sql)
 
@@ -201,10 +203,9 @@ def exchange_commercial_coin_history():
     `exchange_commercial_coin_id` INT NOT NULL,
     `value` DECIMAL(17,5) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT now(),
-    `updated_at` DATETIME NULL,
+
     PRIMARY KEY (`id`),
     INDEX `idx_exchange_commercial_coin_history_created_at_status` (`created_at` ASC),
-    INDEX `idx_exchange_commercial_coin_history_updated_at_status` (`updated_at` ASC),
     INDEX `idx_exchange_commercial_coin_history_prefix` (`exchange_commercial_coin_id` ASC),
     CONSTRAINT `fk_exchange_commercial_coin_history_exchange_commercial_coin_id`
         FOREIGN KEY (`exchange_commercial_coin_id`)
