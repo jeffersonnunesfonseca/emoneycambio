@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-    $("input[type='text']").attr('autocomplete', 'off');
-
     updateTextValues()
 
     $("#coin").change(function(e){

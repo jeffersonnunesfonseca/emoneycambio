@@ -1,9 +1,5 @@
 $(document).ready(function(){
 
-    setInterval(() => {
-        $("input[type='text']").attr('autocomplete', 'off');        
-    }, 500);
-
     $("#money-tourism").maskMoney({prefix:'$ ', thousands:'.', decimal:',', affixesStay: true});
     
     $("#money-tourism").keyup(function(e){

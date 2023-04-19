@@ -1,6 +1,10 @@
 $(document).ready(function() {
     
-
+    setInterval(() => {
+        // macete para desabilitar autocomple cpf 
+        $("input[type='text']").attr('autocomplete', 'off');        
+    }, 500);
+    
     function matchStart(params, data) {
 
         if ($.trim(params.term) === '') {
