@@ -42,7 +42,7 @@ $(document).ready(function() {
     updateBulletCoin()
     setInterval(function(){
         updateBulletCoin()
-    }, 600000);
+    }, 300000);
 
     
     const mainContent = document.getElementById("#content")

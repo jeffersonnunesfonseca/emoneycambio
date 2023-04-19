@@ -259,8 +259,24 @@ article.content {
       width: 100vw;
   }
   .bullet-coins {
-    width: 80%;
+    width: 100%;
   }
+  .bullet-coins>ul{
+    align-items: baseline;
+    text-align: center;
+    padding: 10px;
+  }
+  .bullet-coins>ul>li{
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* font-size: 14px; */
+  }
+  /* .coin-gold {
+    font-size: 12px;
+  } */
 
   .title-font-style {
     font-size: 18px;
