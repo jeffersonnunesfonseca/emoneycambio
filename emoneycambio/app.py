@@ -1,5 +1,6 @@
 from flask import Flask, redirect, request
 from emoneycambio import config
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 
 import logging
@@ -17,6 +18,7 @@ def create_app():
     
 
     app = Flask(__name__)
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_for=2)
     app.url_map.strict_slashes = False
     
     LOGGER.info("carregando configs")

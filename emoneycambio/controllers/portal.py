@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, Blueprint, jsonify, request
 
+
 app = Blueprint('home', __name__)
 
 @app.route('/', methods = ['GET'])
@@ -62,6 +63,9 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
 
     if json and "finish" in json:
         proposal = ExchangeProposal()
+        ip_addr =  request.access_route[0] if request.access_route else request.remote_addr
+        headers = dict(request.headers)
+
         data_proposal = {            
             'company_branch_id': companyid,
             'person_type': str(json['pfpj']).upper(),
@@ -79,8 +83,9 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
             'phone': f"{json['ddi']}{json['phone']}",
             'phone_is_whatsapp': 1 if json.get('is_whatsapp',0) == "on" else 0,
             'delivery': json['delivery'],
-            'ip': request.remote_addr,
-            'headers': dict(request.headers)
+            'ip': ip_addr,
+            'user_agent': request.user_agent,
+            'headers': headers
         }
         proposal.create_exchange_proposal(**data_proposal)
         
@@ -134,6 +139,9 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
     
     if json and "finish" in json:
         proposal = ExchangeProposal()
+        ip_addr =  request.access_route[0] if request.access_route else request.remote_addr
+        headers = dict(request.headers)
+        
         """
         {'finish': 'true', 'nextstep': '3', 'pfpj': 'pj', 'cpfcnpj': '21.211.212/2-12', 'nome_razao_social': 'Jefferson Nunes', 'nome_responsavel': 'Jefferson Nunes', 
         'email': 'jeffersonnunesfonseca@gmail.com', 'ddi': '55', 'phone': '+5541997439582', 'is_whatsapp': 'on'}
@@ -156,8 +164,9 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
             'phone': f"{json['ddi']}{json['phone']}",
             'phone_is_whatsapp': 1 if json.get('is_whatsapp',0) == "on" else 0,
             'delivery': 0,
-            'ip': request.remote_addr,
-            'headers': dict(request.headers)
+            'ip': ip_addr,
+            'user_agent': request.user_agent,
+            'headers': headers
         }
         proposal.create_exchange_proposal(**data_proposal)
     

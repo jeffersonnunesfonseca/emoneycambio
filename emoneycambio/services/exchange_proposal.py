@@ -52,6 +52,7 @@ class ExchangeProposal:
         proposal.phone = utils.only_numbers(data['phone'])
         proposal.phone_is_whatsapp = data['phone_is_whatsapp']
         proposal.delivery = data['delivery']
+        proposal.user_agent = data['user_agent']        
         proposal.ip = data['ip']
         proposal.headers = json.dumps(dict(data['headers']))
         

@@ -41,6 +41,7 @@ class ExchangeProposalModel(db.Model):
     phone_is_whatsapp = sa.Column(sa.SmallInteger(), nullable=False) 
     delivery = sa.Column(sa.SmallInteger(), nullable=False) 
     ip = sa.Column(sa.String(length=200), nullable=False)  
+    user_agent = sa.Column(sa.Text(), nullable=False)  
     headers = sa.Column(sa.Text(), nullable=False)  
     created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
     
