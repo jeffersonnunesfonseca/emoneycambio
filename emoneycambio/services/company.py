@@ -49,7 +49,7 @@ class Company:
             where 1=1
                 and c.status = 'ENABLED'
                 and cb.status = 'ENABLED' and cb.url_location = '{url_location}'
-                and cbc.status = 'ENABLED' and cbc.principal=1
+                -- and cbc.status = 'ENABLED' and cbc.principal=1
                 and cbec.status ='ENABLED' and cbec.url_coin = '{url_coin}';
 
         """
