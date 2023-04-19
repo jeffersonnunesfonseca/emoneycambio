@@ -46,18 +46,37 @@
             <script src="{{ url_for('static', filename='js/portal/negotiation-international-shipment/index.js') }}"></script>            
             <script src="{{ url_for('static', filename='js/portal/search-result/index.js') }}"></script>
             <script src="{{ url_for('static', filename='js/utils.js') }}"></script>    
-            <script src="{{ url_for('static', filename='js/index.js') }}"></script>    
+            <script src="{{ url_for('static', filename='js/index.js') }}"></script>               
+            <script src="{{ url_for('static', filename='js/socket.io.js') }}"></script>   
             
+            <script>
+                window.onload = function() {
+                    var socket = io();
+                    socket.on('connect', function() {
+                        socket.emit('update_commercial_exchange', {data: 'I\'m connected!'});
+                    });
+
+                    socket.on('getMessage', (json) => {
+                        obj = JSON.parse(json)
+                        for (const iterator of obj) {
+                            if ($(`#${iterator.key}`)){
+                                let valor = formataDinheiro(iterator.value)
+                                $(`#${iterator.key}`).text(`${iterator.prefix} ${valor}`)
+                            }
+                        }
+                    })
+                }
+            </script>
+
             <div class="main" id="main">
                 <div class="bullet-coins subtitle-font-style secondary-bg-color">
                     <ul>
-                        <li>DÓLAR <span class="coin-gold">$5,20</span></li>
-                        <li>BITCOIN <span class="coin-gold">$5,20</span></li>
-                        <li>EURO <span class="coin-gold">$5,20</span></li>
-                        <li>PESO <span class="coin-gold">$5,20</span></li>
+                        <li>DÓLAR <span class="coin-gold" id="USDBRL">0</span></li>
+                        <li>BITCOIN <span class="coin-gold" id="BTCBRL">0</span></li>
+                        <li>EURO <span class="coin-gold" id="EURBRL">0</span></li>
+                        <li>LIBRA ESTERLINA <span class="coin-gold" id="GBPBRL">0</span></li>
                     </ul>
-                </div>
-                 
+                </div>                
                 
                 {% block content %}{% endblock %}
             </div>

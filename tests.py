@@ -1,7 +1,7 @@
 import logging
 import sys
-from emoneycambio.app import create_app
-app = create_app()
+from emoneycambio.app import app
+
 console = logging.StreamHandler(stream=sys.stdout)
 logging.basicConfig(format='[%(asctime)s] %(name)s %(levelname)s: %(message)s', level=logging.DEBUG, handlers=[console])
 
@@ -52,10 +52,16 @@ def test_create_exchange_proposal():
         
         action.create_exchange_proposal(**data)
 
+def test_get_updated_coins():
+    with app.app_context():    
+        from emoneycambio.services.exchange_commercial_coin import ExchangeCommercialCoin
+        action = ExchangeCommercialCoin()        
+        action.get_updated_coins()
 
 
 if __name__ == '__main__':
     # test_get_companies_by_coin_and_location()    
     # test_get_company_to_negotiation()
     # test_get_allowed_company_international_shipment()
-    test_create_exchange_proposal()
+    # test_create_exchange_proposal()
+    test_get_updated_coins()

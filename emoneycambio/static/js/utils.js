@@ -95,7 +95,12 @@ function documentMask(event, type=null) {
 }
 
 function formataDinheiro(n) {
-    return n.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    const toFixed = (n, fixed) => `${n}`.match(new RegExp(`^-?\\d+(?:\.\\d{0,${fixed}})?`))[0];
+    n = String(n).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+    // const toFixed = (n, 2) => `${n}`.match(new RegExp(`^-?\\d+(?:\.\\d{0,${fixed}})?`))[0];
+    // const toFixed = (n, fixed) => ~~(Math.pow(10, fixed) * n) / Math.pow(10, fixed);
+
+    return toFixed(n, 2)
 }
 
 // Valida CPF

@@ -4,8 +4,8 @@ import requests
 from datetime import datetime
 from sqlalchemy import exc
 
-from emoneycambio.app import create_app
-app = create_app()
+from emoneycambio.app import app
+
 
 LOGGER = logging.getLogger(__name__)
 def update_exchange_commercial_coin():
@@ -42,6 +42,7 @@ def update_exchange_commercial_coin():
                 
             except exc.IntegrityError as ex:
                 LOGGER.error(str(ex))   
+                
                 if "Duplicate" in str(ex):
                     continue
                 

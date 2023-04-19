@@ -4,8 +4,15 @@ eventlet==0.30.0
 python-dotenv
 alembic
 pymysql
+# sqlalchemy<2.0
+sqlalchemy
 flask_sqlalchemy
 marshmallow
 Unidecode
 fire
 requests
+# Werkzeug==2.0.1
+# Flask-SocketIO==4.3.1
+# python-engineio==3.13.2
+# python-socketio==4.6.0
+flask-socketio
