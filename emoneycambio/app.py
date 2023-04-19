@@ -1,6 +1,5 @@
-from emoneycambio.services.exchange_commercial_coin import ExchangeCommercialCoin
 from flask import Flask, redirect, request
-from flask_socketio import SocketIO, emit, send
+# from flask_socketio import SocketIO, emit, send
 
 from emoneycambio import config
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -22,11 +21,12 @@ logging.basicConfig(format='[%(asctime)s] %(name)s %(levelname)s: %(message)s', 
 LOGGER = logging.getLogger(__name__)
 # def create_app():
 from emoneycambio.controllers import portal
+from emoneycambio.apis import exchange_commercial_coin
 from emoneycambio.resources.database import db
 
 
 app = Flask(__name__)
-io = SocketIO(app, async_mode=None)
+# io = SocketIO(app, async_mode=None)
 
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=2)
 app.url_map.strict_slashes = False
@@ -35,27 +35,34 @@ LOGGER.info("carregando configs")
 app.config.from_object(config)
 
 
-def background_thread():
-    """Example of how to send server generated events to clients."""
-    while True:
-        action = ExchangeCommercialCoin()        
-        coins = action.get_updated_coins()
-        io.emit('getMessage', json.dumps(coins))
-        io.sleep(30)
-        
-@io.on('update_commercial_exchange')
-def handle_commercial_exchange(msg):
-    action = ExchangeCommercialCoin()        
-    coins = action.get_updated_coins()
-    global thread
-    with thread_lock:
-        if thread is None:
-            thread = io.start_background_task(background_thread)
-    io.emit('getMessage', json.dumps(coins))
 
+# def background_thread():
+#     """Example of how to send server generated events to clients."""
+#     # with app.app_context() as apps:
+#     while True:
+#         from emoneycambio.services.exchange_commercial_coin import ExchangeCommercialCoin
+#         action = ExchangeCommercialCoin()        
+#         coins = action.get_updated_coins()
+#         io.emit('getMessage', json.dumps(coins))
+#         io.sleep(10)
+        
+# @io.on('update_commercial_exchange')
+# def handle_commercial_exchange(msg):
+#     global thread
+#     from emoneycambio.services.exchange_commercial_coin import ExchangeCommercialCoin
+#     action = ExchangeCommercialCoin()        
+#     coins = action.get_updated_coins()
+#     io.emit('getMessage', json.dumps(coins))
+#     with thread_lock:
+#         if thread is None:
+#             thread = io.start_background_task(background_thread)
+    # io.emit('getMessage', json.dumps(coins))
+
+    
 LOGGER.info("carregando blueprints")
 
 app.register_blueprint(portal.app)
+app.register_blueprint(exchange_commercial_coin.api)
 
 LOGGER.info("carregando banco")
 db.init_app(app)

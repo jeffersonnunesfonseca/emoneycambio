@@ -47,26 +47,7 @@
             <script src="{{ url_for('static', filename='js/portal/search-result/index.js') }}"></script>
             <script src="{{ url_for('static', filename='js/utils.js') }}"></script>    
             <script src="{{ url_for('static', filename='js/index.js') }}"></script>               
-            <script src="{{ url_for('static', filename='js/socket.io.js') }}"></script>   
-            
-            <script>
-                window.onload = function() {
-                    var socket = io();
-                    socket.on('connect', function() {
-                        socket.emit('update_commercial_exchange', {data: 'I\'m connected!'});
-                    });
-
-                    socket.on('getMessage', (json) => {
-                        obj = JSON.parse(json)
-                        for (const iterator of obj) {
-                            if ($(`#${iterator.key}`)){
-                                let valor = formataDinheiro(iterator.value)
-                                $(`#${iterator.key}`).text(`${iterator.prefix} ${valor}`)
-                            }
-                        }
-                    })
-                }
-            </script>
+          
 
             <div class="main" id="main">
                 <div class="bullet-coins subtitle-font-style secondary-bg-color">

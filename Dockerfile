@@ -29,4 +29,5 @@ VOLUME /run/secrets/env_vars
 
 # EXPOSE 5656
 
-CMD ["gunicorn", "--config=gunicorn.py", "-w 1","run:app"]
+CMD ["gunicorn", "--config=gunicorn.py", "run:app"]
+# CMD ["gunicorn", "--config=gunicorn.py", "-w 1","run:app"]

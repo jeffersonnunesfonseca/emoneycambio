@@ -39,18 +39,10 @@ $(document).ready(function() {
         matcher: matchStart
     });
 
-    // Realiza calculo quando preencher o campo money
-    // necessario ter o input com id `money` sera o multiplicador
-    // elemento com id `fee_value` ira ser utilizado para calculo
-    // elemento com id `dynamic-total-value` ira receber o calculo
-    // $("#money").keyup(function(e){
-    //     // alert()
-    //     let currentValue = onlyNumbers($(this).val())
-    //     let feeValue = onlyNumbers($('input#fee_value').val())
-    //     let newValue = parseFloat((currentValue/100) * (feeValue/100)).toFixed(2);
-    //     $("#dynamic-total-value").text(newValue)
-    // })
-
+    updateBulletCoin()
+    setInterval(function(){
+        updateBulletCoin()
+    }, 600000);
 
     
     const mainContent = document.getElementById("#content")
@@ -158,4 +150,15 @@ const toogleMenuHeader = (event) => {
        document.getElementById("menu-header").style.height = "0"
        document.getElementById("menu-header").style.display = "none"
     }
- }
+}
+
+function updateBulletCoin(){
+    $.get('/v1/exchange_commercial_coins', function(obj) {
+        for (const iterator of obj) {
+            if ($(`#${iterator.key}`)){
+                let valor = formataDinheiro(iterator.value)
+                $(`#${iterator.key}`).text(`${iterator.prefix} ${valor}`)
+            }
+        }
+    })
+}
