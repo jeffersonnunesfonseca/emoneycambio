@@ -76,3 +76,7 @@ function documentMask(event, type=null) {
 
     }
 }
+
+function formataDinheiro(n) {
+    return n.toFixed(2).replace('.', ',').replace(/(\d)(?=(\d{3})+\,)/g, "$1.");
+}

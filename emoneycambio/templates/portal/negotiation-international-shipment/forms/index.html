@@ -43,8 +43,8 @@
         <div class="input-step">
             <div class="info-fee text-font-style">
                 VET: 
-                <b>R$ <span id="fee_value_tmp">{{allowed_company.company.coin.dispatch_international_shipment_fee}}</span></b>
-                <input type="hidden" name="fee_value" id="fee_value" value="{{allowed_company.company.coin.dispatch_international_shipment_fee}}">
+                <b>R$ <span id="fee_value_tmp">{{allowed_company.company.coin.dispatch_international_shipment_vet}}</span></b>
+                <input type="hidden" name="fee_value" id="fee_value" value="{{allowed_company.company.coin.dispatch_international_shipment_vet}}">
                 <img src="{{ url_for('static', filename='icons/info.png') }}" alt="Moeda" width="24" height="24"/>
                 <span class="tooltiptext">Valores podem estar desatualizados</span>
             </div>
@@ -65,20 +65,16 @@
     <input class="button" type="button" value="Continuar" onclick="nextStepFormCustom(event)">
 </form>
 <script>
-    // $("#coin").change(function(e){
-    //     console.log($(this).find('option:selected').text())
-    // })
-
     function changeFeeValue(transaction) {
         
         var data = {{ allowed_company|tojson|safe }};
         if (transaction == 'receber'){
-            $("span#fee_value_tmp").text({{allowed_company.company.coin.receipt_international_shipment_fee}})
-            $("input#fee_value").val({{allowed_company.company.coin.receipt_international_shipment_fee}})
+            $("span#fee_value_tmp").text({{allowed_company.company.coin.receipt_international_shipment_vet}})
+            $("input#fee_value").val({{allowed_company.company.coin.receipt_international_shipment_vet}})
         }
         else{
-            $("span#fee_value_tmp").text({{allowed_company.company.coin.dispatch_international_shipment_fee}})
-            $("input#fee_value").val({{allowed_company.company.coin.dispatch_international_shipment_fee}})
+            $("span#fee_value_tmp").text({{allowed_company.company.coin.dispatch_international_shipment_vet}})
+            $("input#fee_value").val({{allowed_company.company.coin.dispatch_international_shipment_vet}})
         }
 
         let currentValue = onlyNumbers($("#money").val())

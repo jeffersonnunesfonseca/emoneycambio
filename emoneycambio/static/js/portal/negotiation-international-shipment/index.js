@@ -3,6 +3,11 @@ $(document).ready(function() {
     updateTextValues()
 
     $("#coin").change(function(e){
+        e.preventDefault()
+        let coinValue= $("#coin").find('option:selected').val()
+        // console.log(coinValue)
+        location.href = `/remessa-internacional?coin=${coinValue}`
+
         updateTextValues()
     })
 
@@ -18,6 +23,7 @@ $(document).ready(function() {
         console.log(currentValue)
         console.log(feeValue)
         console.log(newValue)
+        newValue = formataDinheiro(Number(newValue))
         $("#dynamic-total-value-enviar").text(newValue)
         $("#dynamic-total-value-receber").text(newValue)
     })

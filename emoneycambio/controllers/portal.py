@@ -4,14 +4,6 @@ app = Blueprint('home', __name__)
 
 @app.route('/', methods = ['GET'])
 def index():
-    # from pai_veio_monolito.services import categories
-
-    # cat = categories.Categories()
-    # data = {
-    #     "title": "Hello World",
-    #     "body": "A",
-    #     "ads_categories": cat.get_categories_more_searches()
-    # }
     data = {}
     
     return render_template('portal/home/index.html', data=data)
@@ -21,18 +13,20 @@ def filtered_companies(coin: str=None, location: str=None):
     from emoneycambio.services.company import Company
     if not coin or not location:
         return jsonify({"coin": coin, "location": location}), 400
-    
+
     company = Company()
-    results = company.get_companies_by_coin_and_location(coin, company)
+    results = company.get_companies_by_coin_and_location(coin, location)
+    
     if not results:
-        return jsonify({"coin": coin, "location": location}), 404
+        return redirect("/", code=302)         
     
     return render_template('portal/search-result/index.html', data=results)
 
 @app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companyid>', methods = ['GET', 'POST'])
-@app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companyid>/<value>/<fee>', methods = ['GET', 'POST'])
-def negotiation_company(modality:str=None, coin: str=None, location: str=None, type: str=None, companyid: str=None, value=None, fee=None):
+@app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companyid>/<value>/<vet>', methods = ['GET', 'POST'])
+def negotiation_company(modality:str=None, coin: str=None, location: str=None, type: str=None, companyid: str=None, value=None, vet=None):
     from emoneycambio.services.company import Company
+    from emoneycambio.services.exchange_proposal import ExchangeProposal
     args = request.args
     json = request.get_json(silent=True)
         
@@ -67,9 +61,28 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
             path_to_template = 'portal/negotiation-tourism/forms/step-1.html'        
 
     if json and "finish" in json:
-        print(f"aqui enviar para o back {json}")
-        # aqui salvar dados
-        # import ipdb; ipdb.set_trace()
+        proposal = ExchangeProposal()
+        data_proposal = {            
+            'company_branch_id': companyid,
+            'person_type': str(json['pfpj']).upper(),
+            'transaction_type': 'BUY' if modality == 'compra' else 'SELL',
+            'exchange_type': 'TOURISM',
+            'reason': None,
+            'total_value': value,
+            'iof_fee': 0,
+            'vet': vet,
+            'coin_name': coin,
+            'document': json['cpfcnpj'],
+            'name': str(json['nome_razao_social']).capitalize(),
+            'responsible_name': None,
+            'email': str(json['nome_razao_social']).lower(),
+            'phone': f"{json['ddi']}{json['phone']}",
+            'phone_is_whatsapp': 1 if json.get('is_whatsapp',0) == "on" else 0,
+            'delivery': json['delivery'],
+            'ip': request.remote_addr,
+            'headers': dict(request.headers)
+        }
+        proposal.create_exchange_proposal(**data_proposal)
         
         
     return render_template(path_to_template, data=data, step=step)
@@ -78,7 +91,9 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
 @app.route('/remessa-internacional/<coin>/<person_type>/<transaction>/<value>/<fee>', methods = ['GET','POST'])
 @app.route('/remessa-internacional/<coin>/<person_type>/<transaction>/<value>/<fee>/<reason>', methods = ['GET','POST'])
 def remessa_internacional(coin=None, person_type=None, transaction=None, value=None, fee=None, reason=None):
+    
     from emoneycambio.services.company import Company
+    from emoneycambio.services.exchange_proposal import ExchangeProposal
     args = request.args
     json = request.get_json(silent=True)
     
@@ -104,7 +119,13 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
     person_type = str(data.get('person_type')).lower()
     transaction = str(data.get('transaction')).lower()   
     action = Company()
-    allowed_company = action.get_allowed_company_international_shipment() 
+    if not coin:
+        coin = args.get('coin', 'dolar-americano')     
+        
+    allowed_company = action.get_allowed_company_international_shipment(coin) 
+    if not allowed_company:
+        #  melhorar quando nao tiver
+        return redirect("/remessa-internacional", code=302)         
         
     if step != 'initial':
         path_to_template = f'portal/negotiation-international-shipment/forms/{person_type}/{transaction}/step-{step}.html'
@@ -112,8 +133,33 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
     data['path_to_template']=path_to_template
     
     if json and "finish" in json:
-        print(f"aqui enviar para o back {json}")
-        pass
+        proposal = ExchangeProposal()
+        """
+        {'finish': 'true', 'nextstep': '3', 'pfpj': 'pj', 'cpfcnpj': '21.211.212/2-12', 'nome_razao_social': 'Jefferson Nunes', 'nome_responsavel': 'Jefferson Nunes', 
+        'email': 'jeffersonnunesfonseca@gmail.com', 'ddi': '55', 'phone': '+5541997439582', 'is_whatsapp': 'on'}
+        """
+
+        data_proposal = {            
+            'company_branch_id': json['companyid'],
+            'person_type': str(json['pfpj']).upper(),
+            'transaction_type': 'RECEIVE' if transaction == 'receber' else 'SEND',
+            'exchange_type': 'INTERNATIONAL_SHIPMENT',
+            'reason': reason,
+            'total_value': value,
+            'iof_fee': 0,
+            'vet': fee,
+            'coin_name': coin,
+            'document': json['cpfcnpj'],
+            'name': str(json['nome_razao_social']).capitalize(),
+            'responsible_name': None,
+            'email': str(json['nome_razao_social']).lower(),
+            'phone': f"{json['ddi']}{json['phone']}",
+            'phone_is_whatsapp': 1 if json.get('is_whatsapp',0) == "on" else 0,
+            'delivery': 0,
+            'ip': request.remote_addr,
+            'headers': dict(request.headers)
+        }
+        proposal.create_exchange_proposal(**data_proposal)
     
     if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
         return render_template(path_to_template, step=step, data=data, allowed_company=allowed_company)    
