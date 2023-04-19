@@ -7,3 +7,4 @@ pymysql
 flask_sqlalchemy
 marshmallow
 Unidecode
+fire

@@ -121,6 +121,8 @@ function nextStepForm(e) {
         return
     }
 
+    
+    
     if (document.getElementById("money-tourism") || document.getElementById("money")) {
 
         let moneyInput = document.getElementById("money-tourism") || document.getElementById("money")
