@@ -207,6 +207,7 @@ def exchange_commercial_coin_history():
     PRIMARY KEY (`id`),
     INDEX `idx_exchange_commercial_coin_history_created_at_status` (`created_at` ASC),
     INDEX `idx_exchange_commercial_coin_history_prefix` (`exchange_commercial_coin_id` ASC),
+    UNIQUE KEY `uq_exchange_commercial_coin_id_value` (`exchange_commercial_coin_id`,`value`),
     CONSTRAINT `fk_exchange_commercial_coin_history_exchange_commercial_coin_id`
         FOREIGN KEY (`exchange_commercial_coin_id`)
         REFERENCES `exchange_commercial_coin` (`id`))"""

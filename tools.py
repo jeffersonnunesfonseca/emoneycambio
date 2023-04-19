@@ -41,7 +41,10 @@ def update_exchange_commercial_coin():
                 db.session.commit()
                 
             except exc.IntegrityError as ex:
-                LOGGER.error(str(ex))            
+                LOGGER.error(str(ex))   
+                if "Duplicate" in str(ex):
+                    continue
+                
                 return False    
                 
             finally:
