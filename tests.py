@@ -57,11 +57,63 @@ def test_get_updated_coins():
         from emoneycambio.services.exchange_commercial_coin import ExchangeCommercialCoin
         action = ExchangeCommercialCoin()        
         action.get_updated_coins()
+        
+def test_create_company_branch_exchange_coin():
+    with app.app_context():    
+        from emoneycambio.services.exchange_company_branch_coin import CompanyBranchExchangeCoin
+        
+        data = {
+            "company_branch_id": 2,
+            "name": "Dólar americano",
+            "prefix": "US$",
+            "buy_tourism_vet": "5.23",
+            "sell_tourism_vet": "4.99",
+            "dispatch_international_shipment_vet": "5.12",
+            "receipt_international_shipment_vet": "4.94",
+            "delivery": False,
+            "delivery_value": None
+        }
+        
+        action = CompanyBranchExchangeCoin()        
+        res = action.create_company_branch_exchange_coin(**data)
+        print(res)
+        
 
+def test_get_global_iof():
+    with app.app_context():    
+        from emoneycambio.services.configuration import Configuration
+        action = Configuration()        
+        res = action.get_global_iof_by_key("iof_buy_tourism_fee")
+        print(res)
+
+def test_create_company_branch():
+    with app.app_context():    
+        from emoneycambio.services.company_branch import CompanyBranch
+        
+        data = {
+            "company_id": 2,
+            "principal": 0,
+            "name": "Get Money Câmbio",
+            "site": "https://www.getmoney.com.br/",
+            "full_address": None,
+            "complement": "Piso: Moema - Loja 59 - Fica ao lado do Itaú (nossa loja fica no ultimo piso de cima)",
+            "uf": "sp",
+            "city": "São Paulo",
+            "cep": None,
+            "lat": None,
+            "lng": None
+        }
+        
+        action = CompanyBranch()        
+        res = action.create_company_branch(**data)
+        print(res)
 
 if __name__ == '__main__':
     # test_get_companies_by_coin_and_location()    
     # test_get_company_to_negotiation()
     # test_get_allowed_company_international_shipment()
     # test_create_exchange_proposal()
-    test_get_updated_coins()
+    # test_get_updated_coins()
+    # test_get_global_iof()
+    # test_create_company_branch_exchange_coin()
+    test_create_company_branch()

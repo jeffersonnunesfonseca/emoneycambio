@@ -62,3 +62,11 @@ docker pull jefonseca/sum
 
 - atualiza moeda comercial
 */10 * * * * docker exec emoneycambio python tools.py update_exchange_commercial_coin
+
+
+# buscar dados da get money, sobre selenium, roda scrit, mata selenium
+    */12 * * * * docker exec emoneycambio sh scripts/get-money-data.sh
+
+# rodar selenium
+    docker run -d -p 4444:4444 --shm-size="2g" --env-file .env --name selenium-server selenium/standalone-chrome:4.4.0-20220812
+

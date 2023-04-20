@@ -20,6 +20,18 @@ class ExchangeType(enum.Enum):
     TOURISM = 'TOURISM'
     INTERNATIONAL_SHIPMENT = 'INTERNATIONAL_SHIPMENT'
 
+class Status(enum.Enum):
+    
+    ENABLED = 'ENABLED'
+    DISABLED = 'DISABLED'
+class ContactType(enum.Enum):
+    
+    PHONE = 'PHONE'
+    CELLPHONE = 'CELLPHONE'
+    WHATSAPP = 'WHATSAPP'
+    EMAIL = 'EMAIL'
+
+
 class ExchangeProposalModel(db.Model):
     __tablename__ = 'exchange_proposal'
     
@@ -51,6 +63,7 @@ class ExchangeCommercialCoinModel(db.Model):
     
     id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
     name = sa.Column(sa.String(length=150), nullable=False)   
+    url = sa.Column(sa.String(length=200), nullable=False)    
     key = sa.Column(sa.String(length=150), nullable=False)    
     prefix = sa.Column(sa.String(length=10), nullable=False)    
     value = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
@@ -66,4 +79,86 @@ class ExchangeCommercialCoinHistoryModel(db.Model):
     value = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
     created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
 
- 
+class CompanyBranchExchangeCoinModel(db.Model):
+    
+    __tablename__ = 'company_branch_exchange_coin'
+   
+    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
+    company_branch_id = sa.Column(sa.Integer(), nullable=False)
+    name = sa.Column(sa.String(length=150), nullable=False)   
+    url_coin = sa.Column(sa.String(length=150), nullable=False)   
+    prefix = sa.Column(sa.String(length=10), nullable=False)    
+    status = sa.Column(sa.Enum(*[e.value for e in Status]), nullable=False)    
+    buy_tourism_vet = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    sell_tourism_vet = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    dispatch_international_shipment_vet = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    receipt_international_shipment_vet = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    buy_tourism_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    sell_tourism_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    dispatch_international_shipment_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    receipt_international_shipment_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    delivery = sa.Column(sa.SmallInteger(), nullable=False) 
+    delivery_value = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+    updated_at = sa.Column('updated_at', sa.DateTime())
+    
+class CompanyBranchExchangeCoinHistoryModel(db.Model):
+    
+    __tablename__ = 'company_branch_exchange_coin_history'
+   
+    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
+    company_branch_exchange_coin_id = sa.Column(sa.Integer(), nullable=False)
+    buy_tourism_vet = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    sell_tourism_vet = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    dispatch_international_shipment_vet = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    receipt_international_shipment_vet = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    buy_tourism_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    sell_tourism_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    dispatch_international_shipment_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    receipt_international_shipment_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    iof_tourism_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    iof_international_shipment_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+
+class ConfigurationModel(db.Model):
+    
+    __tablename__ = 'configuration'
+   
+    key = sa.Column(sa.String(255), primary_key=True)
+    value = sa.Column(sa.String(length=255), nullable=False)   
+    description = sa.Column(sa.String(length=255))   
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+    updated_at = sa.Column('updated_at', sa.DateTime())
+
+class CompanyBranchModel(db.Model):
+    
+    __tablename__ = 'company_branch'
+
+    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
+    company_id = sa.Column(sa.Integer(), nullable=False)
+    principal = sa.Column(sa.SmallInteger(), nullable=False) 
+    name = sa.Column(sa.String(length=150), nullable=False)   
+    site = sa.Column(sa.String(length=200))   
+    full_address = sa.Column(sa.String(length=350))      
+    complement = sa.Column(sa.String(length=150))  
+    uf = sa.Column(sa.String(length=2), nullable=False)  
+    city = sa.Column(sa.String(length=150), nullable=False)  
+    url_location = sa.Column(sa.String(length=150), nullable=False)  
+    cep = sa.Column(sa.String(length=8))  
+    coordinates = sa.Column(sa.String(length=350)) 
+    status = sa.Column(sa.Enum(*[e.value for e in Status]), nullable=False)    
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+    updated_at = sa.Column('updated_at', sa.DateTime())
+
+class CompanyBranchContactModel(db.Model):
+    
+    __tablename__ = 'company_branch_contact'
+
+    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
+    company_branch_id = sa.Column(sa.Integer(), nullable=False)
+    type = sa.Column(sa.Enum(*[e.value for e in ContactType]), nullable=False)    
+    principal = sa.Column(sa.SmallInteger(), nullable=False)     
+    value = sa.Column(sa.String(length=200), nullable=False) 
+    status = sa.Column(sa.Enum(*[e.value for e in Status]), nullable=False)    
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+    updated_at = sa.Column('updated_at', sa.DateTime())

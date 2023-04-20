@@ -78,7 +78,7 @@ def company_branch():
     `city` VARCHAR(150) NOT NULL,
     `url_location` VARCHAR(150) NOT NULL,
     `cep` VARCHAR(8),
-    `coordinates` GEOMETRY NULL,
+    `coordinates` VARCHAR(350) NULL,
     `status` ENUM('ENABLED', 'DISABLED') NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT now(),
     `updated_at` DATETIME NULL,
@@ -113,10 +113,7 @@ def company_branch_contact():
     INDEX `idx_company_branch_contact_updated_at_status` (`status` ASC, `updated_at` ASC),
     INDEX `fk_company_branch_contact_company_branch_id_idx` (`company_branch_id` ASC),
     INDEX `idx_company_branch_contact_type` (`type` ASC),
-    INDEX `idx_company_branch_contact_value` (`value` ASC),
-    CONSTRAINT `fk_company_branch_contact_company_branch_id`
-        FOREIGN KEY (`company_branch_id`)
-        REFERENCES `company_branch` (`id`))"""
+    INDEX `idx_company_branch_contact_value` (`value` ASC))"""
     op.execute(sql)
 
 def company_branch_exchange_coin():
@@ -185,6 +182,7 @@ def exchange_commercial_coin():
     `name` VARCHAR(150) NOT NULL,
     `key` VARCHAR(150) NOT NULL,
     `prefix` VARCHAR(10) NULL,
+    `url` VARCHAR(200) NULL,
     `value` DECIMAL(17,5) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT now(),
     `updated_at` DATETIME NULL,
@@ -192,6 +190,7 @@ def exchange_commercial_coin():
     INDEX `idx_exchange_commercial_coin_created_at` (`created_at` ASC),
     INDEX `idx_exchange_commercial_coin_updated_at` (`updated_at` ASC),
     INDEX `idx_exchange_commercial_coin_key` (`key` ASC),
+    INDEX `idx_exchange_commercial_coin_url` (`url` ASC),
     INDEX `idx_exchange_commercial_coin_prefix` (`prefix` ASC))"""
     op.execute(sql)
 

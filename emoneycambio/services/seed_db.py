@@ -1,13 +1,15 @@
-from emoneycambio.app import create_app
+from emoneycambio.app import app
 from emoneycambio.resources.database import db
 from sqlalchemy.sql import text
 
 class SeedDB:
     def __init__(self) -> None:
         self.db_session = db.session
-        self.app = app = create_app()
+        self.app = app
         
     def make_frente_corretora(self):
+        
+        # sao paulo
         sql_company = "INSERT INTO `company` (`cnpj`, `name`, `fantasy_name`, `url`, `logo_name`) VALUES ('71677850000177', \
             'A Frente Corretora de Câmbio LTDA', 'Frente Corretora', 'frente-corretora', 'logo-frente-corretora.png')"
         result_company = self.db_session.execute(text(sql_company))
@@ -16,6 +18,38 @@ class SeedDB:
             `full_address`, `complement`, `uf`, `city`,`url_location`,`cep`, `coordinates`) \
                 VALUES ('{result_company.lastrowid}', '1', 'Frente Corretora', 'https://frentecorretora.com.br/', 'R. Fidêncio Ramos, 100 – Vila Olímpia', \
                     '7º andar', 'SP', 'São Paulo', 'sao-paulo-sp','04551010' \
+                        ,ST_GeomFromText('POINT(0 0)'))"
+        result_company_branch = self.db_session.execute(text(sql_company_branch))
+        
+        sql_company_branch_contact = f"INSERT INTO `emoneycambio`.`company_branch_contact` (`company_branch_id`, `type`, \
+            `principal`, `value`) VALUES ('{result_company_branch.lastrowid}', 'PHONE', '1', '551142000850')"
+            
+        result_company_branch_contact = self.db_session.execute(text(sql_company_branch_contact))
+
+        sql_company_branch_exchange_coin = f"INSERT INTO `emoneycambio`.`company_branch_exchange_coin` \
+            (`company_branch_id`, `name`, `url_coin`, `prefix`, `buy_tourism_vet`, `sell_tourism_vet`, \
+                `dispatch_international_shipment_vet`, `receipt_international_shipment_vet`, `buy_tourism_exchange_fee`, \
+                    `sell_tourism_exchange_fee`, `dispatch_international_shipment_exchange_fee`, \
+                        `receipt_international_shipment_exchange_fee`) VALUES ('{result_company_branch.lastrowid}', 'Dólar Americano', 'dolar-americano', \
+                            'US$', '5.2409', '', '5.0934', '4.357', '2', NULL, '2', '2')"
+        
+        result_company_branch_exchange_coin = self.db_session.execute(text(sql_company_branch_exchange_coin))
+        
+
+        sql_company_branch_exchange_coin_history = f"INSERT INTO `emoneycambio`.`company_branch_exchange_coin_history` \
+            (`company_branch_exchange_coin_id`, `buy_tourism_vet`, `dispatch_international_shipment_vet`, \
+                `receipt_international_shipment_vet`, `buy_tourism_exchange_fee`, \
+                    `dispatch_international_shipment_exchange_fee`, `receipt_international_shipment_exchange_fee`, \
+                        `iof_tourism_fee`, `iof_international_shipment_fee`) \
+                            VALUES ('{result_company_branch_exchange_coin.lastrowid}', '1', '1', '1', '1', '1', '1', '1', '1');"
+
+        result_company_branch_exchange_coin_history = self.db_session.execute(text(sql_company_branch_exchange_coin_history))
+        
+        # CURITIBA
+        sql_company_branch = f"INSERT INTO `emoneycambio`.`company_branch` (`company_id`, `principal`, `name`, `site`, \
+            `full_address`, `complement`, `uf`, `city`,`url_location`,`cep`, `coordinates`) \
+                VALUES ('{result_company.lastrowid}', '0', 'Frente Corretora', 'https://frentecorretora.com.br/', NULL, \
+                    'NULL', 'PR', 'Curitiba', 'curitiba-pr',NULL \
                         ,ST_GeomFromText('POINT(0 0)'))"
         result_company_branch = self.db_session.execute(text(sql_company_branch))
         
@@ -118,7 +152,8 @@ class SeedDB:
         
     def make_configuration(self):
         sqls = [
-            "INSERT INTO `emoneycambio`.`configuration` (`key`, `value`, `description`) VALUES ('iof_tourism_fee', '0.011', 'Taxa IOF global turismo')",
+            "INSERT INTO `emoneycambio`.`configuration` (`key`, `value`, `description`) VALUES ('iof_buy_tourism_fee', '0.011', 'Taxa IOF global de compra turismo')",
+            "INSERT INTO `emoneycambio`.`configuration` (`key`, `value`, `description`) VALUES ('iof_sell_tourism_fee', '0.0038', 'Taxa IOF global de venda turismo')",
             "INSERT INTO `emoneycambio`.`configuration` (`key`, `value`, `description`) VALUES ('iof_international_shipment_fee', '0.0038', 'Taxa IOF global remessa internacional')",
             "INSERT INTO `emoneycambio`.`configuration` (`key`, `value`, `description`) VALUES ('all_lead_distribution_to', 'daycambio', 'Todos os leads serão enviado apenas para a company que tiver cadastrada')",
             "INSERT INTO `emoneycambio`.`configuration` (`key`, `value`, `description`) VALUES ('allowed_companies_international_shipment', 'frente-corretora|', 'Empresa que estará configurada para remessa internacional')"            
@@ -128,11 +163,11 @@ class SeedDB:
 
     def make_commercial_coins(self):
         sqls = [
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Dólar Americano', 'US$', '4.97', 'USDBRL')",
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Dólar Canadense', 'C$', '3.71', 'CADBRL')",
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Bitcoin', 'B$', '150.264,20', 'BTCBRL')",
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Euro', '€', '5.45', 'EURBRL')",
-            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`) VALUES ('Libra esterlina', '£', '6.17', 'GBPBRL')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`, `url`) VALUES ('Dólar Americano', 'USD', '4.97', 'USDBRL','dolar-americano')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`, `url`) VALUES ('Dólar Canadense', 'CAD', '3.71', 'CADBRL','dolar-canadense')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`, `url`) VALUES ('Bitcoin', 'BTC', '150.264,20', 'BTCBRL','bitcoin')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`, `url`) VALUES ('Euro', 'EUR', '5.45', 'EURBRL', 'euro')",
+            "INSERT INTO `emoneycambio`.`exchange_commercial_coin` (`name`, `prefix`, `value`, `key`, `url`) VALUES ('Libra esterlina', 'GBP', '6.17', 'GBPBRL','libra-esterlina')",
 
         ]
         for sql in sqls:

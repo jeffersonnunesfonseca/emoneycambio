@@ -44,12 +44,11 @@ class Company:
                 COALESCE(cbec.delivery_value, 0) as `companies.delivery.value`
             from company c
             inner join company_branch cb on cb.company_id = c.id
-            inner join company_branch_contact cbc on cbc.company_branch_id = cb.id
             inner join company_branch_exchange_coin cbec on cbec.company_branch_id = cb.id
+            left join company_branch_contact cbc on cbc.company_branch_id = cb.id
             where 1=1
                 and c.status = 'ENABLED'
                 and cb.status = 'ENABLED' and cb.url_location = '{url_location}'
-                -- and cbc.status = 'ENABLED' and cbc.principal=1
                 and cbec.status ='ENABLED' and cbec.url_coin = '{url_coin}';
 
         """
@@ -147,11 +146,11 @@ class Company:
                 COALESCE(cbec.delivery_value, 0) as `companies.delivery.value`
             from company c
             inner join company_branch cb on cb.company_id = c.id
-            inner join company_branch_contact cbc on cbc.company_branch_id = cb.id
+            left join company_branch_contact cbc on cbc.company_branch_id = cb.id and cbc.status = 'ENABLED' and cbc.principal=1
             inner join company_branch_exchange_coin cbec on cbec.company_branch_id = cb.id
             where 1=1
                 and c.status = 'ENABLED'
-                and cbc.status = 'ENABLED' and cbc.principal=1
+                
                 {AND_MODALITY}
                 {AND_TYPE}
                 and cb.status = 'ENABLED' and cb.url_location = '{filters['location']}'
@@ -259,12 +258,12 @@ class Company:
                 COALESCE(cbec.delivery_value, 0) as `companies.delivery.value`
             from company c
             inner join company_branch cb on cb.company_id = c.id
-            inner join company_branch_contact cbc on cbc.company_branch_id = cb.id
             inner join company_branch_exchange_coin cbec on cbec.company_branch_id = cb.id
+            left join company_branch_contact cbc on cbc.company_branch_id = cb.id and cbc.status = 'ENABLED' and cbc.principal=1 
             where 1=1
                 and c.status = 'ENABLED' and c.url= '{allowed_company}'
                 and (cbec.dispatch_international_shipment_vet is not null or cbec.receipt_international_shipment_vet is not null)
-                and cbc.status = 'ENABLED' and cbc.principal=1 and cbec.url_coin = '{url_coin}'
+                and cbec.url_coin = '{url_coin}'
         """
         
         row = self.db_session.execute(text(sql)).fetchone()
