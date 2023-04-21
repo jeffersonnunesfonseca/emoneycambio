@@ -23,9 +23,9 @@ def filtered_companies(coin: str=None, location: str=None):
     
     return render_template('portal/search-result/index.html', data=results)
 
-@app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companyid>', methods = ['GET', 'POST'])
-@app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companyid>/<value>/<vet>', methods = ['GET', 'POST'])
-def negotiation_company(modality:str=None, coin: str=None, location: str=None, type: str=None, companyid: str=None, value=None, vet=None):
+@app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companybranchid>', methods = ['GET', 'POST'])
+@app.route('/negociacao/<modality>/<type>/<coin>/<location>/<companybranchid>/<value>/<vet>', methods = ['GET', 'POST'])
+def negotiation_company(modality:str=None, coin: str=None, location: str=None, type: str=None, companybranchid: str=None, value=None, vet=None):
     from emoneycambio.services.company import Company
     from emoneycambio.services.exchange_proposal import ExchangeProposal
     args = request.args
@@ -36,9 +36,9 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
         "type": type,  # papel-moeda / remessa
         "coin": coin, # moeda 
         "location": location, # local
-        "companyid": companyid # idempresa
+        "companybranchid": companybranchid # idempresa
     }
-    if not modality or not type or not coin or not location or not companyid:
+    if not modality or not type or not coin or not location or not companybranchid:
         return jsonify(values), 400
     
     
@@ -67,9 +67,9 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
         headers = dict(request.headers)
 
         data_proposal = {            
-            'company_branch_id': companyid,
+            'company_branch_id': companybranchid,
             'person_type': str(json['pfpj']).upper(),
-            'transaction_type': 'BUY' if modality == 'compra' else 'SELL',
+            'transaction_type': 'BUY' if modality == 'comprar' else 'SELL',
             'exchange_type': 'TOURISM',
             'reason': None,
             'total_value': value,
@@ -82,7 +82,7 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
             'email': str(json['nome_razao_social']).lower(),
             'phone': f"{json['ddi']}{json['phone']}",
             'phone_is_whatsapp': 1 if json.get('is_whatsapp',0) == "on" else 0,
-            'delivery': json['delivery'],
+            'delivery': 1 if json['delivery'] == 'delivery' else 0,
             'ip': ip_addr,
             'user_agent': request.user_agent,
             'headers': headers

@@ -33,7 +33,7 @@
          <select style="background-color: #D7DEED !important;" class="input-form-negotiation" name="ddi" id="ddi">
             <option value="55">55</option>
         </select>
-        <input style="width: 160px;" class="input-form-negotiation" type="text" name="phone" id="phone" placeholder="(xx) xxxxx-xxxx">
+        <input onkeydown="phoneMask(event)" style="width: 160px;" class="input-form-negotiation" type="text" name="phone" id="phone" placeholder="(xx) xxxxx-xxxx">
         <div class="checkbox-whatsapp">
             <img src="{{ url_for('static', filename='icons/whatsapp.png') }}" width="24" />
             <input class="input-form-negotiation" type="checkbox" name="is_whatsapp" id="is_whatsapp" class="is_whatsapp" checked>

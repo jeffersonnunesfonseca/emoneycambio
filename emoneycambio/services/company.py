@@ -23,6 +23,7 @@ class Company:
                 cbec.url_coin as `filters.coin.url`, 
                 cbec.name as `filters.coin.name`,
                 c.id as `companies.id`,
+                cb.id as `companies.company_branch_id`,
                 c.fantasy_name as `companies.name`,
                 c.url as `companies.url`,
                 c.logo_name as `companies.logo`,
@@ -125,6 +126,7 @@ class Company:
                 cbec.url_coin as `filters.coin.url`, 
                 cbec.name as `filters.coin.name`,
                 c.id as `companies.id`,
+                cb.id as `companies.company_branch_id`,
                 c.fantasy_name as `companies.name`,
                 c.url as `companies.url`,
                 c.logo_name as `companies.logo`,
@@ -155,7 +157,7 @@ class Company:
                 {AND_TYPE}
                 and cb.status = 'ENABLED' and cb.url_location = '{filters['location']}'
                 and cbec.status ='ENABLED' and cbec.url_coin = '{filters['coin']}'
-                and c.id = {filters['companyid']}
+                and cb.id = {filters['companybranchid']}
         """
 
         row = self.db_session.execute(text(sql)).fetchone()
@@ -215,8 +217,8 @@ class Company:
         return_results['default_configuration'] = default_configuration_schema
 
         filters_schema["modality"] = str(filters["modality"]).capitalize()
-        filters_schema["type"] = filters["type"], 
-        filters_schema["companyid"] = filters["companyid"]
+        filters_schema["type"] = filters["type"] 
+        filters_schema["companybranchid"] = filters["companybranchid"]
         
         return_results['filters'] = filters_schema
 
@@ -237,6 +239,7 @@ class Company:
                 cbec.url_coin as `filters.coin.url`, 
                 cbec.name as `filters.coin.name`,
                 c.id as `companies.id`,
+                cb.id as `companies.company_branch_id`,
                 c.fantasy_name as `companies.name`,
                 c.url as `companies.url`,
                 c.logo_name as `companies.logo`,

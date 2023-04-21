@@ -1,8 +1,8 @@
-function goToNegotiation(event, type, companyId, negotiationType) {
+function goToNegotiation(event, type, companyBranchId, negotiationType) {
     event.preventDefault()
     let currentUrlPath = document.location.pathname
-    let newUrl = currentUrlPath.replace('cotacao', `negociacao/${type}/${negotiationType}`) + "/" + companyId 
-    console.log(companyId, type, currentUrlPath, negotiationType, newUrl)
+    let newUrl = currentUrlPath.replace('cotacao', `negociacao/${type}/${negotiationType}`) + "/" + companyBranchId 
+    console.log(companyBranchId, type, currentUrlPath, negotiationType, newUrl)
     location.href = newUrl
 
 }

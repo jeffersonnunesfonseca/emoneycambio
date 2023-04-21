@@ -162,3 +162,8 @@ function validaCNPJ(CNPJ) {
     }
     return true;
 }
+
+
+function phoneMask(event) {
+    $("#phone").mask('(00) 00000-0000');
+}

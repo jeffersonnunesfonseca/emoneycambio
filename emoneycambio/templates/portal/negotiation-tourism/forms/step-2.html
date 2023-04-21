@@ -1,9 +1,9 @@
 <form id='form-step' class='form-step' action="">
     <input class="input-form-negotiation" type="hidden" name="nextstep" id="nextstep" value="3">
     <input type="hidden" name="finish" value="true">
-    
+
     <span class="breadcumb">
-        <a href="/negociacao/{{data.filters.modality.lower()}}/{{data.filters.type}}/{{data.filters.coin.url}}/{{data.filters.city.url}}/{{data.company.id}}?step=1" rel="noopener noreferrer">Oferta</a> > 
+        <a href="/negociacao/{{data.filters.modality.lower()}}/{{data.filters.type}}/{{data.filters.coin.url}}/{{data.filters.city.url}}/{{data.filters.companybranchid}}?step=1" rel="noopener noreferrer">Oferta</a> > 
         
         <a href="?step=2" rel="noopener noreferrer"><b>Contato</b></a>
     </span>
@@ -36,7 +36,7 @@
          <select class="input-form-negotiation" name="ddi" id="ddi">
             <option value="55">55</option>
         </select>
-        <input style="width: 160px;" class="input-form-negotiation" type="text" name="phone" id="phone" placeholder="(xx) xxxxx-xxxx">
+        <input onkeydown="phoneMask(event)" style="width: 160px;" class="input-form-negotiation" type="text" name="phone" id="phone" placeholder="(xx) xxxxx-xxxx">
         <div class="checkbox-whatsapp">
             <img src="{{ url_for('static', filename='icons/whatsapp.png') }}" width="24" />
             <input class="input-form-negotiation" type="checkbox" name="is_whatsapp" id="is_whatsapp" class="is_whatsapp" checked>
