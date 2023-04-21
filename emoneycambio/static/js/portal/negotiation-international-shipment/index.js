@@ -2,13 +2,31 @@ $(document).ready(function() {
 
     updateTextValues()
 
+    $('#phone').mask('(00) 00000-0000');
     $("#coin").change(function(e){
         e.preventDefault()
         let coinValue= $("#coin").find('option:selected').val()
         // console.log(coinValue)
-        location.href = `/remessa-internacional?coin=${coinValue}`
+        location.href = `/remessa-internacional?coin=${coinValue}&step=initial&update_select=True`
 
-        updateTextValues()
+        // let step = document.getElementById("steps")
+        // let form = document.getElementById("form-step")
+        // response = ajaxReplaceHtmlToResponse(`/remessa-internacional?coin=${coinValue}&update_select=True`,'GET', null, step, form)
+
+        // $.get(`/remessa-internacional?coin=${coinValue}&update_select=True`, function(obj) {
+        //     if (obj.status == "ERROR") {
+        //         alert(obj.msg)
+        //         location.href = `/remessa-internacional/`
+        //         return
+        //     }
+
+        //     console.log(obj)
+        //     step.removeChild(form);
+        //     step.innerHTML = obj
+
+            
+        // })
+
     })
 
     $("input[name='transaction']").click(function(e){

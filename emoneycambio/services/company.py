@@ -318,6 +318,7 @@ class Company:
         company_schema['coin']['receipt_international_shipment_exchange_fee'] = Decimal(company_schema['coin']['receipt_international_shipment_exchange_fee']).quantize(Decimal('.01'), rounding=ROUND_FLOOR)
         # monta retorno final 
         return_results['company']=company_schema
+        return_results['filters'] = filters_schema
         return_results['default_configuration'] = default_configuration_schema
         return return_results
         # return self._mock_get_allowed_company_international_shipment()

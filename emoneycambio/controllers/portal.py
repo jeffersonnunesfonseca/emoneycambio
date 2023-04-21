@@ -126,11 +126,12 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
     action = Company()
     if not coin:
         coin = args.get('coin', 'dolar-americano')     
-        
+    
     allowed_company = action.get_allowed_company_international_shipment(coin) 
     if not allowed_company:
         #  melhorar quando nao tiver
-        return redirect("/remessa-internacional", code=302)         
+        # return jsonify({"status": "ERROR", "msg": "Moeda indisponivel no momento."})
+        return redirect("/remessa-internacional", code=302)     
         
     if step != 'initial':
         path_to_template = f'portal/negotiation-international-shipment/forms/{person_type}/{transaction}/step-{step}.html'
@@ -171,6 +172,11 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
         proposal.create_exchange_proposal(**data_proposal)
     
     if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
+        # import ipdb; ipdb.set_trace()
+        if args.get('update_select'):
+            # return allowed_company
+            return render_template(path_to_template_base, step=step, data=data, allowed_company=allowed_company)    
+
         return render_template(path_to_template, step=step, data=data, allowed_company=allowed_company)    
     
     return render_template(path_to_template_base, step=step, data=data, allowed_company=allowed_company)

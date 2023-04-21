@@ -135,7 +135,10 @@ function nextStepForm(e) {
     
     let newUrl = `${currentUrlPath}?step=${data['nextstep']}`
 
-    console.log(newUrl, data, step, form)
+    console.log('newUrl', newUrl)
+    console.log('data', data)
+    console.log('step', step)
+    console.log('form', form)
     response = ajaxReplaceHtmlToResponse(newUrl,'POST', data, step, form)
     window.history.pushState({},"", newUrl);
 }

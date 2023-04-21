@@ -61,12 +61,13 @@ docker pull jefonseca/sum
 # tarefas cron
 
 - atualiza moeda comercial
-*/10 * * * * docker exec emoneycambio python tools.py update_exchange_commercial_coin
+`*/5 * * * * docker exec emoneycambio python tools.py update_exchange_commercial_coin > /tmp/update_exchange_commercial_coin.log &`
 
 
-# buscar dados da get money, sobre selenium, roda scrit, mata selenium
-*/12 * * * * docker exec emoneycambio sh scripts/get-money-data.sh
+- buscar dados da get money, sobre selenium, roda scrit, mata selenium
+`*/12 * * * * /bin/sh get-money-cambio.sh > /tmp/get-money-cambio.sh.log &`
+
 
 # rodar selenium
-    docker run -d -p 4444:4444 --shm-size="2g" --env-file .env --name selenium-server selenium/standalone-chrome:4.4.0-20220812
+`docker run -d -p 4444:4444 --shm-size="2g" --env-file .env --name selenium-server selenium/standalone-chrome:4.4.0-20220812`
 

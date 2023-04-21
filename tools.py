@@ -12,12 +12,13 @@ from emoneycambio.app import app
 from emoneycambio import utils
 from emoneycambio.services.company_branch import CompanyBranch
 from emoneycambio.services.exchange_company_branch_coin import CompanyBranchExchangeCoin
+from emoneycambio.services.exchange_commercial_coin import ExchangeCommercialCoin
+from emoneycambio.resources.database import db
+from emoneycambio.models.models import ExchangeCommercialCoinModel, ExchangeCommercialCoinHistoryModel
 
 
 LOGGER = logging.getLogger(__name__)
 def update_exchange_commercial_coin():
-    from emoneycambio.resources.database import db
-    from emoneycambio.models.models import ExchangeCommercialCoinModel, ExchangeCommercialCoinHistoryModel
     response = requests.get('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL,CAD-BRL,GBP-BRL')
     response.raise_for_status()
     data = response.json()
@@ -298,5 +299,202 @@ def get_coins_get_money_corretora():
                 action = CompanyBranchExchangeCoin()        
                 id = action.create_company_branch_exchange_coin(**data)
                 LOGGER.info(f"{cont} de {total_remessa} - turismo - create_company_branch_exchange_coin criada {id}")
+
+def get_coins_frente_corretora():
+    
+    company_key = "frente-corretora"
+    site = "https://frentecorretora.com.br/"
+    
+    with app.app_context() as apps:
+        # busca moedas que estamos trabalhando, basta cadastra-las na tabela exchange_commercial_coin
+        exchange_commercial_coin = ExchangeCommercialCoin()
+        coins = exchange_commercial_coin.get_updated_coins()
+        company_branch = CompanyBranch()
+        
+        locations = [
+            {
+                
+                "city": "Curitiba",
+                "uf": "PR",
+                "url": "curitiba-pr",
+                "tourism_location": "WL-FRENTE-CTB"
+            },
+            {
+                
+                "city": "Rio de Janeiro",
+                "uf": "RJ",
+                "url": "rio-de-janeiro-rj",
+                "tourism_location": "WL-FRENTE-CTB"
+            },
+            {
+                
+                "city": "São Paulo",
+                "uf": "SP",
+                "url": "sao-paulo-sp",
+                "tourism_location": "WL-FRENTE-CTB"
+            }
+        ]
+        for location in locations:
+            current_company_branch = company_branch.get_company_branch_by_company_url_and_url_location(company_key, location['url'])
+            if not current_company_branch.original_company_id:
+                LOGGER.info(f"empresa nao existe do nosso lado {company_key}")
+                continue
+            
+            data = {
+                "company_id": current_company_branch.original_company_id,
+                "principal": current_company_branch.principal if current_company_branch.company_branch_id else 0,
+                "name": current_company_branch.name,
+                "site": site,
+                "full_address": None,
+                "complement": None,
+                "uf": location['uf'],
+                "city": location['city'],
+                "cep": None,
+                "lat": None,
+                "lng": None
+            }
+            
+            new_company_branch_id = company_branch.create_company_branch(**data)
+            if not new_company_branch_id:
+                continue    
+            
+            # aqui corre para buscar as moedas
+            for coin in coins:
+               
+                try: 
+                        LOGGER.info(f"buscando compra turismo {location['tourism_location']} - {coin['prefix']}")
+                        response_tourism = requests.get(f'https://api.frentecorretora.com.br/v1/exchanges/paper-money/quotations/{location["tourism_location"]}?currency={coin["prefix"]}&value=100000&reverse=false')
+                        response_tourism.raise_for_status()
+                        data_tourism = response_tourism.json()
+                        
+                        LOGGER.info(f"buscando compra remessa envio {coin['prefix']}")
+                        response_dispatch_international_shipment = requests.get(f'https://api.frentecorretora.com.br/v1/exchanges/remittance/outbound/reverse?purposeCode=AVAILABILITY&currency={coin["prefix"]}&correspondentId=1&value=120000')
+                        response_dispatch_international_shipment.raise_for_status()
+                        data_dispatch_international_shipment = response_dispatch_international_shipment.json()
+                        
+                        LOGGER.info(f"buscando compra remessa recebimento {coin['prefix']}")
+                        response_receipt_international_shipment = requests.get(f'https://api.frentecorretora.com.br/v1/exchanges/remittance/inbound/reverse?purposeCode=AVAILABILITY&currency={coin["prefix"]}&correspondentId=1&value=120000')
+                        response_receipt_international_shipment.raise_for_status()
+                        data_receipt_international_shipment = response_receipt_international_shipment.json()
+                except requests.exceptions.HTTPError as ex: 
+                    if '404' in str(ex):
+                        LOGGER.info(f"moeda nao encontrada {coin['prefix']}")
+                        continue
+                   
+                
+                data = {
+                    
+                    "company_branch_id": new_company_branch_id,
+                    "name": data_tourism['currency']['name'],
+                    "prefix": str(data_tourism['currency']['code']).upper(),
+                    "buy_tourism_vet": float(data_tourism['total']['withTax']['value'])/10000,
+                    "sell_tourism_vet": None,
+                    "dispatch_international_shipment_vet": float(data_dispatch_international_shipment['currency']['price']['withTax']['value'])/10000,
+                    "receipt_international_shipment_vet": float(data_receipt_international_shipment['currency']['price']['withTax']['value'])/10000,
+                    "delivery": False,
+                    "delivery_value": None
+                }
+
+                action = CompanyBranchExchangeCoin()        
+                id = action.create_company_branch_exchange_coin(**data)
+
+def get_coins_daycambio():
+    
+    company_key = "daycambio"
+    site = "https://daycambio.com.br/"
+    
+    with app.app_context() as apps:
+        # busca moedas que estamos trabalhando, basta cadastra-las na tabela exchange_commercial_coin
+        exchange_commercial_coin = ExchangeCommercialCoin()
+        coins = exchange_commercial_coin.get_updated_coins()
+        company_branch = CompanyBranch()
+        
+        locations = [
+            {
+                
+                "city": "Curitiba",
+                "uf": "PR",
+                "url": "curitiba-pr",
+                "tourism_location": "WL-FRENTE-CTB"
+            },
+            {
+                
+                "city": "Rio de Janeiro",
+                "uf": "RJ",
+                "url": "rio-de-janeiro-rj",
+                "tourism_location": "WL-FRENTE-CTB"
+            },
+            {
+                
+                "city": "São Paulo",
+                "uf": "SP",
+                "url": "sao-paulo-sp",
+                "tourism_location": "WL-FRENTE-CTB"
+            }
+        ]
+        for location in locations:
+            current_company_branch = company_branch.get_company_branch_by_company_url_and_url_location(company_key, location['url'])
+            if not current_company_branch.original_company_id:
+                LOGGER.info(f"empresa nao existe do nosso lado {company_key}")
+                continue
+            
+            data = {
+                "company_id": current_company_branch.original_company_id,
+                "principal": current_company_branch.principal if current_company_branch.company_branch_id else 0,
+                "name": current_company_branch.name,
+                "site": site,
+                "full_address": None,
+                "complement": None,
+                "uf": location['uf'],
+                "city": location['city'],
+                "cep": None,
+                "lat": None,
+                "lng": None
+            }
+            
+            new_company_branch_id = company_branch.create_company_branch(**data)
+            if not new_company_branch_id:
+                continue    
+            
+            # aqui corre para buscar as moedas
+            for coin in coins:
+               
+                try: 
+                        LOGGER.info(f"buscando compra turismo {location['tourism_location']} - {coin['prefix']}")
+                        response_tourism = requests.get(f'https://api.frentecorretora.com.br/v1/exchanges/paper-money/quotations/{location["tourism_location"]}?currency={coin["prefix"]}&value=100000&reverse=false')
+                        response_tourism.raise_for_status()
+                        data_tourism = response_tourism.json()
+                        
+                        LOGGER.info(f"buscando compra remessa envio {coin['prefix']}")
+                        response_dispatch_international_shipment = requests.get(f'https://api.frentecorretora.com.br/v1/exchanges/remittance/outbound/reverse?purposeCode=AVAILABILITY&currency={coin["prefix"]}&correspondentId=1&value=120000')
+                        response_dispatch_international_shipment.raise_for_status()
+                        data_dispatch_international_shipment = response_dispatch_international_shipment.json()
+                        
+                        LOGGER.info(f"buscando compra remessa recebimento {coin['prefix']}")
+                        response_receipt_international_shipment = requests.get(f'https://api.frentecorretora.com.br/v1/exchanges/remittance/inbound/reverse?purposeCode=AVAILABILITY&currency={coin["prefix"]}&correspondentId=1&value=120000')
+                        response_receipt_international_shipment.raise_for_status()
+                        data_receipt_international_shipment = response_receipt_international_shipment.json()
+                except requests.exceptions.HTTPError as ex: 
+                    if '404' in str(ex):
+                        LOGGER.info(f"moeda nao encontrada {coin['prefix']}")
+                        continue
+                   
+                
+                data = {
+                    
+                    "company_branch_id": new_company_branch_id,
+                    "name": data_tourism['currency']['name'],
+                    "prefix": str(data_tourism['currency']['code']).upper(),
+                    "buy_tourism_vet": float(data_tourism['total']['withTax']['value'])/10000,
+                    "sell_tourism_vet": None,
+                    "dispatch_international_shipment_vet": float(data_dispatch_international_shipment['currency']['price']['withTax']['value'])/10000,
+                    "receipt_international_shipment_vet": float(data_receipt_international_shipment['currency']['price']['withTax']['value'])/10000,
+                    "delivery": False,
+                    "delivery_value": None
+                }
+
+                action = CompanyBranchExchangeCoin()        
+                id = action.create_company_branch_exchange_coin(**data)
+
 if __name__ == "__main__":
     fire.Fire()

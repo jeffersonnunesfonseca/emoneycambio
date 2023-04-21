@@ -9,10 +9,10 @@
         <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
         <select name="coin" id="coin" class="filter-select coin">
             <option value="" disabled>Moeda</option>
-            <option value="dolar-americano" attr-symbol="US$">Dólar americano</option>
-            <option value="dolar-canadense" attr-symbol="C$">Dólar canadense</option>
-            <option value="euro" attr-symbol="€" >Euro</option>
-            <option value="libra-esterlina" attr-symbol="£">Libra esterlina</option>
+            <option value="dolar-americano" attr-symbol="US$" {% if allowed_company.filters.coin.url == 'dolar-americano' %} selected {% endif %}>Dólar americano</option>
+            <option value="dolar-canadense" attr-symbol="C$" {% if allowed_company.filters.coin.url == 'dolar-canadense' %} selected {% endif %}>Dólar canadense</option>
+            <option value="euro" attr-symbol="€" {% if allowed_company.filters.coin.url == 'euro' %} selected {% endif %}>Euro</option>
+            <option value="libra-esterlina" attr-symbol="£" {% if allowed_company.filters.coin.url == 'libra-esterlina' %} selected {% endif %}>Libra esterlina</option>
         </select>
     </div>
 
