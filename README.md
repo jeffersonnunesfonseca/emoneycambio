@@ -67,6 +67,11 @@ docker pull jefonseca/sum
 - buscar dados da get money, sobre selenium, roda scrit, mata selenium
 `*/12 * * * * /bin/sh get-money-cambio.sh > /tmp/get-money-cambio.sh.log &`
 
+- buscar dados da frente-corretora, sobre selenium, roda scrit, mata selenium
+`*/12 * * * * docker exec emoneycambio python tools.py get_coins_frente_corretora > get_coins_frente_corretora.log &`
+
+- buscar dados da daycambio(frentecorretora), sobre selenium, roda scrit, mata selenium
+`*/12 * * * * docker exec emoneycambio python tools.py get_coins_daycambio > get_coins_daycambio.log &`
 
 # rodar selenium
 `docker run -d -p 4444:4444 --shm-size="2g" --env-file .env --name selenium-server selenium/standalone-chrome:4.4.0-20220812`

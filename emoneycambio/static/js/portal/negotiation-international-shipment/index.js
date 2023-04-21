@@ -2,7 +2,10 @@ $(document).ready(function() {
 
     updateTextValues()
 
-    $('#phone').mask('(00) 00000-0000');
+    $('#phone').keyup(function(e){
+        $(this).mask('(00) 00000-0000');
+    })
+    
     $("#coin").change(function(e){
         e.preventDefault()
         let coinValue= $("#coin").find('option:selected').val()

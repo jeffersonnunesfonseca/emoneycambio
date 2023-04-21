@@ -1,7 +1,10 @@
 $(document).ready(function(){
 
+    $('#phone').keyup(function(e){
+        $(this).mask('(00) 00000-0000');
+    })
+    
     $("#money-tourism").maskMoney({prefix:'$ ', thousands:'.', decimal:',', affixesStay: true});
-    $('#phone').mask('(00) 00000-0000');
     $("#money-tourism").keyup(function(e){
         // alert()
         e.preventDefault()
