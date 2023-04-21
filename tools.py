@@ -13,9 +13,6 @@ from emoneycambio import utils
 from emoneycambio.services.company_branch import CompanyBranch
 from emoneycambio.services.exchange_company_branch_coin import CompanyBranchExchangeCoin
 from emoneycambio.services.exchange_commercial_coin import ExchangeCommercialCoin
-from emoneycambio.resources.database import db
-from emoneycambio.models.models import ExchangeCommercialCoinModel, ExchangeCommercialCoinHistoryModel
-
 
 LOGGER = logging.getLogger(__name__)
 def update_exchange_commercial_coin():
@@ -25,40 +22,17 @@ def update_exchange_commercial_coin():
     
     for key, value in data.items():
         name = str(value["name"]).replace("/Real Brasileiro", "")
-        value = value["bid"]
+        value_coin = value["bid"]
         with app.app_context() as apps:
-            exchange_commercial_coin = ExchangeCommercialCoinModel()
-            coin = ExchangeCommercialCoinModel.query.filter_by(key=key).first()
-            if coin:
-                exchange_commercial_coin = coin
-            else:                
-                exchange_commercial_coin.name = name
-                exchange_commercial_coin.key = key
-                exchange_commercial_coin.prefix = value['code']
-                
-            exchange_commercial_coin.url = utils.string_to_url(name)
-            exchange_commercial_coin.value = value
-            exchange_commercial_coin.updated_at = datetime.utcnow()
-            try:                
-                exchange_commercial_coin_history = ExchangeCommercialCoinHistoryModel()
-                exchange_commercial_coin_history.exchange_commercial_coin_id = exchange_commercial_coin.id
-                exchange_commercial_coin_history.value = value
-                            
-                db.session.add(exchange_commercial_coin)
-            
-                db.session.add(exchange_commercial_coin_history)
-                db.session.commit()
-                
-            except exc.IntegrityError as ex:
-                LOGGER.error(str(ex))   
-                
-                if "Duplicate" in str(ex):
-                    continue
-                
-                return False    
-                
-            finally:
-                db.session.flush()
+            exchange_commercial_coin = ExchangeCommercialCoin()
+
+            data = {
+                "key": key,
+                "name": name,
+                "prefix": value['code'],
+                "value": value_coin
+            }
+            exchange_commercial_coin.create_exchange_commercial_coin_by_api(**data)
   
 def get_coins_get_money_corretora():
     LOGGER.info("buscando dados no site")
@@ -387,7 +361,7 @@ def get_coins_frente_corretora():
                     "company_branch_id": new_company_branch_id,
                     "name": data_tourism['currency']['name'],
                     "prefix": str(data_tourism['currency']['code']).upper(),
-                    "buy_tourism_vet": float(data_tourism['total']['withTax']['value'])/10000,
+                    "buy_tourism_vet": float(data_tourism['total']['withTax']['value'])/100000,
                     "sell_tourism_vet": None,
                     "dispatch_international_shipment_vet": float(data_dispatch_international_shipment['currency']['price']['withTax']['value'])/10000,
                     "receipt_international_shipment_vet": float(data_receipt_international_shipment['currency']['price']['withTax']['value'])/10000,
@@ -485,7 +459,7 @@ def get_coins_daycambio():
                     "company_branch_id": new_company_branch_id,
                     "name": data_tourism['currency']['name'],
                     "prefix": str(data_tourism['currency']['code']).upper(),
-                    "buy_tourism_vet": float(data_tourism['total']['withTax']['value'])/10000,
+                    "buy_tourism_vet": float(data_tourism['total']['withTax']['value'])/100000,
                     "sell_tourism_vet": None,
                     "dispatch_international_shipment_vet": float(data_dispatch_international_shipment['currency']['price']['withTax']['value'])/10000,
                     "receipt_international_shipment_vet": float(data_receipt_international_shipment['currency']['price']['withTax']['value'])/10000,

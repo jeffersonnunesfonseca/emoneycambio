@@ -24,7 +24,6 @@ def upgrade():
     company_branch_exchange_coin()
     company_branch_exchange_coin_history()
     exchange_commercial_coin()
-    exchange_commercial_coin_history()
     exchange_proposal()
     lead_distribution_event()
     configuration()
@@ -33,7 +32,6 @@ def downgrade():
     op.execute("DROP TABLE configuration")
     op.execute("DROP TABLE lead_distribution_event")
     op.execute("DROP TABLE exchange_proposal")
-    op.execute("DROP TABLE exchange_commercial_coin_history")
     op.execute("DROP TABLE exchange_commercial_coin")
     op.execute("DROP TABLE company_branch_exchange_coin_history")
     op.execute("DROP TABLE company_branch_exchange_coin")
@@ -163,7 +161,8 @@ def company_branch_exchange_coin_history():
     `sell_tourism_exchange_fee` DECIMAL(17,5),
     `dispatch_international_shipment_exchange_fee` DECIMAL(17,5),
     `receipt_international_shipment_exchange_fee` DECIMAL(17,5),
-    `iof_tourism_fee` DECIMAL(17,5) NOT NULL,
+    `iof_buy_tourism_fee` DECIMAL(17,5) NOT NULL,
+    `iof_sell_tourism_fee` DECIMAL(17,5) NOT NULL,
     `iof_international_shipment_fee` DECIMAL(17,5) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT now(),
     PRIMARY KEY (`id`),
@@ -182,6 +181,7 @@ def exchange_commercial_coin():
     `name` VARCHAR(150) NOT NULL,
     `key` VARCHAR(150) NOT NULL,
     `prefix` VARCHAR(10) NULL,
+    `symbol` VARCHAR(10) NULL,
     `url` VARCHAR(200) NULL,
     `value` DECIMAL(17,5) NOT NULL,
     `created_at` DATETIME NOT NULL DEFAULT now(),
@@ -192,24 +192,6 @@ def exchange_commercial_coin():
     INDEX `idx_exchange_commercial_coin_key` (`key` ASC),
     INDEX `idx_exchange_commercial_coin_url` (`url` ASC),
     INDEX `idx_exchange_commercial_coin_prefix` (`prefix` ASC))"""
-    op.execute(sql)
-
-def exchange_commercial_coin_history():
-    """Histórico das moedas comerciais"""
-    sql = """
-    CREATE TABLE IF NOT EXISTS `exchange_commercial_coin_history` (
-    `id` INT NOT NULL AUTO_INCREMENT,
-    `exchange_commercial_coin_id` INT NOT NULL,
-    `value` DECIMAL(17,5) NOT NULL,
-    `created_at` DATETIME NOT NULL DEFAULT now(),
-
-    PRIMARY KEY (`id`),
-    INDEX `idx_exchange_commercial_coin_history_created_at_status` (`created_at` ASC),
-    INDEX `idx_exchange_commercial_coin_history_prefix` (`exchange_commercial_coin_id` ASC),
-    UNIQUE KEY `uq_exchange_commercial_coin_id_value` (`exchange_commercial_coin_id`,`value`),
-    CONSTRAINT `fk_exchange_commercial_coin_history_exchange_commercial_coin_id`
-        FOREIGN KEY (`exchange_commercial_coin_id`)
-        REFERENCES `exchange_commercial_coin` (`id`))"""
     op.execute(sql)
 
 def exchange_proposal():

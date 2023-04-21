@@ -131,7 +131,7 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
     if not allowed_company:
         #  melhorar quando nao tiver
         # return jsonify({"status": "ERROR", "msg": "Moeda indisponivel no momento."})
-        return redirect("/remessa-internacional", code=302)     
+        return redirect("/", code=302)     
         
     if step != 'initial':
         path_to_template = f'portal/negotiation-international-shipment/forms/{person_type}/{transaction}/step-{step}.html'

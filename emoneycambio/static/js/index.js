@@ -160,7 +160,7 @@ function updateBulletCoin(){
         for (const iterator of obj) {
             if ($(`#${iterator.key}`)){
                 let valor = formataDinheiro(iterator.value)
-                $(`#${iterator.key}`).text(`${iterator.prefix} ${valor}`)
+                $(`#${iterator.key}`).text(`${iterator.symbol} ${valor}`)
             }
         }
     })

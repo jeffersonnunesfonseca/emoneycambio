@@ -65,19 +65,11 @@ class ExchangeCommercialCoinModel(db.Model):
     name = sa.Column(sa.String(length=150), nullable=False)   
     url = sa.Column(sa.String(length=200), nullable=False)    
     key = sa.Column(sa.String(length=150), nullable=False)    
-    prefix = sa.Column(sa.String(length=10), nullable=False)    
+    prefix = sa.Column(sa.String(length=10), nullable=False)
+    symbol = sa.Column(sa.String(length=10), nullable=False)    
     value = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
     created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
     updated_at = sa.Column('updated_at', sa.DateTime())
-
-class ExchangeCommercialCoinHistoryModel(db.Model):
-     
-    __tablename__ = 'exchange_commercial_coin_history'
-    
-    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
-    exchange_commercial_coin_id = sa.Column(sa.Integer(), nullable=False)   
-    value = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
-    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
 
 class CompanyBranchExchangeCoinModel(db.Model):
     
@@ -116,7 +108,8 @@ class CompanyBranchExchangeCoinHistoryModel(db.Model):
     sell_tourism_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
     dispatch_international_shipment_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
     receipt_international_shipment_exchange_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
-    iof_tourism_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    iof_buy_tourism_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
+    iof_sell_tourism_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
     iof_international_shipment_fee = sa.Column(sa.DECIMAL(asdecimal=False, precision=17, scale=5))
     created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
 
