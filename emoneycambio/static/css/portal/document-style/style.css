@@ -19,11 +19,12 @@ h1 {
     letter-spacing: 0.2px;
 }
 
-.inside-content>p>ul {
-    list-style: initial;
+.inside-ul {
+    list-style: disc !important;
 }
-.inside-content>p>ul>li {
+.inside-ul>li {
     margin-left: 50px;
+    margin-top: 10px;
 }
 
 @media only screen and (max-width: 600px) {
@@ -31,5 +32,8 @@ h1 {
     .main-content {
         width: 100%;
         padding: 30px;
+    }
+    .inside-ul>li {
+        margin-left: 25px;
     }
 }
