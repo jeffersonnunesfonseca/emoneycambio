@@ -57,17 +57,17 @@ $(document).ready(function() {
                 <div>
                     <span class="subtitle-font-style">Institucional</span>
                     <ul>
-                        <li><a href="#">Quem Somos</a></li>
-                        <li><a href="#">Termos de uso</a></li>
-                        <li><a href="#">Políticas de privacidade</a></li>
+                        <li><a rel="noreferrer nofollow" href="/quem-somos/">Quem Somos</a></li>
+                        <li><a rel="noreferrer nofollow" href="/termos-de-uso/">Termos de uso</a></li>
+                        <li><a rel="noreferrer nofollow" href="/politicas-de-privacidade/">Políticas de privacidade</a></li>
                     </ul>
                 </div>
                 <div>
                     <span class="subtitle-font-style">Serviços</span>
                     <ul>
-                        <li><a href="#">Remessas</a></li>
-                        <li><a href="#">Papel/Moeda</a></li>
-                        <li><a href="#">Anuncie Conosco</a></li>
+                        <li><a rel="noreferrer nofollow" href="/remessa-internacional/">Remessas</a></li>
+                        <li><a href="/">Papel/Moeda</a></li>
+                       <!-- <li><a href="#">Anuncie Conosco</a></li> -->
                     </ul>
                 </div>
                 <div>
@@ -147,7 +147,7 @@ const toogleMenuHeader = (event) => {
     let menu = document.getElementById("menu-header").style.height
     if (!menu || menu=="0px"){
         document.getElementById("menu-header").style.display = "flex"
-        document.getElementById("menu-header").style.height = "20%"
+        document.getElementById("menu-header").style.height = "auto"
     }
     else{
        document.getElementById("menu-header").style.height = "0"

@@ -180,3 +180,16 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
         return render_template(path_to_template, step=step, data=data, allowed_company=allowed_company)    
     
     return render_template(path_to_template_base, step=step, data=data, allowed_company=allowed_company)
+
+
+@app.route('/quem-somos/', methods = ['GET'])
+def about_us():    
+    return render_template('portal/about-us/index.html')
+
+@app.route('/termos-de-uso/', methods = ['GET'])
+def use_terms():    
+    return render_template('portal/terms-use/index.html')
+
+@app.route('/politicas-de-privacidade/', methods = ['GET'])
+def privacy_policies():    
+    return render_template('portal/privacy-policy/index.html')
