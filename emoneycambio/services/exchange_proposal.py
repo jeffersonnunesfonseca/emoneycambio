@@ -45,7 +45,7 @@ class ExchangeProposal:
         proposal.vet = int(data['vet']) / 100
         
         proposal.coin_name = data['coin_name']
-        proposal.document = str(utils.only_numbers(data.get('document')))
+        proposal.document = str(utils.only_numbers(data.get('document'))).zfill(11)
         proposal.name = data['name']
         proposal.responsible_name = data.get('responsible_name')
         proposal.email = data['email']

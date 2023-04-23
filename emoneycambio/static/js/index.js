@@ -36,7 +36,8 @@ $(document).ready(function() {
     $('#phone').mask('(00) 00000-0000');
       
     $(".filter-select").select2({
-        matcher: matchStart
+        // matcher: matchStart
+        minimumResultsForSearch: -1 //desabilita o buscador
     });
 
     updateBulletCoin()
@@ -135,10 +136,6 @@ function nextStepForm(e) {
     
     let newUrl = `${currentUrlPath}?step=${data['nextstep']}`
 
-    console.log('newUrl', newUrl)
-    console.log('data', data)
-    console.log('step', step)
-    console.log('form', form)
     response = ajaxReplaceHtmlToResponse(newUrl,'POST', data, step, form)
     window.history.pushState({},"", newUrl);
 }

@@ -75,6 +75,14 @@ function forceValidation(names) {
                     }
                 }
             }
+            else if (element.name == "email") {
+                if (!validaEmail(element.value)){
+                    console.log("invalido EMAIL", element.value)
+                    element.classList.add('check-value')
+                    return "stop"
+                }
+                
+            }
             break
         }
     }
@@ -163,6 +171,14 @@ function validaCNPJ(CNPJ) {
     return true;
 }
 
+function validaEmail(email) {
+    var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+    if (reg.test(email)){
+        return true; 
+    }
+    return false;
+    
+}
 
 function phoneMask(event) {
     $("#phone").mask('(00) 00000-0000');
