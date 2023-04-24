@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-02VLCGZHSX"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-02VLCGZHSX');
+        </script>
         <link href='https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,800' rel='stylesheet'>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/flowbite.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/base.css') }}">
@@ -10,6 +19,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" width=60 />
         <title>E-Money Câmbio</title>
+        
     </head>
     <body id="body">
         <header>
