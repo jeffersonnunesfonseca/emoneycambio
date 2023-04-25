@@ -21,9 +21,9 @@ WORKDIR /emoneycambio
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-VOLUME /run/secrets/env_vars
+# VOLUME /run/secrets/env_vars
 
-# COPY ./docker-entrypoint.sh /
+COPY ./docker-entrypoint.sh /
 # RUN chmod +x /docker-entrypoint.sh
 # ENTRYPOINT ["/docker-entrypoint.sh"]
 

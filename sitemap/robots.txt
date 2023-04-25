@@ -1,0 +1,6 @@
+Sitemap: https://www.emoneycambio.com.br/sitemap.xml
+
+User-agent: *
+Allow: *
+
+

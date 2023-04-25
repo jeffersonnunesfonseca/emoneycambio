@@ -51,7 +51,7 @@ $(document).ready(function() {
     footerElement.innerHTML = `<div>
                     <a href="/">
         
-                        <img src="/static/images/logo.png" alt="facebook" width="120" />
+                        <img src="/static/images/logo.png" alt="facebook" width="120"  height="120"/>
                     </a>
                 </div>
         
@@ -74,14 +74,14 @@ $(document).ready(function() {
                 <div>
                     <span class="subtitle-font-style">Social</span>
                     <ul>
-                        <li>
+                        <li style="width:48px;height: 48px" >
                             <a target="_blank" rel="noreferrer nofollow" href="https://www.linkedin.com/company/cwbank-brasil/">
-                                <img src="/static/icons/logotipo-do-linkedin.png" alt="facebook" width="24" />
+                                <img src="/static/icons/logotipo-do-linkedin.png" alt="linkedin" width="24" height="24" />
                             </a>
                         </li>
-                        <li>
+                        <li style="width:48px;height: 48px">
                             <a target="_blank" rel="noreferrer nofollow" href="https://www.instagram.com/emoney.cambio/">                            
-                                <img src="/static/icons/logotipo-do-instagram.png" alt="instagram" width="24" />
+                                <img src="/static/icons/logotipo-do-instagram.png" alt="instagram" width="24" height="24" />
                             </a>
                         </li>
                     </ul>

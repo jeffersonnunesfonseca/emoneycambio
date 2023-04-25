@@ -76,3 +76,8 @@ docker pull jefonseca/sum
 # rodar selenium
 `docker run -d -p 4444:4444 --shm-size="2g" --env-file .env --name selenium-server selenium/standalone-chrome:4.4.0-20220812`
 
+# quando alterar o seo/sitemap.xml rodar o comando
+`scp  -i ~/.ssh/id_rsa sitemap.xml root@$IP_SERVER:/var/www/html/sitemap.xml`
+
+# quando alterar o seo/robots rodar o comando
+`scp  -i ~/.ssh/id_rsa robots.txt root@$IP_SERVER:/var/www/html/robots.txt`
