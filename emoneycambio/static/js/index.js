@@ -49,7 +49,7 @@ $(document).ready(function() {
     const mainContent = document.getElementById("#content")
     const footerElement = document.createElement("footer")
     footerElement.innerHTML = `<div>
-                    <a href="/">
+                    <a class="logo-footer-negotiation-tourism-link" href="/">
         
                         <img src="/static/images/logo.png" alt="facebook" width="120"  height="120"/>
                     </a>
@@ -58,9 +58,9 @@ $(document).ready(function() {
                 <div>
                     <span class="subtitle-font-style">Institucional</span>
                     <ul>
-                        <li><a rel="noreferrer nofollow" href="/quem-somos/">Quem Somos</a></li>
-                        <li><a rel="noreferrer nofollow" href="/termos-de-uso/">Termos de uso</a></li>
-                        <li><a rel="noreferrer nofollow" href="/politicas-de-privacidade/">Políticas de privacidade</a></li>
+                        <li><a class="aboutus-link" rel="noreferrer nofollow" href="/quem-somos/">Quem Somos</a></li>
+                        <li><a class="termsuse-link" rel="noreferrer nofollow" href="/termos-de-uso/">Termos de uso</a></li>
+                        <li><a class="privacypolicy-link" rel="noreferrer nofollow" href="/politicas-de-privacidade/">Políticas de privacidade</a></li>
                     </ul>
                 </div>
                 <div>
@@ -75,12 +75,12 @@ $(document).ready(function() {
                     <span class="subtitle-font-style">Social</span>
                     <ul>
                         <li style="width:48px;height: 48px" >
-                            <a target="_blank" rel="noreferrer nofollow" href="https://www.linkedin.com/company/cwbank-brasil/">
+                            <a class="linkedin-link" target="_blank" rel="noreferrer nofollow" href="https://www.linkedin.com/company/cwbank-brasil/">
                                 <img src="/static/icons/logotipo-do-linkedin.png" alt="linkedin" width="24" height="24" />
                             </a>
                         </li>
                         <li style="width:48px;height: 48px">
-                            <a target="_blank" rel="noreferrer nofollow" href="https://www.instagram.com/emoney.cambio/">                            
+                            <a class="instagram-link" target="_blank" rel="noreferrer nofollow" href="https://www.instagram.com/emoney.cambio/">                            
                                 <img src="/static/icons/logotipo-do-instagram.png" alt="instagram" width="24" height="24" />
                             </a>
                         </li>

@@ -10,6 +10,13 @@
 
         gtag('config', 'G-02VLCGZHSX');
         </script>
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5KDF47Z');</script>
+    <!-- End Google Tag Manager -->
         <link href='https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,800' rel='stylesheet'>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/flowbite.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/base.css') }}">
@@ -30,10 +37,14 @@
         
     </head>
     <body id="body">
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KDF47Z"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
         <header>
             <div class="logo">
                 <div>
-                    <a href="/">
+                    <a class="logo-header-negotiation-tourism-link" href="/">
                         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Emoney câmbio" width="100" height="100"/>
                     </a>
                 </div>
@@ -43,8 +54,8 @@
             </div>
 
             <ul class="menu" id="menu-header">
-                <li><a href="/">Cotação Turismo</a></li>
-                <li><a href="/remessa-internacional">Remessa Internacional</a>  </li>
+                <li><a class="negotiation-tourism-link" href="/">Cotação Turismo</a></li>
+                <li><a class="negotiation-international-shipment-link" href="/remessa-internacional">Remessa Internacional</a>  </li>
                 <!-- <li><a rel="noreferrer nofollow" href="/quem-somos/">Quem Somos</a></li>
                 <li><a rel="noreferrer nofollow" href="/termos-de-uso/">Termos de uso</a></li>
                 <li><a rel="noreferrer nofollow" href="/politicas-de-privacidade/">Políticas de privacidade</a></li> -->

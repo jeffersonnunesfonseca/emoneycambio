@@ -81,3 +81,29 @@ docker pull jefonseca/sum
 
 # quando alterar o seo/robots rodar o comando
 `scp  -i ~/.ssh/id_rsa robots.txt root@$IP_SERVER:/var/www/html/robots.txt`
+
+
+# classes de botoes para gtm
+btn-search-home
+btn-buy-search-result
+btn-sell-search-result
+btn-negotiation-tourism-step-1
+btn-negotiation-tourism-step-2
+negotiation-international-shipment-main
+negotiation-international-shipment-pf-send-step1
+negotiation-international-shipment-pf-send-step2
+negotiation-international-shipment-pf-receive-step1
+negotiation-international-shipment-pf-receive-step2
+negotiation-international-shipment-pj-send-step1
+negotiation-international-shipment-pj-send-step2
+negotiation-international-shipment-pj-receive-step1
+negotiation-international-shipment-pj-receive-step2
+linkedin-link
+instagram-link
+aboutus-link
+privacypolicy-link
+termsuse-link
+negotiation-international-shipment-link
+negotiation-tourism-link
+logo-header-negotiation-tourism-link
+logo-footer-negotiation-tourism-link
