@@ -84,6 +84,7 @@ docker pull jefonseca/sum
 
 
 # classes de botoes para gtm
+```
 btn-search-home
 btn-buy-search-result
 btn-sell-search-result
@@ -107,3 +108,4 @@ negotiation-international-shipment-link
 negotiation-tourism-link
 logo-header-negotiation-tourism-link
 logo-footer-negotiation-tourism-link
+```

@@ -1,6 +1,6 @@
 import logging
 import sys
-from emoneycambio.app import app
+from emoneycambio.app import app, config
 
 console = logging.StreamHandler(stream=sys.stdout)
 logging.basicConfig(format='[%(asctime)s] %(name)s %(levelname)s: %(message)s', level=logging.DEBUG, handlers=[console])
@@ -108,6 +108,81 @@ def test_create_company_branch():
         res = action.create_company_branch(**data)
         print(res)
 
+def test_send_mail_client():
+    with app.app_context():    
+        from emoneycambio.services.mail import SendGrid
+        
+        to_emails = (
+         "jeffersonnunesfonseca@gmail.com"         
+        )
+        
+        template =  {
+            "id": config.SENDGRID_TEMPLATE_PROPOSAL_CLIENT_ID,
+            "name": "Exemplo template cliente"
+        }
+            
+            # {
+            #     "id": config.SENDGRID_TEMPLATE_PROPOSAL_COMPANY_ID,
+            #     "name": "Exemplo template empresa"
+            # }
+        
+        params = {
+            "client_name": "José Teste",
+            "company_name": "Frente Corretora"
+        }
+        # for email in to_emails:
+        action = SendGrid()                    
+        action.template_id = template["id"]
+        action.params = params
+        action.subject = template["name"]
+        action.to_emails = to_emails
+        action.send_mail_dynamic_templates()
+        
+def test_send_mail_company():
+    with app.app_context():    
+        from emoneycambio.services.mail import SendGrid
+        
+        to_emails = (
+         "jeffersonnunesfonseca@gmail.com"         
+        )
+        
+        template =  {
+            "id": config.SENDGRID_TEMPLATE_PROPOSAL_COMPANY_ID,
+            "name": "Exemplo template empresa"
+        }
+            
+            # {
+            #     "id": config.SENDGRID_TEMPLATE_PROPOSAL_COMPANY_ID,
+            #     "name": "Exemplo template empresa"
+            # }
+        
+        params = {
+            "company_name": "Daycambio",
+            "client_type": "PF",
+            "transaction_type": "COMPRA",
+            "coin": "dolar-americano",
+            "document": "xxxxxxxxxxx",
+            "client_name": "Jose Teste",
+            "responsible_name": "",
+            "email": "joseteste@teste.com.br",
+            "phone": "5541999999999s",
+            "is_whatsapp": "Sim",
+            "is_delivert": "Não",
+            "exchange_type": "Turismo",
+            "total_value":"R$ 500.00",
+            "vet": "R$ 5.33",
+            "fantasy_name": "Frente Corretora",
+            "ip": "164.163.44.136",
+            "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
+        }
+        # for email in to_emails:
+        action = SendGrid()                    
+        action.template_id = template["id"]
+        action.params = params
+        action.subject = template["name"]
+        action.to_emails = to_emails
+        action.send_mail_dynamic_templates()
+
 if __name__ == '__main__':
     # test_get_companies_by_coin_and_location()    
     # test_get_company_to_negotiation()
@@ -116,4 +191,6 @@ if __name__ == '__main__':
     # test_get_updated_coins()
     # test_get_global_iof()
     # test_create_company_branch_exchange_coin()
-    test_create_company_branch()
+    # test_create_company_branch()
+    # test_send_mail_client()
+    test_send_mail_company()

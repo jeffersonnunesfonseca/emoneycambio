@@ -18,3 +18,4 @@ selenium
 # python-socketio==4.6.0
 # flask-socketio
 # geoalchemy2
+sendgrid
