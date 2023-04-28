@@ -43,7 +43,7 @@
         <div class="input-step">
             <div class="info-fee text-font-style">
                 VET: 
-                <b>R$ <span id="fee_value_tmp">{{allowed_company.company.coin.dispatch_international_shipment_vet}}</span></b>
+                R$ <span id="fee_value_tmp">{{allowed_company.company.coin.dispatch_international_shipment_vet}}</span>
                 <input type="hidden" name="fee_value" id="fee_value" value="{{allowed_company.company.coin.dispatch_international_shipment_vet}}">
                 <img src="{{ url_for('static', filename='icons/info.png') }}" alt="Moeda" width="24" height="24"/>
                 <span class="tooltiptext">Valores podem estar desatualizados</span>
@@ -51,10 +51,10 @@
         </div>
         <div class="input-step">
             <span class="msg-calc-enviar text-font-style">
-                Você irá pagar: <b>R$ <span id="dynamic-total-value-enviar">0.00</span></b>
+                Você irá pagar: R$ <span id="dynamic-total-value-enviar">0.00</span>
             </span>    
             <span class="msg-calc-receber text-font-style" style="display: none;">
-                Você irá receber: <b>R$ <span id="dynamic-total-value-receber">0.00</span></b>
+                Você irá receber: R$ <span id="dynamic-total-value-receber">0.00</span>
             </span>    
         </div>
 
