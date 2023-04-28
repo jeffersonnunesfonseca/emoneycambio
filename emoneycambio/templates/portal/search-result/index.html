@@ -8,7 +8,7 @@
         <div class="card-result third-bg-color">
             <div class="company-data">
                 <span class="text-font-style">{{result['name']}}</span>
-                <img src="{{ url_for('static', filename=result['logo']) }}" width="70" />
+                <img src="{{ url_for('static', filename=result['logo']) }}" alt="E-Money Câmbio" width="70" height="70" />
             </div>
             <!-- <div class="company-contacts">
                 {% if result.principal_phone.is_whatsapp %}
@@ -30,13 +30,13 @@
 
                 
                 <div  class="company-buttons">
-                    <img src="{{ url_for('static', filename='icons/buy.png') }}" width="24" />
+                    <img src="{{ url_for('static', filename='icons/buy.png') }}" alt="Compra de moeda" width="24" height="24"/>
                     <span style="display: flex; flex-direction: row; align-items: center; justify-content: center; padding: 10px;" class="text-font-style"><span>R$</span>&nbsp<b>{{result['coin']['buy_tourism_vet']}}</b></span>
                     <input class="button buy-button btn-buy-search-result" type="button" value="Comprar" onclick="goToNegotiation(event,'comprar', {{result['company_branch_id']}}, 'papel-moeda')">
                 </div>
                 {% if result.coin.sell_tourism_vet %}
                 <div  class="company-buttons">
-                    <img src="{{ url_for('static', filename='icons/sell.png') }}" width="24" />
+                    <img src="{{ url_for('static', filename='icons/sell.png') }}" alt="Venda de moeda" width="24" height="24"/>
                     <span style="display: flex; flex-direction: row; align-items: center; justify-content: center;padding: 10px;" class="text-font-style"><span>R$</span>&nbsp<b>{{result['coin']['sell_tourism_vet']}}</b></span>
                     <input class="button sell-button btn-sell-search-result" type="button" value="Vender" onclick="goToNegotiation(event, 'vender', {{result['company_branch_id']}}, 'papel-moeda')">
                 </div>
