@@ -1,4 +1,4 @@
-from flask import Flask, redirect, request
+from flask import Flask, redirect, request, render_template
 # from flask_socketio import SocketIO, emit, send
 
 from emoneycambio import config
@@ -72,7 +72,7 @@ def page_not_found(e):
     if "remessa" in request.url:
         return redirect("/remessa-internacional", code=302)  
                 
-    return redirect("/", code=302)
+    return render_template('portal/error.html'), 404
 
         
     # return app

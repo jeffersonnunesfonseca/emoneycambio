@@ -6,8 +6,9 @@ app = Blueprint('home', __name__)
 @app.route('/', methods = ['GET'])
 def index():
     data = {}
+    from emoneycambio.config import PROJECT_VERSION
     
-    return render_template('portal/home/index.html', data=data)
+    return render_template('portal/home/index.html', data=data, version=PROJECT_VERSION)
 
 @app.route('/cotacao/<coin>/<location>', methods = ['GET'])
 def filtered_companies(coin: str=None, location: str=None):

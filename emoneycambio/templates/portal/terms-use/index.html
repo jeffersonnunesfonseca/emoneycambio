@@ -1,6 +1,6 @@
 {% extends "portal/base.html" %}
-{% block head %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/document-style/style.css') }}">
+{% block head %}    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/document-style/style.css') }}?{{version}}">
     <title>Termos de uso</title>
 {% endblock %}
 {% block content %}

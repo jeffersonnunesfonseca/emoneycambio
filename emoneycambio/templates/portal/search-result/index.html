@@ -1,7 +1,6 @@
 {% extends "portal/base.html" %}
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/portal/search-result/style.css') }}">
-{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/portal/search-result/style.css') }}?{{version}}">{% endblock %}
 {% block content %}
 <div class="results">
     <span class="title title-font-style">Negociar <b>{{data['filters']['coin']['name']}}</b> em <b>{{data['filters']['city']['name']}}</b></span>
