@@ -28,7 +28,10 @@
         <span class="text-font-style">Taxa total: 
             <span class="total-fee">
                 {% set fee_value = data.company.coin.buy_tourism_vet %}
+                {% set text_transaction_type = 'pagar' %}
+
                 {% if data.filters.modality.lower() == 'vender' %}
+                    {% set text_transaction_type = 'receber' %}
                     {% set fee_value = data.company.coin.sell_tourism_vet %}
                 {% endif %}
                 <input type="hidden" name="fee" id="fee_value" value="{{fee_value}}">
@@ -36,7 +39,8 @@
             </span>
         </span>
 
-        <span class="text-font-style">Total à pagar: <span class="total-value subtitle-font-style">R$ <span id="dynamic-total-value">0</span></span> </span>
+
+        <span class="text-font-style">Total à {{text_transaction_type}}: <span class="total-value subtitle-font-style">R$ <span id="dynamic-total-value">0</span></span> </span>
     </div>
 
     <br>

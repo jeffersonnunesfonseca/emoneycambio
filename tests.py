@@ -77,7 +77,6 @@ def test_create_company_branch_exchange_coin():
         action = CompanyBranchExchangeCoin()        
         res = action.create_company_branch_exchange_coin(**data)
         print(res)
-        
 
 def test_get_global_iof():
     with app.app_context():    
@@ -136,14 +135,15 @@ def test_send_mail_client():
         action.params = params
         action.subject = template["name"]
         action.to_emails = to_emails
-        action.send_mail_dynamic_templates()
+        code = action.send_mail_dynamic_templates()
+        print(code)
         
 def test_send_mail_company():
     with app.app_context():    
         from emoneycambio.services.mail import SendGrid
         
         to_emails = (
-         "jeffersonnunesfonseca@gmail.com"         
+         "jeffersonnunesfonseaaasasc@gmail.com"         
         )
         
         template =  {
@@ -181,7 +181,38 @@ def test_send_mail_company():
         action.params = params
         action.subject = template["name"]
         action.to_emails = to_emails
-        action.send_mail_dynamic_templates()
+        code = action.send_mail_dynamic_templates()
+        print(code)
+
+def test_create_lead_distribution_event():
+    with app.app_context():    
+        from emoneycambio.services.lead_distribution_event import LeadDistributionEvent
+        
+        data = {
+            "company_branch_id": 4,
+            "origin_company_branch_id": 3,
+            "channel": "EMAIL",
+            "product_type": "EXCHANGE_PROPOSAL",
+            "relationship_id": None
+        }
+        
+        action = LeadDistributionEvent()        
+        res = action.create_lead_distribution_event(**data)
+
+def test_get_all_leads_distribution_to():
+    with app.app_context():    
+        from emoneycambio.services.configuration import Configuration
+        action = Configuration()        
+        res = action.get_all_leads_distribution_to()
+        print(res)
+
+def test_get_principal_email_contact_by_company_url(url):
+    with app.app_context():    
+        from emoneycambio.services.company_branch_contact import CompanyBranchContact
+        action = CompanyBranchContact()        
+        result = action.get_principal_email_contact_by_company_url(url)
+        print(result)
+    
 
 if __name__ == '__main__':
     # test_get_companies_by_coin_and_location()    
@@ -194,3 +225,6 @@ if __name__ == '__main__':
     # test_create_company_branch()
     # test_send_mail_client()
     test_send_mail_company()
+    # test_create_lead_distribution_event()
+    # test_get_all_leads_distribution_to()
+    # test_get_principal_email_contact_by_company_url('daycambio')

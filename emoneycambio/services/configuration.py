@@ -6,10 +6,13 @@ class Configuration:
         pass
     
     def get_global_iof_by_key(self, key):
-        # fees = ConfigurationModel.query.filter(ConfigurationModel.key.in_(["iof_buy_tourism_fee", "iof_sell_tourism_fee", 
-        #                                                              "iof_international_shipment_fee"])) \
-        #                                                                  .first()
-
         fee = ConfigurationModel.query.filter_by(key=key).first()
         
         return fee
+    
+    def get_all_leads_distribution_to(self):
+        """ Caso exista, retorna o adapter de qual company deve ir todos os leads, caso nao exista deve ser enviado para a company originaria """
+        config = ConfigurationModel.query.filter_by(key='all_lead_distribution_to').first()
+        if config:
+            return config.value
+        return None

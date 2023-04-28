@@ -96,7 +96,7 @@ def get_coins_get_money_corretora():
                     "name": current_company_branch.name,
                     "site": site,
                     "full_address": None,
-                    "complement": turismo_coin['descricaoPraca'] if turismo_coin['descricaoPraca'] else None,
+                    "complement": None,
                     "uf": location['uf'],
                     "city": location['city'],
                     "cep": None,

@@ -280,7 +280,6 @@ class Company:
         filters_schema = self.filters_schema()
 
         # pega as chaves que foram retorandas da querie e split pelo .
-        # import ipdb; ipdb.set_trace()
         for key in row._mapping.keys():
             keys_split = str(key).split(".")
 

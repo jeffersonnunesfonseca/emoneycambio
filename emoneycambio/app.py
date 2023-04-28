@@ -73,24 +73,4 @@ def page_not_found(e):
         return redirect("/remessa-internacional", code=302)  
                 
     return render_template('portal/error.html'), 404
-
-        
-    # return app
-
-# def socket_io():
-#     app = create_app()
-#     io = io(app)
-#     # import ipdb; ipdb.set_trace()
-#     LOGGER.info("socket_io")
-
-#     # @app.route("/")
-#     # def home():
-#     #     print("a")
-#     # messages = []
-    
-#     @io.on('my_event')
-#     def handle_my_custom_event(data):
-#         # emit('my response', data, broadcast=True)
-#         print("a")
-            
-#     return io
+       

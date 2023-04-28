@@ -61,7 +61,7 @@ class CompanyBranch:
             company_branch.updated_at = datetime.utcnow()
         
         company_branch.company_id = data["company_id"]
-        company_branch.principal = data.get("principal") or 0
+        company_branch.principal = data.get("principal") or company_branch.principal
         company_branch.name = str(data['name']).capitalize()
         company_branch.status = 'ENABLED'
         company_branch.site = data.get("site") or None

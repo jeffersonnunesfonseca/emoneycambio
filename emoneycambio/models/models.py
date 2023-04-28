@@ -31,6 +31,17 @@ class ContactType(enum.Enum):
     WHATSAPP = 'WHATSAPP'
     EMAIL = 'EMAIL'
 
+class ChannelType(enum.Enum):
+    
+    PARTNER_REGISTER = 'PARTNER_REGISTER'
+    WHATSAPP = 'WHATSAPP'
+    SMS = 'SMS'
+    EMAIL = 'EMAIL'
+
+class ProductType(enum.Enum):
+    
+    EXCHANGE_PROPOSAL = 'EXCHANGE_PROPOSAL'
+    LOAN_PROPOSAl = 'LOAN_PROPOSAl'
 
 class ExchangeProposalModel(db.Model):
     __tablename__ = 'exchange_proposal'
@@ -153,5 +164,18 @@ class CompanyBranchContactModel(db.Model):
     principal = sa.Column(sa.SmallInteger(), nullable=False)     
     value = sa.Column(sa.String(length=200), nullable=False) 
     status = sa.Column(sa.Enum(*[e.value for e in Status]), nullable=False)    
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+    updated_at = sa.Column('updated_at', sa.DateTime())
+
+class LeadDistributionEventModel(db.Model):
+    
+    __tablename__ = 'lead_distribution_event'
+
+    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
+    company_branch_id = sa.Column(sa.Integer(), nullable=False)
+    origin_company_branch_id = sa.Column(sa.Integer(), nullable=False)
+    channel = sa.Column(sa.Enum(*[e.value for e in ChannelType]), nullable=False)    
+    product_type = sa.Column(sa.Enum(*[e.value for e in ProductType]), nullable=False)    
+    relationship_id = sa.Column(sa.Integer())
     created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
     updated_at = sa.Column('updated_at', sa.DateTime())

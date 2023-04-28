@@ -69,6 +69,8 @@ def negotiation_company(modality:str=None, coin: str=None, location: str=None, t
 
         data_proposal = {            
             'company_branch_id': companybranchid,
+            'company_name': data['company']['name'],
+            'company_url': data['company']['url'],
             'person_type': str(json['pfpj']).upper(),
             'transaction_type': 'BUY' if modality == 'comprar' else 'SELL',
             'exchange_type': 'TOURISM',
@@ -148,9 +150,10 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
         {'finish': 'true', 'nextstep': '3', 'pfpj': 'pj', 'cpfcnpj': '21.211.212/2-12', 'nome_razao_social': 'Jefferson Nunes', 'nome_responsavel': 'Jefferson Nunes', 
         'email': 'jeffersonnunesfonseca@gmail.com', 'ddi': '55', 'phone': '+5541997439582', 'is_whatsapp': 'on'}
         """
-
         data_proposal = {            
             'company_branch_id': json['companyid'],
+            'company_name': allowed_company['company']['name'],    
+            'company_url': allowed_company['company']['url'],        
             'person_type': str(json['pfpj']).upper(),
             'transaction_type': 'RECEIVE' if transaction == 'receber' else 'SEND',
             'exchange_type': 'INTERNATIONAL_SHIPMENT',
@@ -173,7 +176,6 @@ def remessa_internacional(coin=None, person_type=None, transaction=None, value=N
         proposal.create_exchange_proposal(**data_proposal)
     
     if request_xhr_key and request_xhr_key == 'XMLHttpRequest':
-        # import ipdb; ipdb.set_trace()
         if args.get('update_select'):
             # return allowed_company
             return render_template(path_to_template_base, step=step, data=data, allowed_company=allowed_company)    

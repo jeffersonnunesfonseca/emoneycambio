@@ -249,7 +249,13 @@ function nextStepForm(e) {
     }
     
     let newUrl = `${currentUrlPath}?step=${data['nextstep']}`
+    if ($('input[name="finish"]').val() && $('input[name="finish"]').val() == 'true') {
+        console.log( $('input[name="finish"]').val())  
+        console.log(e.currentTarget)      
+        e.currentTarget.value = 'Enviando ...'
+        e.currentTarget.disabled= true
 
+    }
     response = ajaxReplaceHtmlToResponse(newUrl,'POST', data, step, form)
     window.history.pushState({},"", newUrl);
 }

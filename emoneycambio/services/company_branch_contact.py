@@ -59,17 +59,51 @@ class CompanyBranchContact:
         sql = f"select * from company_branch_contact where company_branch_id = {company_branch_id} and status = 'ENABLED' and principal=1"
         return self.db_session.execute(text(sql)).fetchone()
     
-    def get_principal_contact_by_company_id(self, company_id):
+    def get_principal_email_contact_by_company_url(self, company_url):
+        """ retorna principal contato de uma company, caso nao tenha um company_branch principal retorna a primeira que tiver contato"""
+        
         sql = f"""
-        select cbc.* from company c 
+        select cb.principal as company_branch_principal,cb.name as company_branch_name, cbc.* from company c
         inner join company_branch cb on cb.company_id = c.id
         inner join company_branch_contact cbc on cbc.company_branch_id = cb.id
         where 1=1
-        and c.status = 'ENABLED'
-        and cb.status = 'ENABLED'
-        and cbc.status = 'ENABLED'
-        and cbc.company_branch_id = 1
-        and cbc.principal =1
-        and c.id = {company_id}
+            and c.status = 'ENABLED'
+            and cb.status = 'ENABLED'
+            and cbc.status = 'ENABLED'
+            and cbc.type = 'EMAIL'
+            and c.url = '{company_url}'
+            
+            order by company_branch_id desc;
         """
-        return self.db_session.execute(text(sql)).fetchone()
+        results = self.db_session.execute(text(sql)).fetchall()
+        if not results:
+            LOGGER.error(f"company nao possui contato {company_url}")
+            return
+        
+        company_branch_id = results[0].company_branch_id
+        for result in results:
+            if result.company_branch_principal == 1:
+                company_branch_id = result.company_branch_id
+                break
+        
+        contacts = []
+        for result in results:
+            if result.company_branch_id == company_branch_id:
+                contacts.append(result)
+        
+        contact = contacts[0].value
+        company_branch_name = contacts[0].company_branch_name
+        for c in contacts:
+            if c.principal == 1:
+                contact = c.value
+                break
+        
+        data_return = {
+            "contact": contact,
+            "company_branch_id": company_branch_id,
+            "company_branch_name": company_branch_name
+        }
+        return data_return
+
+        
+    

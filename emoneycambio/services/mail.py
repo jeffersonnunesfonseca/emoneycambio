@@ -29,8 +29,6 @@ class SendGrid:
             if self.params:
                 default_params.update(self.params)
                 
-            # import ipdb; ipdb.set_trace()
-                
             message.dynamic_template_data = default_params
             
             if self.template_id:
@@ -39,9 +37,9 @@ class SendGrid:
             sg = sendgrid.SendGridAPIClient(api_key=self._key)
             
             response = sg.send(message)
-            
-            LOGGER.debug(response.status_code)
-            LOGGER.debug(response.headers)
+            return response.status_code            
+            # LOGGER.debug(response.status_code)
+            # LOGGER.debug(response.headers)
         except Exception as ex:
             LOGGER.exception(str(ex))
             raise ex
