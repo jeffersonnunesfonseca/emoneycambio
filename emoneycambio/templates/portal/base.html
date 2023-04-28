@@ -31,16 +31,16 @@
         {% block head %}{% endblock %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Compre moedas estrangeiras de forma online com segurança e praticidade na Emoney Câmbio. Confira nossas taxas competitivas e economize tempo e dinheiro. Acesse!">
+        <meta name="description" content="Emoney Câmbio: negocie moedas estrangeiras online com segurança e praticidade nas maiores corretoras do Brasil. Economize tempo e dinheiro conosco. ">
         <meta property="og:url" content="https://www.emoneycambio.com.br/">
         <meta property="og:type" content="article">
         <meta property="og:image" content="https://www.emoneycambio.com.br/static/images/logo.png">
-        <meta property="og:image:width" content="100">
-        <meta property="og:image:height" content="100">
-        <meta property="og:description" content="Compre moedas estrangeiras de forma online com segurança e praticidade na Emoney Câmbio. Confira nossas taxas competitivas e economize tempo e dinheiro. Acesse!">
-        <meta property="og:title" content="Cotação com corretoras e casas de Câmbio | E-Money Câmbio">
+        <!-- <meta property="og:image:width" content="100">
+        <meta property="og:image:height" content="100"> -->
+        <meta property="og:description" content="Emoney Câmbio: negocie moedas estrangeiras online com segurança e praticidade nas maiores corretoras do Brasil. Economize tempo e dinheiro conosco. ">
+        <meta property="og:title" content="Cotação de moedas online | E-Money Câmbio">
         <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" width=60  />
-        <title>Cotação com corretoras e casas de Câmbio | E-Money Câmbio</title>
+        <title>Cotação de moedas online | E-Money Câmbio</title>
         
     </head>
     <body id="body">
@@ -56,7 +56,7 @@
                     </a>
                 </div>
                 <a href="/">
-                    <h1 class="subtitle-font-style">E-Money Câmbio</h1>
+                    <span class="subtitle-font-style">E-Money Câmbio</span>
                 </a>
             </div>
 
@@ -90,8 +90,78 @@
                 </h2>                
                 
                 {% block content %}{% endblock %}
+
+                <div class="quick-links">
+        
+                    <h3 class="title-font-style">Moedas mais acessadas</h3>
+                    <ul>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/dolar-americano/sao-paulo-sp/" target="_blank">
+                                Dólar americano em São Paulo - SP
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/dolar-americano/rio-de-janeiro-rj/" target="_blank">
+                                Dólar americano em Rio de Janeiro - RJ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/dolar-americano/curitiba-pr/" target="_blank">
+                                Dólar americano em Curitiba - PR
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/dolar-canadense/sao-paulo-sp/" target="_blank">
+                                Dólar canadense em São Paulo - SP
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/dolar-canadense/rio-de-janeiro-rj/" target="_blank">
+                                Dólar canadense em Rio de Janeiro - RJ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/dolar-canadense/curitiba-pr/" target="_blank">
+                                Dólar canadense em Curitiba - PR
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/euro/sao-paulo-sp/" target="_blank">
+                                Euro em São Paulo - SP
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/euro/rio-de-janeiro-rj/" target="_blank">
+                                Euro em Rio de Janeiro - RJ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/euro/curitiba-pr/" target="_blank">
+                                Euro em Curitiba - PR
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/libra-esterlina/sao-paulo-sp/" target="_blank">
+                                Libra esterlina em São Paulo - SP
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/libra-esterlina/rio-de-janeiro-rj/" target="_blank">
+                                Libra esterlina em Rio de Janeiro - RJ
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.emoneycambio.com.br/cotacao/libra-esterlina/curitiba-pr/" target="_blank">
+                                Libra esterlina em Curitiba - PR
+                            </a>
+                        </li>
+                        
+                    </ul>
+        
+                </div>
             </div>
         </article>        
+        
         
     </body>
 </html>

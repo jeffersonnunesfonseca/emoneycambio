@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/search-result/style.css') }}?{{version}}">{% endblock %}
 {% block content %}
 <div class="results">
-    <span class="title title-font-style">Negociar <b>{{data['filters']['coin']['name']}}</b> em <b>{{data['filters']['city']['name']}}</b></span>
+    <h1 class="title title-font-style">Negociar <b>{{data['filters']['coin']['name']}}</b> em <b>{{data['filters']['city']['name']}}</b></h1>
     {% for result in data['companies'] %}
         <div class="card-result third-bg-color">
             <div class="company-data">

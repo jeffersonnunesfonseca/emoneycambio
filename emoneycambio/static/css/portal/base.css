@@ -253,6 +253,22 @@ article.content {
 .title {
   font-weight: 300;
 }
+.quick-links {
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quick-links>ul>li {
+  background-color: #CAF0F8;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin-top: 10px;
+  text-align: center;
+}
 
 @media only screen and (max-width: 600px) {
   .main { 
@@ -339,5 +355,8 @@ article.content {
     min-width: 100px;
     
   }
+
+
+  
 
 }
