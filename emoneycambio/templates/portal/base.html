@@ -22,6 +22,7 @@
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="{{ url_for('static', filename='css/flowbite.min.css') }}?{{version}}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/base.css') }}?{{version}}">        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/document-style/style.css') }}?{{version}}">
         
         
         
@@ -87,10 +88,10 @@
                         <li><span class="coin-name">EURO</span> <span class="coin-gold" id="EURBRL">0</span></li>
                         <li><span class="coin-name">LIBRA ESTERLINA</span> <span class="coin-gold" id="GBPBRL">0</span></li>
                     </ul>
-                </h2>                
+                </h2>    
+                
                 
                 {% block content %}{% endblock %}
-
                 <div class="quick-links">
         
                     <h3 class="title-font-style">Moedas mais acessadas</h3>
@@ -159,6 +160,29 @@
                     </ul>
         
                 </div>
+                <div class="main-content">
+
+                    <h2 class="title-font-style">Quem somos</h2>
+                    <div class="inside-content">
+                        <p>
+                            Bem-vindo ao nosso marketplace de câmbio, onde conectamos clientes com diversas corretoras para obter as melhores taxas de câmbio do mercado.
+                        </p>
+                        <p>
+                            Aqui, nosso objetivo é oferecer uma solução rápida e eficiente para as necessidades de câmbio de nossos clientes. Sabemos que encontrar as melhores taxas de câmbio pode ser um processo complicado e demorado, por isso, criamos uma plataforma que simplifica todo o processo.
+                        </p>
+                        <p>
+                            Nós acreditamos que transparência é fundamental para nossos clientes, por isso, todas as taxas são exibidas de forma clara e precisa. Nosso marketplace é seguro e confiável, com todas as corretoras parceiras sendo rigorosamente avaliadas antes de serem aceitas na nossa plataforma.
+                        </p>
+                        <p>
+                            Nosso objetivo é fornecer uma experiência de câmbio sem complicações, economizando tempo e dinheiro para nossos clientes. Seja para uma viagem internacional ou para uma transação financeira, estamos prontos para ajudar nossos clientes a encontrarem as melhores taxas de câmbio disponíveis.
+                        </p>
+                        <p>
+                            Experimente nosso marketplace de câmbio agora e veja como podemos ajudá-lo a economizar dinheiro e tempo em suas transações de câmbio.
+                        </p>
+                    </div>
+                </div>
+                
+
             </div>
         </article>        
         

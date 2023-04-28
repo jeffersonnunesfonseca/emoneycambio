@@ -49,7 +49,8 @@ $(document).ready(function() {
     const mainContent = document.getElementById("#content")
     const footerElement = document.createElement("footer")
     footerElement.innerHTML = `<div>
-                    <a class="logo-footer-negotiation-tourism-link" href="/">
+                    
+                <a class="logo-footer-negotiation-tourism-link" href="/">
         
                         <img src="/static/images/logo.png" alt="facebook" width="120"  height="120"/>
                     </a>
@@ -85,6 +86,7 @@ $(document).ready(function() {
                             </a>
                         </li>
                     </ul>
+                    
                 </div>`
 
     
