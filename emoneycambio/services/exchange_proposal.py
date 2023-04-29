@@ -148,7 +148,7 @@ class ExchangeProposal:
                     "is_whatsapp": "Sim" if proposal.phone_is_whatsapp == 1 else "Não",
                     "is_delivery": "Sim" if proposal.delivery == 1 else "Não",
                     "exchange_type": "Turismo" if proposal.exchange_type == 'TOURISM' else 'Remessa Internacional',
-                    "total_value":f"R$ {proposal.total_value}",
+                    "total_value":proposal.total_value,
                     "vet": f"R$ {proposal.vet}",
                     "fantasy_name": data.get('company_name'),
                     "ip": proposal.ip,
