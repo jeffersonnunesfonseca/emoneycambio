@@ -16,10 +16,12 @@ from emoneycambio.services.exchange_commercial_coin import ExchangeCommercialCoi
 
 LOGGER = logging.getLogger(__name__)
 def update_exchange_commercial_coin():
+    LOGGER.info(f"buscando moedas")
     response = requests.get('https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL,CAD-BRL,GBP-BRL')
     response.raise_for_status()
     data = response.json()
-    
+
+    LOGGER.info(f"monta payload")
     for key, value in data.items():
         name = str(value["name"]).replace("/Real Brasileiro", "")
         value_coin = value["bid"]
@@ -33,6 +35,8 @@ def update_exchange_commercial_coin():
                 "value": value_coin
             }
             exchange_commercial_coin.create_exchange_commercial_coin_by_api(**data)
+    
+    LOGGER.info(f"atualizado")
   
 def get_coins_get_money_corretora():
     LOGGER.info("buscando dados no site")

@@ -76,6 +76,9 @@ docker pull jefonseca/sum
 # rodar selenium
 `docker run -d -p 4444:4444 --shm-size="2g" --env-file .env --name selenium-server selenium/standalone-chrome:4.4.0-20220812`
 
+# nginx base conf
+`scp  -i ~/.ssh/id_rsa nginx-conf/www.emoneycambio.com.br.conf root@$IP_SERVER:/etc/nginx/conf.d/www.emoneycambio.com.br.conf`
+
 # quando alterar o seo/sitemap.xml rodar o comando
 `scp  -i ~/.ssh/id_rsa sitemap.xml root@$IP_SERVER:/var/www/html/sitemap.xml`
 
