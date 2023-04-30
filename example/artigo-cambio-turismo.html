@@ -1,40 +1,3 @@
-{% extends "portal/base.html" %}
-{% block head %}    
-<link rel="stylesheet" href="{{ url_for('static', filename='css/portal/home/style.css') }}?{{version}}">
-{% endblock %}
-{% block content %}
-<h1 class="title title-font-style">Faça seu câmbio de forma online com as melhores corretoras do Brasil!</h1>
-<form id="form-price" class="form-price shadow" action="" method="GET">
-    <h2 class="title-font-style title-form-price">Cotação Turismo</h2>
-    
-    <!-- <p class="subtitle-font-style" style="max-width: 55%; text-align: center;font-weight: 700;">
-        Encontre o melhor local para comprar ou vender sua moeda
-        
-    </p> -->    
-
-    <div class="container-filter">
-        <div class="container-coin">
-            <img src="{{ url_for('static', filename='icons/coin.png') }}" alt="Moeda" width="24" height="24"/>
-            <select name="coin" id="search-coin" class="filter-select">
-                <option value="" disabled>Moeda</option>
-                <option value="dolar-americano" attr-symbol="US$">Dólar americano</option>
-                <option value="dolar-canadense" attr-symbol="C$">Dólar canadense</option>
-                <option value="euro" attr-symbol="€" >Euro</option>
-                <option value="libra-esterlina" attr-symbol="£">Libra esterlina</option>
-            </select>
-        </div>
-
-        <div class="container-location">
-            <img src="{{ url_for('static', filename='icons/pin.png') }}" alt="Moeda" width="24" height="24"/>
-            <select name="location" id="search-location" class="filter-select">
-                <option value="sao-paulo-sp">São Paulo - SP</option>
-                <option value="rio-de-janeiro-rj">Rio de Janeiro - RJ</option>
-                <option value="curitiba-pr">Curitiba - PR</option>
-            </select>
-        </div>
-    </div>
-    <input class="button btn-search-home" type="button" value="Buscar" onclick="sendFormPrice(event)">
-</form>
 <div class="main-content">
     <h2 class="title-font-style" style="text-align: center;">Guia Completo de Câmbio Turismo: Dicas e Melhores Práticas</h2>
     <div class="inside-content">
@@ -42,10 +5,9 @@
             Bem-vindo ao nosso guia completo de câmbio turismo! Se você está planejando uma viagem internacional, entender como funciona o câmbio e suas melhores práticas é essencial para garantir que você aproveite ao máximo sua experiência no exterior. Neste artigo, forneceremos informações valiosas sobre câmbio turismo, incluindo dicas úteis e as melhores estratégias para obter as melhores taxas de câmbio.
         </p>
         <p>
-            <b>O que é câmbio turismo?</b>
-            <ul class="inside-ul">
-                <li>Câmbio turismo refere-se à compra e venda de moedas estrangeiras para uso durante viagens internacionais. Quando você viaja para outro país, precisará converter sua moeda nacional para a moeda local do destino. O câmbio turismo envolve a troca de dinheiro em espécie, cheques de viagem ou o uso de cartões pré-pagos.</li>
-            </ul>            
+            <h2><b>O que é câmbio turismo?</b></h2>
+
+            Câmbio turismo refere-se à compra e venda de moedas estrangeiras para uso durante viagens internacionais. Quando você viaja para outro país, precisará converter sua moeda nacional para a moeda local do destino. O câmbio turismo envolve a troca de dinheiro em espécie, cheques de viagem ou o uso de cartões pré-pagos.
         </p>
         <p>
             <b>Dicas para obter as melhores taxas de câmbio:</b>
@@ -67,4 +29,13 @@
         </p>
     </div>
 </div>
-{% endblock %}
+
+
+
+
+
+
+
+
+
+

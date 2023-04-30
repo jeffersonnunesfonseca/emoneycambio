@@ -1,25 +1,3 @@
-{% extends "portal/base.html" %}
-{% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/portal/negotiation-international-shipment/style.css') }}?{{version}}">
-{% endblock %}
-{% block content %}
-
-<h1 class="title title-font-style">Faça sua cotação de Remessa Internacional de forma online com melhores taxas!</h1>
-
-<h2 class="title-font-style">Remessa Internacional</h2>
-
-<div id="steps">
-
-
-{% if step == 'initial'%}
-{% set template='portal/negotiation-international-shipment/forms/index.html' %}
-{% else %}
-{% set template = data.path_to_template %}
-{% endif %}
-{% include template %}
-
-
-</div>
 <div class="main-content">
     <h2 class="title-font-style" style="text-align: center;">Remessa Internacional: Como Funciona e Dicas para Enviar Dinheiro para o Exterior</h2>
     <div class="inside-content">
@@ -59,6 +37,3 @@
         <p>A remessa internacional pode ser uma tarefa complicada, mas seguir essas dicas pode ajudá-lo a enviar</p>
     </div>
 </div>
-
-
-{% endblock %}
