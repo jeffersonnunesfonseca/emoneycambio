@@ -254,6 +254,8 @@ function nextStepForm(e) {
         console.log(e.currentTarget)      
         e.currentTarget.value = 'Enviando ...'
         e.currentTarget.disabled= true
+        console.log('enviando evento de conversao')
+        gtag('event', 'conversion', {'send_to': 'AW-11161757136/uPm8CNDMlpsYENDLq8op'}); 
 
     }
     response = ajaxReplaceHtmlToResponse(newUrl,'POST', data, step, form)
