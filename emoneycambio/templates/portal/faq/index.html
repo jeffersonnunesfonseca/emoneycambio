@@ -1,0 +1,75 @@
+{% extends "portal/base.html" %}
+{% block head %}    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/faq/style.css') }}?{{version}}">
+    <title>Perguntas Frequentes</title>
+{% endblock %}
+{% block content %}
+<div class="main-content" itemscope itemtype="https://schema.org/FAQPage">
+    <h1 class="title-font-style" style="text-align: center;">Perguntas Frequentes</h1>
+    <div class="inside-content" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">O que é câmbio?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>Câmbio é a troca de uma moeda por outra, com o objetivo de realizar uma transação internacional, seja de bens, serviços ou investimentos.</p>
+            </div>
+          </div>
+    </div>
+    <div class="inside-content" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">Quais são as principais moedas utilizadas em operações de câmbio?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>As principais moedas utilizadas em operações de câmbio são o dólar americano (USD), o euro (EUR), a libra esterlina (GBP), o iene japonês (JPY) e o franco suíço (CHF).</p>
+            </div>
+          </div>
+    </div>
+    <div class="inside-content" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">Quais são os tipos de operações de câmbio?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>Os principais tipos de operações de câmbio são: compra de moeda estrangeira, venda de moeda estrangeira, transferência internacional, remessa de dinheiro, cartão pré-pago, traveler cheque, entre outros.</p>
+            </div>
+          </div>
+    </div>
+    <div class="inside-content" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">Como é determinada a taxa de câmbio?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>A taxa de câmbio é determinada pela oferta e demanda das moedas no mercado financeiro. Quanto maior a demanda por uma moeda, mais valorizada ela fica em relação às outras moedas. Além disso, fatores macroeconômicos como inflação, taxa de juros e balança comercial também podem influenciar na taxa de câmbio.</p>
+            </div>
+          </div>
+    </div>
+    <div class="inside-content" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">Qual é o prazo de liquidação das operações de câmbio?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>O prazo de liquidação das operações de câmbio pode variar de acordo com o tipo de operação e a instituição financeira envolvida. Em geral, as operações de câmbio são liquidadas em D+1, ou seja, um dia útil após a realização da operação.</p>
+            </div>
+          </div>
+    </div>
+    <div class="inside-content" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">Qual é o limite máximo para operações de câmbio?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>O limite máximo para operações de câmbio pode variar de acordo com a legislação de cada país e com as políticas das instituições financeiras envolvidas. No Brasil, por exemplo, é necessário declarar à Receita Federal todas as operações de câmbio acima de R$ 30.000,00.</p>
+            </div>
+          </div>
+    </div>
+    <div class="inside-content" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">Quais são os riscos envolvidos em operações de câmbio?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>Os principais riscos envolvidos em operações de câmbio são: risco de mercado (variação da taxa de câmbio), risco de crédito (inadimplência das partes envolvidas na operação) e risco de liquidez (impossibilidade de realizar a operação no prazo desejado).</p>
+            </div>
+          </div>
+    </div>
+    <div class="inside-content" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <h2 itemprop="name">É possível fazer operações de câmbio online?</h2>
+        <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+            <div itemprop="text">
+              <p>Sim, é possível fazer operações de câmbio online por meio de plataformas digitais de instituições financeiras autorizadas pelo Banco Central do Brasil. Essa modalidade de operação oferece praticidade e conveniência, além de taxas competitivas em relação às operações realizadas em agências físicas. No entanto, é importante estar atento à segurança das transações online e escolher uma instituição financeira confiável.</p>
+            </div>
+          </div>
+    </div>
+
+</div>
+{% endblock %}

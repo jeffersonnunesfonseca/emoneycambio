@@ -196,3 +196,7 @@ def use_terms():
 @app.route('/politicas-de-privacidade/', methods = ['GET'])
 def privacy_policies():    
     return render_template('portal/privacy-policy/index.html')
+
+@app.route('/perguntas-frequentes/', methods = ['GET'])
+def faq():    
+    return render_template('portal/faq/index.html')
