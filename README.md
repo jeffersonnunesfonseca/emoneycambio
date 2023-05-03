@@ -111,4 +111,5 @@ negotiation-international-shipment-link
 negotiation-tourism-link
 logo-header-negotiation-tourism-link
 logo-footer-negotiation-tourism-link
+faq-link
 ```
