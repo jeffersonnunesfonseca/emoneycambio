@@ -460,7 +460,7 @@ $(document).ready(function() {
                     <ul>
                         <li><a rel="noreferrer nofollow" href="/remessa-internacional/">Remessas</a></li>
                         <li><a href="/">Papel/Moeda</a></li>
-                       <!-- <li><a href="#">Anuncie Conosco</a></li> -->
+                        <li><a href="/perguntas-frequentes/">FAQ</a></li>
                     </ul>
                 </div>
                 <div>
