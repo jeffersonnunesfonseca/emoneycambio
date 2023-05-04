@@ -525,7 +525,8 @@ $(document).ready(function() {
                 <div>
                     <span class="subtitle-font-style">Institucional</span>
                     <ul>
-                        <li><a class="aboutus-link" rel="noreferrer nofollow" href="/quem-somos/">Quem Somos</a></li>
+                        <li><a class="aboutus-link" rel="noreferrer nofollow" href="/quem-somos/">Quem somos</a></li>
+                        <li><a class="privacypolicy-link" rel="noreferrer nofollow" href="/fale-conosco/">Fale conosco</a></li>
                         <li><a class="termsuse-link" rel="noreferrer nofollow" href="/termos-de-uso/">Termos de uso</a></li>
                         <li><a class="privacypolicy-link" rel="noreferrer nofollow" href="/politicas-de-privacidade/">Políticas de privacidade</a></li>
                     </ul>
@@ -535,9 +536,15 @@ $(document).ready(function() {
                     <ul>
                         <li><a rel="noreferrer nofollow" href="/remessa-internacional/">Remessas</a></li>
                         <li><a href="/">Papel/Moeda</a></li>
-                        <li><a href="/perguntas-frequentes/">FAQ</a></li>
                     </ul>
                 </div>
+                <div>
+                <span class="subtitle-font-style">Ajuda ?</span>
+                <ul>
+                    <li><a href="/perguntas-frequentes/">FAQ</a></li>
+                </ul>
+            </div>
+                
                 <div>
                     <span class="subtitle-font-style">Social</span>
                     <ul>
