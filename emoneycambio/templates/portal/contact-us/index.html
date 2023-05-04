@@ -1,0 +1,55 @@
+{% extends "portal/base.html" %}
+{% block head %}    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/portal/document-style/style.css') }}?{{version}}">
+    <title>Fale Conosco</title>
+{% endblock %}
+{% block content %}
+<div class="default-form">
+    <form action="" class="form-contact-us" id="form-contact-us">
+        <h1 class="title-font-style" style="text-align: center;">Fale Conosco</h1>
+        
+        <div class="default-form-item">
+            <label for="reason_contact">* Qual assunto gostaria de tratar ?</label>
+            <select name="reason_contact" id="">
+                <option value="">Selecione</option>
+                <option value="parceria">Parcerias</option>
+                <option value="sugestao">Sugestões</option>
+                <option value="reclamacao">Reclamações</option>
+                <option value="duvida">Dúvidas</option>
+                <option value="oportunidade">Oportunidades</option>
+                <option value="outro">Outros</option>
+            </select>
+        </div>
+
+        <div class="default-form-item">
+            <label for="name">* Qual o seu nome ?</label>
+            <input type="text" name="name" placeholder="digite seu nome">
+        </div>
+
+        <div class="default-form-item">
+            <label for="phone">* Digite seu melhor número</label>
+            <div class="phone">
+                <input onkeydown="phoneMask(event)" type="text" name="phone" id="phone" placeholder="(xx) xxxxx-xxxx">
+                <div class="whatsapp">
+                    <img src="{{ url_for('static', filename='icons/whatsapp.png') }}" width="24" height="24" />
+                    <input type="checkbox" name="is_whatsapp" checked>
+                </div>
+            </div>
+        </div>
+
+        <div class="default-form-item">
+            <label for="email">* Seu melhor email</label>
+            <input type="email" name="email" placeholder="xx@xx.com">
+        </div>
+
+        <div class="default-form-item">
+            <label for="description_contact">* Fale mais sobre seu contato</label>
+            <textarea name="description_contact" cols="30" rows="5"></textarea>
+        </div>
+
+        <input class="button" type="button" value="Enviar" onclick="sendFormContactUs(event)">
+
+    </form>
+
+</div>
+{% endblock %}

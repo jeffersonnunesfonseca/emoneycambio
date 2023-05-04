@@ -200,3 +200,12 @@ def privacy_policies():
 @app.route('/perguntas-frequentes/', methods = ['GET'])
 def faq():    
     return render_template('portal/faq/index.html')
+
+@app.route('/fale-conosco/', methods = ['GET'])
+def contact_us():    
+    return render_template('portal/contact-us/index.html')
+
+@app.route('/fale-conosco/salvar', methods = ['POST'])
+def contact_us_save():    
+    json = request.get_json(silent=True)
+    return "OK"

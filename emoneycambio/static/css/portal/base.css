@@ -272,6 +272,65 @@ article.content {
   text-align: center;
 }
 
+/* Estilo para formulario padrão */
+.default-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100% !important;
+}
+.default-form>form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: 15px 15px 15px rgb(0 0 0 / 20%);
+  width: 50%;
+  padding: 25px;
+  border-radius: 30px;
+}
+
+.default-form-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.default-form-item>label {
+  width: 100%;
+}
+.default-form-item>select, 
+.default-form-item>textarea, 
+.default-form-item>input,
+.default-form-item>.phone>input {
+  width: 500px;
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 25px;
+  border: none;
+  background-color: #D7DEED;
+  text-align: center;
+  padding: 10px
+}
+
+.default-form-item>.phone {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.default-form-item>.phone>input {
+  width: 300px;
+}
+
+.default-form-item>.phone>.whatsapp {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
 @media only screen and (max-width: 600px) {
   .main { 
       width: 100vw;
@@ -357,8 +416,18 @@ article.content {
     min-width: 100px;
     
   }
-
-
+  .default-form>form {
+    width: 90% !important;
+  }
   
+  .default-form-item>select, 
+  .default-form-item>textarea, 
+  .default-form-item>input {
+    width: 300px;
+  }
+  .default-form-item>.phone>input {
+    width: 200px;
+
+  }
 
 }

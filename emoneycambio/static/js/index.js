@@ -154,7 +154,9 @@ function forceValidation(names) {
         for (const element of elements){
             element.classList.remove('check-value')
             if (!element.value || element.value == '') {
+                console.log(element)
                 element.classList.add('check-value')
+                element.scrollIntoView();
                 return "stop"
             }
             else if (element.name == "cpfcnpj") {
@@ -163,6 +165,7 @@ function forceValidation(names) {
                     if (!validaCPF(value)){
                         console.log("invalido cpf")
                         element.classList.add('check-value')
+                        element.scrollIntoView();
                         return "stop"
                     }
 
@@ -171,6 +174,7 @@ function forceValidation(names) {
                     if (!validaCNPJ(value)){
                         console.log("invalido cnpj")
                         element.classList.add('check-value')
+                        element.scrollIntoView();
                         return "stop"
                     }
                 }
@@ -179,9 +183,9 @@ function forceValidation(names) {
                 if (!validaEmail(element.value)){
                     console.log("invalido EMAIL", element.value)
                     element.classList.add('check-value')
+                    element.scrollIntoView();
                     return "stop"
                 }
-                
             }
             break
         }
@@ -364,6 +368,67 @@ function goToNegotiation(event, type, companyBranchId, negotiationType) {
     let newUrl = currentUrlPath.replace('cotacao', `negociacao/${type}/${negotiationType}`) + "/" + companyBranchId 
     console.log(companyBranchId, type, currentUrlPath, negotiationType, newUrl)
     location.href = newUrl
+
+}
+
+// PORTAL/FALE-CONOSCO
+function sendFormContactUs(event) {
+    event.preventDefault()
+    var formdata = $(".form-contact-us").serializeArray()
+    let keys_to_validate = []
+    let data = {}
+    $(formdata ).each(function(index, obj){
+        value = clearAccentuation(obj.value).toLowerCase();
+        if (obj.name == 'is_whatsapp'){
+
+        }
+        else {
+
+            keys_to_validate.push(obj.name)
+        }
+
+        data[obj.name] = value
+    });
+    
+    console.log(data)
+    if (forceValidation(keys_to_validate) == "stop") {
+        console.log("a")
+        return
+    }
+    event.currentTarget.value = 'Enviando ...'
+    event.currentTarget.disabled = true
+
+    var ajax = new XMLHttpRequest();
+
+    // Seta tipo de requisição e URL com os parâmetros
+    ajax.open('POST', "/fale-conosco/salvar", true);
+    ajax.setRequestHeader("Content-type", "application/json");
+    ajax.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+    data = JSON.stringify(data)
+    ajax.send(data);
+
+    // Cria um evento para receber o retorno.
+    ajax.onreadystatechange = function() {
+      // Caso o state seja 4 e o http.status for 200, é porque a requisiçõe deu certo.
+        if (ajax.readyState == 4 && ajax.status == 200) {        
+            if (this.responseText == "OK") {
+                $(".form-contact-us").replaceWith(`
+                <form action="" class="form-contact-us" id="form-contact-us">
+                    <p>
+                        Mensagem enviada com sucesso, em breve retornaramos.
+                    </p>
+                    <a href="/" class="subtile-font-style button" style="margin-bottom: 20px;">Realizar nova cotação</a>
+                </form>
+                `)
+                
+            }
+        }
+    }
+
+
+    let mainContent = document.getElementById("main")
+    mainContent.scrollIntoView()
+
 
 }
 
