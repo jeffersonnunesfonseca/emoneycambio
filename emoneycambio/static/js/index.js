@@ -415,12 +415,22 @@ function sendFormContactUs(event) {
                 $(".form-contact-us").replaceWith(`
                 <form action="" class="form-contact-us" id="form-contact-us">
                     <p>
-                        Mensagem enviada com sucesso, em breve retornaramos.
+                        Mensagem enviada com sucesso, em breve retornaremos.
                     </p>
                     <a href="/" class="subtile-font-style button" style="margin-bottom: 20px;">Realizar nova cotação</a>
                 </form>
                 `)
                 
+            }else if (this.responseText == "ERROR") {
+                
+                    $(".form-contact-us").replaceWith(`
+                    <form action="" class="form-contact-us" id="form-contact-us">
+                        <p>
+                            Ops ... Tivemos um problema para salvar seu contato, por favor tente mais tarde.
+                        </p>
+                        <a href="/" class="subtile-font-style button" style="margin-bottom: 20px;">Realizar nova cotação</a>
+                    </form>
+                    `)
             }
         }
     }

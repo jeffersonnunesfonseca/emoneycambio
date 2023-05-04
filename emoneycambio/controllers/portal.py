@@ -207,5 +207,16 @@ def contact_us():
 
 @app.route('/fale-conosco/salvar', methods = ['POST'])
 def contact_us_save():    
+    from emoneycambio.services.contact_us import ContactUs
     json = request.get_json(silent=True)
-    return "OK"
+    json['is_whatsapp'] = 1 if json.get('is_whatsapp') else False
+    print(json)
+    action = ContactUs()
+    try:
+        response = action.create_contact_us(**json)
+        if response:
+            return "OK"
+        raise Exception("problema ao criar contato")
+    except Exception as ex:
+        print(str(ex))
+        return 'ERROR'

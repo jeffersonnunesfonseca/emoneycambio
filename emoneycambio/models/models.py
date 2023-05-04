@@ -179,3 +179,28 @@ class LeadDistributionEventModel(db.Model):
     relationship_id = sa.Column(sa.Integer())
     created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
     updated_at = sa.Column('updated_at', sa.DateTime())
+
+
+
+    # CREATE TABLE IF NOT EXISTS `contact_us` (
+    # `id` INT NOT NULL AUTO_INCREMENT,
+    # `phone` VARCHAR(200) NOT NULL,
+    # `email` VARCHAR(200) NOT NULL,
+    # `reason` VARCHAR(200) NOT NULL,
+    # `description` TEXT NOT NULL,
+    # `created_at` DATETIME NOT NULL DEFAULT now(),
+    # `updated_at` DATETIME NULL,
+    # PRIMARY KEY (`id`))"""
+
+class ContactUsModel(db.Model):
+    __tablename__ = 'contact_us'
+    
+    id = sa.Column(sa.Integer(), primary_key=True, autoincrement=True)
+    name = sa.Column(sa.String(length=200), nullable=False) 
+    phone = sa.Column(sa.String(length=13), nullable=False)    
+    phone_is_whatsapp = sa.Column(sa.SmallInteger(), nullable=False) 
+    email = sa.Column(sa.String(length=200), nullable=False) 
+    reason = sa.Column(sa.String(length=200), nullable=False)    
+    description = sa.Column(sa.Text(), nullable=False)  
+    created_at = sa.Column(sa.DateTime(), server_default=sa.text('now()'))
+    updated_at = sa.Column('updated_at', sa.DateTime())
