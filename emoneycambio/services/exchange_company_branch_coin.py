@@ -78,32 +78,27 @@ class CompanyBranchExchangeCoin:
         company_branch_exchange_coin.receipt_international_shipment_exchange_fee = receipt_international_shipment_exchange_fee or company_branch_exchange_coin.receipt_international_shipment_exchange_fee
         company_branch_exchange_coin.delivery = data.get('delivery') or 0
         company_branch_exchange_coin.delivery_value = data.get('delivery_value') or None
-        
-        
-        
-
-        
 
         try:
             
             db.session.add(company_branch_exchange_coin)
             
             db.session.commit()
-            company_branch_exchange_coin_history = CompanyBranchExchangeCoinHistoryModel()            
-            company_branch_exchange_coin_history.company_branch_exchange_coin_id = company_branch_exchange_coin.id
-            company_branch_exchange_coin_history.buy_tourism_vet = company_branch_exchange_coin.buy_tourism_vet
-            company_branch_exchange_coin_history.sell_tourism_vet = company_branch_exchange_coin.sell_tourism_vet
-            company_branch_exchange_coin_history.dispatch_international_shipment_vet = company_branch_exchange_coin.dispatch_international_shipment_vet
-            company_branch_exchange_coin_history.receipt_international_shipment_vet = company_branch_exchange_coin.receipt_international_shipment_vet
-            company_branch_exchange_coin_history.buy_tourism_exchange_fee = company_branch_exchange_coin.buy_tourism_exchange_fee
-            company_branch_exchange_coin_history.sell_tourism_exchange_fee = company_branch_exchange_coin.sell_tourism_exchange_fee
-            company_branch_exchange_coin_history.dispatch_international_shipment_exchange_fee = company_branch_exchange_coin.dispatch_international_shipment_exchange_fee
-            company_branch_exchange_coin_history.receipt_international_shipment_exchange_fee = company_branch_exchange_coin.receipt_international_shipment_exchange_fee
-            company_branch_exchange_coin_history.iof_buy_tourism_fee = iof_buy_tourism_fee
-            company_branch_exchange_coin_history.iof_sell_tourism_fee = iof_sell_tourism_fee
-            company_branch_exchange_coin_history.iof_international_shipment_fee = iof_international_shipment_fee
-            db.session.add(company_branch_exchange_coin_history)
-            db.session.commit()
+            # company_branch_exchange_coin_history = CompanyBranchExchangeCoinHistoryModel()            
+            # company_branch_exchange_coin_history.company_branch_exchange_coin_id = company_branch_exchange_coin.id
+            # company_branch_exchange_coin_history.buy_tourism_vet = company_branch_exchange_coin.buy_tourism_vet
+            # company_branch_exchange_coin_history.sell_tourism_vet = company_branch_exchange_coin.sell_tourism_vet
+            # company_branch_exchange_coin_history.dispatch_international_shipment_vet = company_branch_exchange_coin.dispatch_international_shipment_vet
+            # company_branch_exchange_coin_history.receipt_international_shipment_vet = company_branch_exchange_coin.receipt_international_shipment_vet
+            # company_branch_exchange_coin_history.buy_tourism_exchange_fee = company_branch_exchange_coin.buy_tourism_exchange_fee
+            # company_branch_exchange_coin_history.sell_tourism_exchange_fee = company_branch_exchange_coin.sell_tourism_exchange_fee
+            # company_branch_exchange_coin_history.dispatch_international_shipment_exchange_fee = company_branch_exchange_coin.dispatch_international_shipment_exchange_fee
+            # company_branch_exchange_coin_history.receipt_international_shipment_exchange_fee = company_branch_exchange_coin.receipt_international_shipment_exchange_fee
+            # company_branch_exchange_coin_history.iof_buy_tourism_fee = iof_buy_tourism_fee
+            # company_branch_exchange_coin_history.iof_sell_tourism_fee = iof_sell_tourism_fee
+            # company_branch_exchange_coin_history.iof_international_shipment_fee = iof_international_shipment_fee
+            # db.session.add(company_branch_exchange_coin_history)
+            # db.session.commit()
             return company_branch_exchange_coin.id
 
         except exc.IntegrityError as ex:
