@@ -20,13 +20,13 @@ build() {
 
 tag() {
     echo "=> Tagging ${1}"
-    docker tag ${1} $(echo $DOCKER_USERNAME)/${1}
+    docker tag ${1} $(echo $DOCKER_USERNAME):${1}
     echo "=> Tagged ${1}"
 }
 
 push() {
     echo "=> Pushing ${1}"
-    docker push $(echo $DOCKER_USERNAME)/${1}
+    docker push $(echo $DOCKER_USERNAME):${1}
     echo "=> Pushed ${1}"
 }
 

@@ -1,1 +1,1 @@
-sudo docker pull jefonseca/sum && sudo docker rm -f emoneycambio && sudo docker run -d -p 5656:5656 --network host --env-file /home/${USER}/.secrets/.env --name emoneycambio jefonseca/sum:latest
+sudo docker pull jefonseca/emoneycambio && sudo docker rm -f emoneycambio && sudo docker run -d -p 5656:5656 --network host --env-file /home/${USER}/.secrets/.env --name emoneycambio jefonseca/emoneycambio:latest
